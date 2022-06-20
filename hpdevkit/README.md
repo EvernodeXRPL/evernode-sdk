@@ -79,7 +79,6 @@ Example `hp.cfg.override` for a nodejs application. (Hot Pocket devkit nodejs st
 ## Environment variables
 | Name | Description | Default value |
 | --- | --- | --- |
-| HP_CLUSTER | Name of the cluster. Can be used to spin up different clusters for different applications. | `default` |
 | HP_CLUSTER_SIZE | Number of nodes in the cluster. Only becomes effective with fresh cluster. | `1` |
 | HP_DEFAULT_NODE | The node the 'deploy' command uses to display logs. | `1` |
 | HP_DEVKIT_IMAGE | Docker image to be used for devkit cluster management. | `evernodedev/hpdevkit` |
