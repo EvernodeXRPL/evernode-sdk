@@ -15,7 +15,7 @@ Hot Pocket developer kit requires you to install [Docker Engine](https://docs.do
 ## Creating Hot Pocket smart contract
 You can use the Hot Pocket developer kit to generate smart contract projects so everything is pre-configured for you. Here, we are creating a NodeJs smart contract. This assumes you have prior experience with developing NodeJs applications.
 ```
-hpdevkit gen nodejs starter myproj
+hpdevkit gen nodejs starter-contract myproj
 cd myproj
 npm install
 npm start
@@ -66,7 +66,7 @@ hpdevkit stop <node number>
 
 If the contract files directory also contains a file named `hp.cfg.override`, it will be used to override the hp.cfg of all nodes. This can be used to set contract specific parameters like 'bin_path' and 'bin_args'
 
-Example `hp.cfg.override` for a nodejs application. (Hot Pocket devkit nodejs starter project automatically includes this file for you)
+Example `hp.cfg.override` for a nodejs application. (Hot Pocket devkit nodejs starter contract automatically includes this file for you)
 ```
 {
     "contract": {
@@ -77,9 +77,18 @@ Example `hp.cfg.override` for a nodejs application. (Hot Pocket devkit nodejs st
 ```
 
 ## Environment variables
+`hpdevkit` CLI supports following environment variables.
+
 | Name | Description | Default value |
 | --- | --- | --- |
 | HP_CLUSTER_SIZE | Number of nodes in the cluster. Only becomes effective with fresh cluster. | `1` |
 | HP_DEFAULT_NODE | The node the 'deploy' command uses to display logs. | `1` |
 | HP_DEVKIT_IMAGE | Docker image to be used for devkit cluster management. | `evernodedev/hpdevkit` |
 | HP_INSTANCE_IMAGE | Docker image to be used for Hot Pocket instances. | `evernodedev/hotpocket:latest-ubt.20.04-njs.16` |
+
+## Updates
+- Download `hpdevkit` CLI from [Releases](https://github.com/HotPocketDev/evernode-sdk/releases)
+- Update the supporting docker image with `docker pull evernodedev/hpdevkit`
+
+## Reporting issues
+Report issues [here](https://github.com/HotPocketDev/evernode-sdk/issues).
