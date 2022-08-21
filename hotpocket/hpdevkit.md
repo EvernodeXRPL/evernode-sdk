@@ -9,7 +9,7 @@ HotPocket developer kit requires you to install [Docker Engine](https://docs.doc
 2. Place the `hpdevkit.exe` in a directory you want and add the directory to your PATH as follows
 <img alt="Windows PATH environment variable setup" src="https://user-images.githubusercontent.com/33562092/174452298-4771127c-247b-4cf6-8bcc-3fff00af08e1.png">
 
-## Linux and macOS installation
+## Linux installation
 ...in future...
 
 ## Creating HotPocket smart contract
