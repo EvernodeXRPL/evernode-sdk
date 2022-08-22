@@ -1,15 +1,17 @@
 # HotPocket developer kit
 Evernode uses HotPocket as its smart contract engine. HotPocket smart contracts can be developed using any POSIX-compliant language/framework. To make it easy to develop and test HotPocket smart contracts on your local PC, you can use HotPocket developer kit.
 
-## Prerequisites
+## Installation
+
+### Prerequisites
 HotPocket developer kit requires you to install [Docker Engine](https://docs.docker.com/engine/install/) on your development machine.
 
-## Windows installation
-1. Download [hpdevkit.exe](https://github.com/HotPocketDev/evernode-sdk/releases/download/hpdevkit-win-0.1.0/hpdevkit.exe) CLI tool for Windows.
+### Windows installation
+1. Download [hpdevkit.exe](https://stevernode.blob.core.windows.net/evernode-beta/hpdevkit-windows/hpdevkit.exe) CLI tool for Windows.
 2. Place the `hpdevkit.exe` in a directory you want and add the directory to your PATH as follows
 <img alt="Windows PATH environment variable setup" src="https://user-images.githubusercontent.com/33562092/174452298-4771127c-247b-4cf6-8bcc-3fff00af08e1.png">
 
-## Linux installation
+### Linux installation
 ...in future...
 
 ## Creating HotPocket smart contract
@@ -87,7 +89,7 @@ Example `hp.cfg.override` for a nodejs application. (HotPocket devkit nodejs sta
 | HP_INSTANCE_IMAGE | Docker image to be used for HotPocket instances. | `evernodedev/hotpocket:latest-ubt.20.04-njs.16` |
 
 ## Updates
-- Download `hpdevkit` CLI from [Releases](https://github.com/HotPocketDev/evernode-sdk/releases)
+- Install latest `hpdevkit` as mentioned in install steps.
 - Update the supporting docker image with `docker pull evernodedev/hpdevkit`
 
 ## Reporting issues

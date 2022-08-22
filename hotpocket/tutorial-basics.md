@@ -8,7 +8,7 @@ This guide explains the journey of developing a smart contract and a client appl
 
 ## 1. Install HotPocket developer kit
 
-Follow [Windows](hpdevkit.md#windows-installation) or [Linux](hpdevkit.md#linux-installation) instructions to install HotPocket developer kit on your PC.
+Follow [installation instructions](hpdevkit.md#installation) to install HotPocket developer kit on your PC.
 
 ## 2. Create the smart contract
 
@@ -161,7 +161,7 @@ clientApp();
 
 With `HotPocket.generateKeys()`, we first generate a 'key pair' which cryptographically identifies a unique user to a HotPocket smart contract. Then we create a HotPocket client object by passing the HotPocket server address and the key pair. In the server address `wss://localhost:8081`, we specify `wss:\\` because HotPocket uses [websockets](https://en.wikipedia.org/wiki/WebSocket) for communication. `localhost` is used because we need to connect to a HotPocket node running inside our own PC and port `8081` is used because the HotPocket node running our contract was configured by the developer kit to listen on port 8081 for user connections.
 
-With `client.connect()` the client application will actually establish a websocket connection with the HotPocket node running in your PC. Behind the scenes HotPocket node and the client applications goes through a handshake process to cryptographically verify each others identity. Once the handshake is complete, your client application is considered 'connected' to HotPocket.
+With `client.connect()` the client application will actually establish a websocket connection with the HotPocket node running in your PC. Behind the scenes HotPocket node and the client applications goes through a handshake process to cryptographically verify each other's identity. Once the handshake is complete, your client application is considered 'connected' to HotPocket.
 
 ## 7. Run the client application
 
@@ -223,9 +223,9 @@ The above code is iterating through all connected users, and printing each user'
 
 Run `npm start` and then run several instances of your client application. You should see the contract log output printing public keys of connected users.
 
-## 9. Send and receive user inputs
+## 9. Handle user inputs
 
-So far our smart contract is only capable of identifying connected users and nothing else. HotPocket smart contracts are capable of receiving 'inputs' from users and sending 'outputs' back to users. First, let's update our smart contract to process user inputs and send outputs as follows.
+So far our smart contract is only capable of identifying connected users and nothing else. HotPocket smart contracts are capable of receiving 'inputs' from users. Let's update our smart contract to process user inputs.
 
 ```javascript
 for (const user of ctx.users.list()) {
@@ -259,7 +259,7 @@ await client.submitContractInput("hello");
 
 When HotPocket receives the inputs, it first subjects them to consensus to verify that a majority of HotPocket nodes in the cluster see the same inputs. If consensus is reached, it then passes the inputs to the smart contract.
 
-Run the client application with `node myclient.js` while looking at the HotPocket logs.
+Run the client application with `node myclient.js` while looking at the HotPocket logs. HotPocket logs should show something like this:
 
 ```
 20220821 14:18:10.069 [inf][hpc] ****Ledger created**** (lcl:39-4ccab9bc state:81b360bc patch:77e05022)
@@ -267,7 +267,7 @@ User public key ed9a4cf5eba65fb12e8971dd8e4fec352601814214bb54c696dfd0a77bbdf442
 Received input:  hello
 ```
 
-## 10. Send and receive user outputs
+## 10. Handle user outputs
 
 Now our client application is capable of sending user inputs and our smart contract can receive them. Next, let's add the ability for the smart contract to reply to the user in the form of 'outputs'.
 
@@ -314,6 +314,6 @@ You said 'hello'
 Thanks for talking to me!
 ```
 
-Please note that HotPocket client does not associate any outputs with a corresponding input. This is because HotPocket does not enforce any relationship between inputs and outputs. As also explained above, a HotPocket smart contract can send outputs even without receiving any inputs as well. This is specially useful in sending notifications to users without them having to request them.
+Please note that HotPocket client does not associate any outputs with a corresponding input. This is because HotPocket does not enforce any relationship between inputs and outputs. As also explained above, a HotPocket smart contract can send outputs even without receiving any inputs as well. This is specially useful in sending notifications to users without them having to request first.
 
 That concludes the HotPocket basics tutorial. We have created a smart contract and a client application which can communicate with each other.
