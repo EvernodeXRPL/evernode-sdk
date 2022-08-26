@@ -28,10 +28,10 @@ External parties which are called "Users" can connect to HotPocket nodes using w
 
 HotPocket uniquely identifies a user by the ed22519 public key presented by the user upon establishing a websocket connection to HotPocket. This is cryptographically verified by HotPocket and it is assumed that all subsequent data exchanged via the established connection belongs to the user represented by that public key.
 
-### User inputs
+## User inputs
 
 User can send arbitary binary data to the HotPocket node, to be interpreted by the smart contract application associated with that HotPocket node. Each HotPocket node shares all user inputs it received with the other nodes on the cluster. After the consensus process, the consensed inputs are fed into the smart contract. The smart contract can interpret the user inputs as it deems necessary and act upon it.
 
-### User outputs
+## User outputs
 
-### State
+## State
