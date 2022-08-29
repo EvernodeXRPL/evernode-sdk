@@ -1,6 +1,6 @@
 # HotPocket basics tutorial
 
-HotPocket smart contract development involves two areas. Developing the smart contract which contains the logic of your application, and developing user-facing client application that interact with the smart contract. HotPocket acts as the middleman of bridging your client applications with the smart contract.
+HotPocket [smart contract](concepts/#smart-contract) development involves two areas. Developing the smart contract which contains the logic of your application, and developing the client application that interact with the smart contract as a [user](concepts/#users). HotPocket acts as the middleman of bridging your client applications with the smart contract.
 
 HotPocket runs only on Linux (Ubuntu 20.04) and is capable of using Linux POSIX-compliant applications as smart contracts. HotPocket uses [Docker](https://www.docker.com/) to bundle HotPocket and your smart contracts into a runnable Linux environment. Therefore, you can carry out your development activities on platforms such as Windows with the help of standard cross-platform programming environments.
 
@@ -59,7 +59,7 @@ npm install
 npm start
 ```
 
-This will make HotPocket developer kit to build and deploy your smart contract into a single HotPocket instance. At the end, it will start showing some console output emitted by HotPocket like this:
+This will make HotPocket developer kit to build and deploy your smart contract into all the nodes of the HotPocket cluster. At the end, it will start showing some console output emitted by a HotPocket node like this:
 
 ```
 20220821 09:23:50.213 [inf][hpc] ****Ledger created**** (lcl:1-a80e9b9d state:aab8e909 patch:7365a671)
@@ -72,11 +72,13 @@ Blank contract
 
 You can press ctrl+C to exit from logging output. The HotPocket instance will continue to run. To revisit the log you can use the command `hpdevkit logs 1`.
 
-_Here, the parameter '1' is the instance (node) number. By default HotPocket devveloper kit creates only one instance but it's capable of creating a cluster of multiple HotPocket nodes inside your PC. For now, let's stick with this simple single-node setup. See [here](hpdevkit.md#changing-the-cluster-size) for more info._
+_Here, the parameter '1' is the instance (node) number. By default HotPocket devveloper kit creates a 3-node cluster. For now, let's stick node number 1 even though any node would display the same behaviour. See [here](hpdevkit.md#changing-the-cluster-size) for more info._
+
+_Under the hood, `npm start` command is simply using the command `hpdevkit deploy dist` to deploy the NodeJs build outputs directory, 'dist' into the HotPocket cluster. You can inspect the 'package.json' of your smart contract project to see this._
 
 ### 4.1. Consensus and contract execution
 
-You will notice that the above log prints an execution log every few seconds. This is due to the way HotPocket operates and how it executes your smart contract. HotPocket uses an interval called **consensus roundtime** which controls how often it attempts to exchange information with other HotPocket nodes in the cluster and arrive at consensus. At the end of every round, HotPocket creates a ledger using the information that was subjected to consensus. It then executes your smart contract and passes it the information corresponding to the consensus ledger that was just created.
+You will notice that the above log prints an execution log every few seconds. This is due to the way HotPocket operates and how it executes your smart contract. HotPocket uses an interval called **consensus roundtime** which controls how often it attempts to exchange information with other HotPocket nodes in the cluster and arrive at [consensus](concepts/#consensus). At the end of every round, HotPocket creates a ledger using the information that was subjected to consensus. It then executes your smart contract and passes it the information corresponding to the consensus ledger that was just created. The smart contract should do what it wants with the data it was passed on and exit so HotPocket can start the next consensus round with the latest results from last smart contract execution.
 
 Now, with this understanding, let's revisit the code in 'mycontract.js'.
 
@@ -92,7 +94,7 @@ const hpc = new HotPocket.Contract();
 hpc.init(mycontract);
 ```
 
-`hpc.init()` will cause HotPocket to invoke `mycontract` function whenever it creates a ledger. HotPocket will pass the `ctx` argument containing any information that it believes to be 'universal' among all the HotPocket nodes in the cluster. HotPocket will not invoke your application/function if it couldn't reach consensus (hence, no ledger was created) during a particular consensus round.
+`hpc.init()` will cause HotPocket to invoke `mycontract` function whenever it creates a ledger. HotPocket will pass the `ctx` argument containing any information that it believes to be 'universal' among all the HotPocket nodes in the cluster. HotPocket will not invoke your application/function if it could not reach consensus (hence, no ledger was created) during a particular consensus round.
 
 ## 5. Update the contract logic
 
@@ -125,7 +127,7 @@ Ledger number 3
 Connected users 0
 ```
 
-You can see now we are printing the ledger number passed from HotPocket inside our smart contract. We are also printing no. of users connected to our smart contract but obviously it's returning 0. If there were any connected users, we could write logic in our contract to process any data sent by the users and do some useful things with it. In the next section let's see how users can connect to our contract.
+You can see now we are printing the ledger number passed from HotPocket inside our smart contract. We are also printing no. of [users](concepts/#users) connected to our smart contract but obviously it's returning 0. If there were any connected users, we could write logic in our contract to process any data sent by the users and do some useful things with it. In the next section let's see how users can connect to our contract.
 
 Press ctrl+C to stop the console output. HotPocket will continue to run in the background.
 
@@ -226,17 +228,17 @@ The above code is iterating through all connected users, and printing each user'
 Run `npm start` and then run several instances of your client application. You should see the contract log output printing public keys of connected users.
 
 ```
-20220823 16:09:34.873 [inf][hpc] ****Ledger created**** (lcl:25-c69f184b state:14ca33f4 patch:28c55e24)       
+20220823 16:09:34.873 [inf][hpc] ****Ledger created**** (lcl:25-c69f184b state:14ca33f4 patch:28c55e24)
 User public key eddf24ddcdddac0e4a7087529e3420575707791b1d7d201ec4efff0edbba62c2b2
 User public key ede63c896f04aef76df1d77a476ac511dc2b92da74557bbe1988846e84261ee71a
-20220823 16:09:35.874 [inf][hpc] ****Ledger created**** (lcl:26-8623280c state:14ca33f4 patch:28c55e24)       
+20220823 16:09:35.874 [inf][hpc] ****Ledger created**** (lcl:26-8623280c state:14ca33f4 patch:28c55e24)
 User public key eddf24ddcdddac0e4a7087529e3420575707791b1d7d201ec4efff0edbba62c2b2
 User public key ede63c896f04aef76df1d77a476ac511dc2b92da74557bbe1988846e84261ee71a
 ```
 
 ## 9. Handle user inputs
 
-So far our smart contract is only capable of identifying connected users and nothing else. HotPocket smart contracts are capable of receiving 'inputs' from users. Let's update our smart contract to process user inputs.
+So far our smart contract is only capable of identifying connected users and nothing else. HotPocket smart contracts are capable of receiving 'inputs' from users. Let's update our smart contract to process [user inputs](concepts/#user-inputs).
 
 ```javascript
 for (const user of ctx.users.list()) {
@@ -280,7 +282,7 @@ Received input: hello
 
 ## 10. Handle user outputs
 
-Now our client application is capable of sending user inputs and our smart contract can receive them. Next, let's add the ability for the smart contract to reply to the user in the form of 'outputs'.
+Now our client application is capable of sending user inputs and our smart contract can receive them. Next, let's add the ability for the smart contract to reply to the user in the form of ['outputs'](concepts/#user-outputs).
 
 Update the smart contract with following code.
 
