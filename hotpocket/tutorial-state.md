@@ -1,6 +1,6 @@
 # HotPocket tutorial - persisting data
 
-This tutorial is a continuation of [HotPocket basics tutorial](tutorial-basics.md).
+This tutorial is a continuation of [Working with multiple nodes](tutorial-multinode.md).
 
 Because HotPocket smart contracts are regular Linux applications, they have direct access to on-device file storage. Therefore, you can use regular filesystem operations to save data onto disk and access them between subsequent executions of the smart contract.
 

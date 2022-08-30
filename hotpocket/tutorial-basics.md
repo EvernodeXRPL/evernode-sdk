@@ -70,9 +70,7 @@ Blank contract
 Blank contract
 ```
 
-You can press ctrl+C to exit from logging output. The HotPocket instance will continue to run. To revisit the log you can use the command `hpdevkit logs 1`.
-
-_Here, the parameter '1' is the instance (node) number. By default HotPocket devveloper kit creates a 3-node cluster. For now, let's stick node number 1 even though any node would display the same behaviour. See [here](hpdevkit.md#changing-the-cluster-size) for more info._
+You can press ctrl+C to exit from logging output. The HotPocket instance will continue to run. To revisit the log you can use the command `hpdevkit logs 1`. The parameter '1' is the instance (node) number. By default HotPocket devveloper kit creates a 3-node cluster.
 
 _Under the hood, `npm start` command is simply using the command `hpdevkit deploy dist` to deploy the NodeJs build outputs directory, 'dist' into the HotPocket cluster. You can inspect the 'package.json' of your smart contract project to see this._
 
@@ -161,11 +159,11 @@ async function clientApp() {
 clientApp();
 ```
 
-With `HotPocket.generateKeys()`, we first generate a 'key pair' which cryptographically identifies a unique user to a HotPocket smart contract. Then we create a HotPocket client object by passing the HotPocket server address and the key pair. In the server address `wss://localhost:8081`, we specify `wss://` because HotPocket uses [websockets](https://en.wikipedia.org/wiki/WebSocket) for communication. `localhost` is used because we need to connect to a HotPocket node running inside our own PC and port `8081` is used because the HotPocket node running our contract was configured by the developer kit to listen on port 8081 for user connections.
+With `HotPocket.generateKeys()`, we first generate a new 'key pair' which cryptographically identifies a unique user to a HotPocket smart contract. Then we create a HotPocket client object by passing the HotPocket server address and the key pair. In the server address `wss://localhost:8081`, we specify `wss://` because HotPocket uses [websockets](https://en.wikipedia.org/wiki/WebSocket) for communication. `localhost` is used because we need to connect to a HotPocket node running inside our own PC and port `8081` is used because the HotPocket node running our contract was configured by the developer kit to listen on port 8081 for user connections.
 
 With `client.connect()` the client application will actually establish a websocket connection with the HotPocket node running in your PC. Behind the scenes, HotPocket node and the client application goes through a handshake process to cryptographically verify each other's identity. Once the handshake is complete, your client application is considered 'connected' to HotPocket.
 
-_`HotPocket.generateKeys()` will generate a new random key pair by default. If you want to reuse the same key pair, you can save and reuse the returned keyPair object without calling `HotPocket.generateKeys()`._
+_`HotPocket.generateKeys()` will generate a new random key pair by default. We will learn how to preserve and reuse the same key pair further into this tutorial._
 
 ## 7. Run the client application
 
@@ -201,7 +199,7 @@ Ledger number 1523
 Connected users 1
 ```
 
-You should see that it's now showing 1 connected user. If you were to run another instance of the client application with `node myclient.js`, the smart contract log should start showing 2 connected users.
+You should see that it's now showing 1 connected user. If you were to run another instance of the client application with `node myclient.js`, the smart contract log should start showing 2 connected users. This is because our client application generates a fresh key pair every time it starts up, causing HotPocket to treat it as a unique user.
 
 Now, stop the HotPocket node with `hpdevkit stop`. You will see that the client application gets disconnected automatically. (you can restart HotPocket by running `npm start` from 'mycontract' directory)
 
@@ -328,5 +326,42 @@ Thanks for talking to me!
 ```
 
 Please note that HotPocket client does not associate any outputs with a corresponding input. This is because HotPocket does not enforce any relationship between inputs and outputs. As also explained above, a HotPocket smart contract can send outputs even without receiving any inputs as well. This is specially useful in sending notifications to users without them having to request first.
+
+## 11. Reusing the user public key
+
+So far, our client application generates a new key pair everytime it starts up. This makes HotPocket treat every launch of our client application as a unique user. A real-world application would need to interact with the smart contract as the same user. For this purpose, we need to preserve the key pair and reuse it in subsequent launches of the client application.
+
+```javascript
+const userKeyPair = await HotPocket.generateKeys();
+```
+
+The key pair object contains `publicKey` and `privateKey` components in binary format. The critical component is the `privateKey` because it inherently includes the public key as well. Therefore, we can preserve the private key for later restoration of the key pair.
+
+Update the 'myclient.js' with following code.
+
+```javascript
+const HotPocket = require('hotpocket-js-client');
+const fs = require('fs');
+
+async function clientApp() {
+
+    const keyFile = 'userfile.key';
+    if (!fs.existsSync(keyFile)) {
+        const newKeyPair = await HotPocket.generateKeys();
+        const saveData = Buffer.from(newKeyPair.privateKey).toString('hex');
+        fs.writeFileSync(keyFile, saveData);
+        console.log('New key pair generated.');
+    }
+
+    // Generate the key pair using saved private key data.
+    const savedPrivateKeyHex = fs.readFileSync(keyFile).toString();
+    const userKeyPair = await HotPocket.generateKeys(savedPrivateKeyHex);
+
+    ....
+```
+
+In the above example, we are maintaining a key file to preserve the user's key data. If the file does not exist, we generate a new key pair and save the private key component in hexadecimal (text) format. Subsequently, we read the saved private key data from the file and restore the key pair using the `HotPocket.generateKeys()` function.
+
+_Private keys are considered **sensitive data** (similar to a password in a traditional application) and proper security practices must be followed when preserving a private key for later use. It is a outside the scope of this guide and is the responsiblity of the application developer. The above example simply serves as a rudimentary example to showcase the scenario._
 
 That concludes the HotPocket basics tutorial. We have created a smart contract and a client application which can communicate with each other.
