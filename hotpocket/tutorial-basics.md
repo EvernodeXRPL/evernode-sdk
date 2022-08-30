@@ -1,8 +1,8 @@
 # HotPocket basics tutorial
 
-HotPocket smart contract development involves two areas. Developing the smart contract which contains the logic of your application, and developing user-facing client application that interact with the smart contract. HotPocket acts as the middleman of bridging your client applications with the smart contract.
+HotPocket [smart contract](concepts/#smart-contract) development involves two areas. Developing the smart contract which contains the logic of your application, and developing the client application that interact with the smart contract as a [user](concepts/#users). HotPocket acts as the middleman of bridging your client applications with the smart contract.
 
-HotPocket runs only on Linux (Ubuntu 20.04) and is capable of using Linux POSIX-compliant applications as smart contracts. HotPocket uses [Docker](https://www.docker.com/) to bundle HotPocket and your smart contracts into a runnable Linux environment. Therefore, you can carry out your development activities on platforms such as Windows with the help standard cross-platform programming environments.
+HotPocket runs only on Linux (Ubuntu 20.04) and is capable of using Linux POSIX-compliant applications as smart contracts. HotPocket uses [Docker](https://www.docker.com/) to bundle HotPocket and your smart contracts into a runnable Linux environment. Therefore, you can carry out your development activities on platforms such as Windows with the help of standard cross-platform programming environments.
 
 This guide explains the journey of developing a smart contract and a client application using NodeJs. Therefore it'll help you if you have prior knowledge of developing NodeJs applications. We will also use [HotPocket developer kit](hpdevkit.md) throughout this guide so most of the setup work like HotPocket and docker container configurations are done for you automatically. Therefore you can carry out the steps on this guide even if you do not have prior NodeJs experience.
 
@@ -59,7 +59,7 @@ npm install
 npm start
 ```
 
-This will make HotPocket developer kit to build and deploy your smart contract into a single HotPocket instance. At the end, it will start showing some console output emitted by HotPocket like this:
+This will make HotPocket developer kit to build and deploy your smart contract into all the nodes of the HotPocket cluster. At the end, it will start showing some console output emitted by a HotPocket node like this:
 
 ```
 20220821 09:23:50.213 [inf][hpc] ****Ledger created**** (lcl:1-a80e9b9d state:aab8e909 patch:7365a671)
@@ -70,13 +70,13 @@ Blank contract
 Blank contract
 ```
 
-You can press ctrl+C to exit from logging output. The HotPocket instance will continue to run. To revisit the log you can use the command `hpdevkit logs 1`.
+You can press ctrl+C to exit from logging output. The HotPocket instance will continue to run. To revisit the log you can use the command `hpdevkit logs 1`. The parameter '1' is the instance (node) number. By default HotPocket devveloper kit creates a 3-node cluster.
 
-_Here, the parameter '1' is the instance (node) number. By default HotPocket devveloper kit creates only one instance but it's capable of creating a cluster of multiple HotPocket nodes inside your PC. For now, let's stick with this simple single-node setup. See [here](hpdevkit.md#changing-the-cluster-size) for more info._
+_Under the hood, `npm start` command is simply using the command `hpdevkit deploy dist` to deploy the NodeJs build outputs directory, 'dist' into the HotPocket cluster. You can inspect the 'package.json' of your smart contract project to see this._
 
 ### 4.1. Consensus and contract execution
 
-You will notice that the above log prints an execution log every few seconds. This is due to the way HotPocket operates and how it executes your smart contract. HotPocket uses an interval called **consensus roundtime** which controls how often it attempts to exchange information with other HotPocket nodes in the cluster and arrive at consensus. At the end of every round, HotPocket creates a ledger using the information that was subjected to consensus. It then executes your smart contract and passes it the information corresponding to the consensus ledger that was just created.
+You will notice that the above log prints an execution log every few seconds. This is due to the way HotPocket operates and how it executes your smart contract. HotPocket uses an interval called **consensus roundtime** which controls how often it attempts to exchange information with other HotPocket nodes in the cluster and arrive at [consensus](concepts/#consensus). At the end of every round, HotPocket creates a ledger using the information that was subjected to consensus. It then executes your smart contract and passes it the information corresponding to the consensus ledger that was just created. The smart contract should do what it wants with the data it was passed on and exit so HotPocket can start the next consensus round with the latest results from last smart contract execution.
 
 Now, with this understanding, let's revisit the code in 'mycontract.js'.
 
@@ -92,7 +92,7 @@ const hpc = new HotPocket.Contract();
 hpc.init(mycontract);
 ```
 
-`hpc.init()` will cause HotPocket to invoke `mycontract` function whenever it creates a ledger. HotPocket will pass the `ctx` argument containing any information that it believes to be 'universal' among all the HotPocket nodes in the cluster. HotPocket will not invoke your application/function if it couldn't reach consensus (hence, no ledger was created) during a particular consensus round.
+`hpc.init()` will cause HotPocket to invoke `mycontract` function whenever it creates a ledger. HotPocket will pass the `ctx` argument containing any information that it believes to be 'universal' among all the HotPocket nodes in the cluster. HotPocket will not invoke your application/function if it could not reach consensus (hence, no ledger was created) during a particular consensus round.
 
 ## 5. Update the contract logic
 
@@ -125,7 +125,7 @@ Ledger number 3
 Connected users 0
 ```
 
-You can see now we are printing the ledger number passed from HotPocket inside our smart contract. We are also printing no. of users connected to our smart contract but obviously it's returning 0. If there were any connected users, we could write logic in our contract to process any data sent by the users and do some useful things with it. In the next section let's see how users can connect to our contract.
+You can see now we are printing the ledger number passed from HotPocket inside our smart contract. We are also printing no. of [users](concepts/#users) connected to our smart contract but obviously it's returning 0. If there were any connected users, we could write logic in our contract to process any data sent by the users and do some useful things with it. In the next section let's see how users can connect to our contract.
 
 Press ctrl+C to stop the console output. HotPocket will continue to run in the background.
 
@@ -159,11 +159,11 @@ async function clientApp() {
 clientApp();
 ```
 
-With `HotPocket.generateKeys()`, we first generate a 'key pair' which cryptographically identifies a unique user to a HotPocket smart contract. Then we create a HotPocket client object by passing the HotPocket server address and the key pair. In the server address `wss://localhost:8081`, we specify `wss://` because HotPocket uses [websockets](https://en.wikipedia.org/wiki/WebSocket) for communication. `localhost` is used because we need to connect to a HotPocket node running inside our own PC and port `8081` is used because the HotPocket node running our contract was configured by the developer kit to listen on port 8081 for user connections.
+With `HotPocket.generateKeys()`, we first generate a new 'key pair' which cryptographically identifies a unique user to a HotPocket smart contract. Then we create a HotPocket client object by passing the HotPocket server address and the key pair. In the server address `wss://localhost:8081`, we specify `wss://` because HotPocket uses [websockets](https://en.wikipedia.org/wiki/WebSocket) for communication. `localhost` is used because we need to connect to a HotPocket node running inside our own PC and port `8081` is used because the HotPocket node running our contract was configured by the developer kit to listen on port 8081 for user connections.
 
 With `client.connect()` the client application will actually establish a websocket connection with the HotPocket node running in your PC. Behind the scenes, HotPocket node and the client application goes through a handshake process to cryptographically verify each other's identity. Once the handshake is complete, your client application is considered 'connected' to HotPocket.
 
-_`HotPocket.generateKeys()` will generate a new random key pair by default. If you want to reuse the same key pair, you can save and reuse the returned keyPair object without calling `HotPocket.generateKeys()`._
+_`HotPocket.generateKeys()` will generate a new random key pair by default. We will learn how to preserve and reuse the same key pair further into this tutorial._
 
 ## 7. Run the client application
 
@@ -199,7 +199,7 @@ Ledger number 1523
 Connected users 1
 ```
 
-You should see that it's now showing 1 connected user. If you were to run another instance of the client application with `node myclient.js`, the smart contract log should start showing 2 connected users.
+You should see that it's now showing 1 connected user. If you were to run another instance of the client application with `node myclient.js`, the smart contract log should start showing 2 connected users. This is because our client application generates a fresh key pair every time it starts up, causing HotPocket to treat it as a unique user.
 
 Now, stop the HotPocket node with `hpdevkit stop`. You will see that the client application gets disconnected automatically. (you can restart HotPocket by running `npm start` from 'mycontract' directory)
 
@@ -226,17 +226,17 @@ The above code is iterating through all connected users, and printing each user'
 Run `npm start` and then run several instances of your client application. You should see the contract log output printing public keys of connected users.
 
 ```
-20220823 16:09:34.873 [inf][hpc] ****Ledger created**** (lcl:25-c69f184b state:14ca33f4 patch:28c55e24)       
+20220823 16:09:34.873 [inf][hpc] ****Ledger created**** (lcl:25-c69f184b state:14ca33f4 patch:28c55e24)
 User public key eddf24ddcdddac0e4a7087529e3420575707791b1d7d201ec4efff0edbba62c2b2
 User public key ede63c896f04aef76df1d77a476ac511dc2b92da74557bbe1988846e84261ee71a
-20220823 16:09:35.874 [inf][hpc] ****Ledger created**** (lcl:26-8623280c state:14ca33f4 patch:28c55e24)       
+20220823 16:09:35.874 [inf][hpc] ****Ledger created**** (lcl:26-8623280c state:14ca33f4 patch:28c55e24)
 User public key eddf24ddcdddac0e4a7087529e3420575707791b1d7d201ec4efff0edbba62c2b2
 User public key ede63c896f04aef76df1d77a476ac511dc2b92da74557bbe1988846e84261ee71a
 ```
 
 ## 9. Handle user inputs
 
-So far our smart contract is only capable of identifying connected users and nothing else. HotPocket smart contracts are capable of receiving 'inputs' from users. Let's update our smart contract to process user inputs.
+So far our smart contract is only capable of identifying connected users and nothing else. HotPocket smart contracts are capable of receiving 'inputs' from users. Let's update our smart contract to process [user inputs](concepts/#user-inputs).
 
 ```javascript
 for (const user of ctx.users.list()) {
@@ -280,7 +280,7 @@ Received input: hello
 
 ## 10. Handle user outputs
 
-Now our client application is capable of sending user inputs and our smart contract can receive them. Next, let's add the ability for the smart contract to reply to the user in the form of 'outputs'.
+Now our client application is capable of sending user inputs and our smart contract can receive them. Next, let's add the ability for the smart contract to reply to the user in the form of ['outputs'](concepts/#user-outputs).
 
 Update the smart contract with following code.
 
@@ -326,5 +326,42 @@ Thanks for talking to me!
 ```
 
 Please note that HotPocket client does not associate any outputs with a corresponding input. This is because HotPocket does not enforce any relationship between inputs and outputs. As also explained above, a HotPocket smart contract can send outputs even without receiving any inputs as well. This is specially useful in sending notifications to users without them having to request first.
+
+## 11. Reusing the user public key
+
+So far, our client application generates a new key pair everytime it starts up. This makes HotPocket treat every launch of our client application as a unique user. A real-world application would need to interact with the smart contract as the same user. For this purpose, we need to preserve the key pair and reuse it in subsequent launches of the client application.
+
+```javascript
+const userKeyPair = await HotPocket.generateKeys();
+```
+
+The key pair object contains `publicKey` and `privateKey` components in binary format. The critical component is the `privateKey` because it inherently includes the public key as well. Therefore, we can preserve the private key for later restoration of the key pair.
+
+Update the 'myclient.js' with following code.
+
+```javascript
+const HotPocket = require('hotpocket-js-client');
+const fs = require('fs');
+
+async function clientApp() {
+
+    const keyFile = 'userfile.key';
+    if (!fs.existsSync(keyFile)) {
+        const newKeyPair = await HotPocket.generateKeys();
+        const saveData = Buffer.from(newKeyPair.privateKey).toString('hex');
+        fs.writeFileSync(keyFile, saveData);
+        console.log('New key pair generated.');
+    }
+
+    // Generate the key pair using saved private key data.
+    const savedPrivateKeyHex = fs.readFileSync(keyFile).toString();
+    const userKeyPair = await HotPocket.generateKeys(savedPrivateKeyHex);
+
+    ....
+```
+
+In the above example, we are maintaining a key file to preserve the user's key data. If the file does not exist, we generate a new key pair and save the private key component in hexadecimal (text) format. Subsequently, we read the saved private key data from the file and restore the key pair using the `HotPocket.generateKeys()` function.
+
+_Private keys are considered **sensitive data** (similar to a password in a traditional application) and proper security practices must be followed when preserving a private key for later use. It is a outside the scope of this guide and is the responsiblity of the application developer. The above example simply serves as a rudimentary example to showcase the scenario._
 
 That concludes the HotPocket basics tutorial. We have created a smart contract and a client application which can communicate with each other.

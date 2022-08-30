@@ -22,7 +22,7 @@ cd myproj
 npm install
 npm start
 ```
-The above 'npm start' will build and deploy the nodejs smart contract into a single-node HotPocket cluster running in your machine. It will also start printing console output from the HotPocket instance. You can press ctrl+C to exit from monitoring HotPocket console output. HotPocket instance will continue to run even after you exit the monitoring console.
+The above 'npm start' will build and deploy the nodejs smart contract into a HotPocket cluster running in your machine. It will also start printing console output from the HotPocket instance. You can press ctrl+C to exit from monitoring HotPocket console output. HotPocket instance will continue to run even after you exit the monitoring console.
 
 ### Viewing logs
 You can re-enter into the monitoring console with `hpdevkit logs 1` with `1` being the HotPocket instance number you want to monitor.
@@ -33,13 +33,13 @@ In order to resize the HotPocket cluster, you need to delete and create it again
 2. Set HP_CLUSTER_SIZE environment variable to the size you want.
 ```
 # Windows (command prompt)
-set HP_CLUSTER_SIZE=3
+set HP_CLUSTER_SIZE=5
 
 # Windows (powershell)
-$env:HP_CLUSTER_SIZE=3
+$env:HP_CLUSTER_SIZE=5
 
-# Linux/macOS (bash)
-export HP_CLUSTER_SIZE=3
+# Linux (bash)
+export HP_CLUSTER_SIZE=5
 ```
 3. Deploy your contract again with `npm start`
 
@@ -48,7 +48,7 @@ export HP_CLUSTER_SIZE=3
 
 ## Advanced usage
 ```
-# Deploy contract files to single-node cluster.
+# Deploy contract files directory to the cluster (`npm start` internally uses this command to deploy).
 hpdevkit deploy <contract files directory>
 
 # Stop and cleanup everything (required for changing cluster size)
