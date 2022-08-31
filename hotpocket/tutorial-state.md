@@ -52,8 +52,8 @@ const filename = `${user.publicKey}.log`;
 await fs.appendFile(filename, message + "\n");
 
 // Get total no. of messages sent by user so far.
-const allMessages = await fs.readFile(filename);
-const total = allMessages.split("\n").length;
+const allMessages = (await fs.readFile(filename)).toString();
+const total = allMessages.split("\n").length - 1;
 
 user.send(`You said '${message}'`);
 
@@ -62,3 +62,58 @@ user.send(`Thanks for talking to me ${total} times`);
 ```
 
 As you can see we are using standard NodeJs filesystem API to read/write data on disk. The data that gets saved into the files are subjected to consensus by HotPocket after the smart contract exits. This means any data that gets saved under the current working directory of the smart contract will be equal among all the HotPocket nodes in the cluster.
+
+Run `npm start` and verify the smart contract is deployed and running. If you have followed the previous tutorial, it should be running on 5 HotPocket nodes.
+
+## Access saved data as a user
+
+Let's see what the client application sees now, when it submits a user input into the smart contract.
+
+Connect the client application to node 1 with `node myclient.js 8081`. You should see following output from the smart contract.
+
+```
+You said 'hello'
+Thanks for talking to me 1 times
+```
+
+Exit and run the client application again. This time you should see following output.
+
+```
+You said 'hello'
+Thanks for talking to me 2 times
+```
+
+Now, connect the client application to node 3 with `node myclient.js 8083`. The output will be
+
+```
+You said 'hello'
+Thanks for talking to me 3 times
+```
+
+As you can see, regardless of the node you connect to, data maintained by the smart contract is perserved across all nodes consistently.
+
+If you recall from the following code in the smart contract, the user messages are saved into a file named after the user public key. This means the message count should keep increasing as long as the client application connects using the same key pair.
+
+```javascript
+// Save the input to a user-specific file name.
+const filename = `${user.publicKey}.log`;
+await fs.appendFile(filename, message + "\n");
+```
+
+Now, let's connect as a different (new) user. Move or rename the 'user.key' file in 'myclient' directory into a different location. Then run `node myclient.js 8083`. This will cause the client application to generate a new key pair and connect to node 3. You will see following output.
+
+```
+You said 'hello'
+Thanks for talking to me 1 times
+```
+
+Now, restore the previous 'user.key' file you moved/renamed and run the client application again.
+
+```
+You said 'hello'
+Thanks for talking to me 4 times
+```
+
+As you can see, our HotPocket smart contract keeps users' input data indendently of each other and the respsective users can access their information using the correct key pair. This is the basis of maintaining 'user accounts' in HotPocket smart contracts.
+
+_In above examples, we are using simple text files to maintain saved data. But you can use any local database provider like SQLite according to your preference. As long as the files are maintained within the current working directory of the app, HotPocket will keep them in-sync across the cluster according to its consensus mechanism._

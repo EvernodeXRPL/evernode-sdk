@@ -54,7 +54,7 @@ Now, even with node 5 being stopped, you should see that other nodes are still o
 
 ## Node recovery
 
-Because the 5th node is stopped, when we start it back up, it needs to get in-sync with the rest of the cluster and catch-up with the ledgers that it missed. The recovering node does this automatically by requesting the missing information from other stable nodes in the cluster.
+Because the 5th node is currently stopped, when its start up next time, it needs to get in-sync with the rest of the cluster and catch-up with the ledgers that it missed. The recovering node does this automatically by requesting the missing information from other stable nodes in the cluster.
 
 Start the stopped node with `hpdevkit start 5` and then immediately run `hpdevkit logs 5` to witness its catchup behaviour with a log like the one below.
 
@@ -67,3 +67,28 @@ Start the stopped node with `hpdevkit start 5` and then immediately run `hpdevki
 ```
 
 With the 5th node caught up with the rest of the cluster, the cluster can now operate with 5 active nodes. This means it now has the capacity to tolerate any one of the nodes failing without any distruption to the continuity.
+
+## Connecting to different nodes
+
+HotPocket developer kit assigns different port numbers for the nodes it creates in the cluster. We can use these port numbers to decide which node to connect to during client application development and testing. HotPocket developer kit by default assigns port numbers 8081 onwards sequentially for each node in the cluster.
+
+Let's modify our client application to specify port number as follows.
+
+```javascript
+const port = process.argv[2];
+const client = await HotPocket.createClient(
+  ["wss://localhost:" + port],
+  userKeyPair
+);
+```
+
+Connect the client to node 1 with `node myclient.js 8081`. You should see simillar output as below.
+
+```
+Connecting to wss://localhost:8081
+Connected to wss://localhost:8081
+HotPocket Connected.
+Saying hello...
+```
+
+Similarly you can connect to node 2 with `node myclient.js 8082` and so on.

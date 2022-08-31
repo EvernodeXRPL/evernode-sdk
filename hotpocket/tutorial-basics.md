@@ -345,7 +345,7 @@ const fs = require('fs');
 
 async function clientApp() {
 
-    const keyFile = 'userfile.key';
+    const keyFile = 'user.key';
     if (!fs.existsSync(keyFile)) {
         const newKeyPair = await HotPocket.generateKeys();
         const saveData = Buffer.from(newKeyPair.privateKey).toString('hex');
@@ -363,5 +363,16 @@ async function clientApp() {
 In the above example, we are maintaining a key file to preserve the user's key data. If the file does not exist, we generate a new key pair and save the private key component in hexadecimal (text) format. Subsequently, we read the saved private key data from the file and restore the key pair using the `HotPocket.generateKeys()` function.
 
 _Private keys are considered **sensitive data** (similar to a password in a traditional application) and proper security practices must be followed when preserving a private key for later use. It is a outside the scope of this guide and is the responsiblity of the application developer. The above example simply serves as a rudimentary example to showcase the scenario._
+
+Run and terminate the the client application with `node myclient.js` several times. You will notice HotPocket identies the user as having the same public key even in different executions of the client app shown in following smart contract log.
+
+```
+20220831 14:57:39.504 [inf][hpc] ****Ledger created**** (lcl:9-8ff821d4 state:86fd529c patch:1dea7287)
+User public key ede5cad06629a53339a15490357363a85d2f5fa6b95b0e643741cc21800d9b798f
+20220831 14:57:40.504 [inf][hpc] ****Ledger created**** (lcl:10-c5fb71ad state:86fd529c patch:1dea7287)
+20220831 14:57:41.516 [inf][hpc] ****Ledger created**** (lcl:11-646352f4 state:86fd529c patch:1dea7287)
+20220831 14:57:42.504 [inf][hpc] ****Ledger created**** (lcl:12-6c41b505 state:86fd529c patch:1dea7287)
+User public key ede5cad06629a53339a15490357363a85d2f5fa6b95b0e643741cc21800d9b798f
+```
 
 That concludes the HotPocket basics tutorial. We have created a smart contract and a client application which can communicate with each other.
