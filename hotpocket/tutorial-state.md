@@ -1,6 +1,6 @@
 # HotPocket tutorial - persisting data
 
-This tutorial is a continuation of [Working with multiple nodes](tutorial-multinode.md).
+This tutorial is a continuation of [working with multiple nodes](tutorial-multinode.md).
 
 Because HotPocket smart contracts are regular Linux applications, they have direct access to on-device file storage. Therefore, you can use regular filesystem operations to save data onto disk and access them between subsequent executions of the smart contract.
 
@@ -57,7 +57,7 @@ const total = allMessages.split("\n").length - 1;
 
 user.send(`You said '${message}'`);
 
-// Include total message count in the  reply.
+// Include total message count in the reply.
 user.send(`Thanks for talking to me ${total} times`);
 ```
 

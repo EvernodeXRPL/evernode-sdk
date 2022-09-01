@@ -12,6 +12,7 @@ HotPocket is the smart contract execution and consensus engine of Evernode. HotP
 2. [Basics tutorial](hotpocket/tutorial-basics.md)
 3. [Working with multiple nodes](hotpocket/tutorial-multinode.md)
 4. [Persisting data](hotpocket/tutorial-state.md)
+5. [Read requests](hotpocket/tutorial-readreq.md)
 
 ### HotPocket smart contract library
 
