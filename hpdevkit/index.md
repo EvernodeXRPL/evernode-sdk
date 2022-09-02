@@ -92,8 +92,19 @@ Example `hp.cfg.override` for a nodejs application. (HotPocket devkit nodejs sta
 | HP_INSTANCE_IMAGE | Docker image to be used for HotPocket instances. | `evernodedev/hotpocket:latest-ubt.20.04-njs.16` |
 
 ## Updates
-- Install latest `hpdevkit` as mentioned in install steps.
-- Update the supporting docker image with `docker pull evernodedev/hpdevkit`
+### Windows
+Run the following command on the command prompt.
+```
+hpdevkit update
+```
+
+### Linux
+Run the following command to update hpdevkit on your machine. You need root (sudo) access for this.
+```
+sudo hpdevkit update
+```
+
+- This will update `hpdevkit` to the latest and update the supporting docker image.
 
 ## Reporting issues
 Report issues [here](https://github.com/HotPocketDev/evernode-sdk/issues).
