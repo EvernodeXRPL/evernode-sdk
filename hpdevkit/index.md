@@ -12,7 +12,7 @@ HotPocket developer kit requires you to install [Docker Engine](https://docs.doc
 <img alt="Windows PATH environment variable setup" src="https://user-images.githubusercontent.com/33562092/174452298-4771127c-247b-4cf6-8bcc-3fff00af08e1.png">
 
 ### Linux installation
-Run the following command to install hpdevkit on machine. You need root (sudo) access for this.
+Run the following command to install hpdevkit on your machine. You need root (sudo) access for this.
 ```
 curl -fsSL https://stevernode.blob.core.windows.net/evernode-beta/hpdevkit-linux/hpdevkit.sh | cat | sudo bash -s install
 ```
