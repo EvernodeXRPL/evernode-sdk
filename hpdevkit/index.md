@@ -12,7 +12,10 @@ HotPocket developer kit requires you to install [Docker Engine](https://docs.doc
 <img alt="Windows PATH environment variable setup" src="https://user-images.githubusercontent.com/33562092/174452298-4771127c-247b-4cf6-8bcc-3fff00af08e1.png">
 
 ### Linux installation
-...in future...
+Run the following command to install hpdevkit on your machine. You need root (sudo) access for this.
+```
+curl -fsSL https://stevernode.blob.core.windows.net/evernode-beta/hpdevkit-linux/hpdevkit.sh | cat | sudo bash -s install
+```
 
 ## Creating HotPocket smart contract
 You can use the HotPocket developer kit to generate smart contract projects so everything is pre-configured for you. Here, we are creating a NodeJs smart contract. This assumes you have prior experience with developing NodeJs applications.
@@ -89,8 +92,19 @@ Example `hp.cfg.override` for a nodejs application. (HotPocket devkit nodejs sta
 | HP_INSTANCE_IMAGE | Docker image to be used for HotPocket instances. | `evernodedev/hotpocket:latest-ubt.20.04-njs.16` |
 
 ## Updates
-- Install latest `hpdevkit` as mentioned in install steps.
-- Update the supporting docker image with `docker pull evernodedev/hpdevkit`
+### Windows
+Run the following command on the command prompt.
+```
+hpdevkit update
+```
+
+### Linux
+Run the following command on the terminal. You need root (sudo) access for this.
+```
+sudo hpdevkit update
+```
+
+- This will update `hpdevkit` to the latest and update the supporting docker image.
 
 ## Reporting issues
 Report issues [here](https://github.com/HotPocketDev/evernode-sdk/issues).
