@@ -99,7 +99,7 @@ hpdevkit update
 ```
 
 ### Linux
-Run the following command to update hpdevkit on your machine. You need root (sudo) access for this.
+Run the following command on the terminal. You need root (sudo) access for this.
 ```
 sudo hpdevkit update
 ```
