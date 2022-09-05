@@ -55,7 +55,7 @@ const count = await client.submitContractReadRequest("count");
 console.log("User file count:", count);
 ```
 
-Read requests are "synchronous", which means that the smart contract is expected to immediately respond for the reuqest. Furthermore, unlike consensus user-inputs and user-outputs which did not have any association between them, read requests and replies are tightly coupled. Every user-input submitted as a read request is expected to produce exactly one user-output.
+Read requests are "synchronous", which means that the smart contract is expected to immediately respond for the request. Furthermore, unlike consensus user-inputs and user-outputs which did not have any association between them, read requests and replies are tightly coupled. Every user-input submitted as a read request is expected to produce exactly one user-output.
 
 After making above code modifications, let's deploy the smart contract (`npm start`) and run the client application (`node myclient.js`). You will see following log in the client application.
 
@@ -76,8 +76,8 @@ Submitting read request...
 User file count: 1
 ```
 
-## Response delay - conesnsus vs read requests
+## Response delay - consensus vs read requests
 
-Using above example, you should be able to observe the difference in delay between inputs and outputs when using read requests as opoosed to consensus. The time different between `Submitting read request...` and `User file count: 1` should be shorter than the time difference between `Saying hello...` and `Received outputs:`. You can benefit from this to provide a faster response time to users depending on the needs of your application.
+Using above example, you should be able to observe the difference in delay between inputs and outputs when using read requests as opposed to consensus. The time different between `Submitting read request...` and `User file count: 1` should be shorter than the time difference between `Saying hello...` and `Received outputs:`. You can benefit from this to provide a faster response time to users depending on the needs of your application.
 
 Read requests are a way of submitting user inputs and receiving outputs while bypassing consensus. It's a great way to retrieve information from a HotPocket node but the information consistency is not guaranteed as we are bypassing consensus.
