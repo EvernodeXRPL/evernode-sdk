@@ -391,3 +391,5 @@ User public key ede5cad06629a53339a15490357363a85d2f5fa6b95b0e643741cc21800d9b79
 ```
 
 That concludes the HotPocket basics tutorial. We have created a smart contract and a client application which can communicate with each other.
+
+Next: [Working with multiple nodes](tutorial-multinode.md)
