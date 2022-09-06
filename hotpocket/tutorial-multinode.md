@@ -92,3 +92,5 @@ Saying hello...
 ```
 
 Similarly you can connect to node 2 with `node myclient.js 8082` and so on.
+
+Next: [Persisting data](tutorial-persistdata.md)

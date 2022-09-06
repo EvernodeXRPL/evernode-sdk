@@ -7,15 +7,18 @@ Evernode uses HotPocket as its smart contract engine. HotPocket smart contracts 
 HotPocket developer kit requires you to install [Docker Engine](https://docs.docker.com/engine/install/) on your development machine.
 
 ### Windows installation
-1. Download [hpdevkit.exe](https://stevernode.blob.core.windows.net/evernode-beta/hpdevkit-windows/hpdevkit.exe) CLI tool for Windows.
-2. Place the `hpdevkit.exe` in a directory you want and add the directory to your PATH as follows
+1. Install [prerequisites](#prerequisites).
+2. Download [hpdevkit.exe](https://stevernode.blob.core.windows.net/evernode-beta/hpdevkit-windows/hpdevkit.exe) CLI tool for Windows.
+3. Place the `hpdevkit.exe` in a directory you want and add the directory to your PATH as follows
 <img alt="Windows PATH environment variable setup" src="https://user-images.githubusercontent.com/33562092/174452298-4771127c-247b-4cf6-8bcc-3fff00af08e1.png">
 
 ### Linux installation
-Run the following command to install hpdevkit on your machine. You need root (sudo) access for this.
-```
-curl -fsSL https://stevernode.blob.core.windows.net/evernode-beta/hpdevkit-linux/hpdevkit.sh | cat | sudo bash -s install
-```
+
+1. Install [prerequisites](#prerequisites).
+2. Run the following command to install hpdevkit on your machine. You need root (sudo) access for this.
+    ```
+    curl -fsSL https://stevernode.blob.core.windows.net/evernode-beta/hpdevkit-linux/hpdevkit.sh | cat | sudo bash -s install
+    ```
 
 ## Creating HotPocket smart contract
 You can use the HotPocket developer kit to generate smart contract projects so everything is pre-configured for you. Here, we are creating a NodeJs smart contract. This assumes you have prior experience with developing NodeJs applications.
