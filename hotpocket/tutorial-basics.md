@@ -34,7 +34,7 @@ During normal operation, HotPocket will invoke your application and pass the rel
 
 #### dist/hp.cfg.override
 
-This file contains configuration specific to your smart contract. HotPocket supports many other configuration parameters but here we are only specifying `bin_path` and `bin_args` parameters. HotPocket will use the default values for any parameters which haven't been specified. For the purpose of this guide, we will not discuss about other parameters that are not shown here.
+This file contains configuration specific to your smart contract. HotPocket supports many other configuration parameters, but here we are only specifying `bin_path` and `bin_args` parameters. HotPocket will use the default values for any parameters which haven't been specified. For the purpose of this guide, we will not discuss about other parameters that are not shown here.
 
 ```json
 {
@@ -45,9 +45,9 @@ This file contains configuration specific to your smart contract. HotPocket supp
 }
 ```
 
-`bin_path` indicates to HotPocket the location of the Linux application binary to be executed. Since we have generated a NodeJs application using HotPocket developer kit, it indicates the NodeJs install location within the HotPocket nodejs docker image.
+`bin_path` indicates to HotPocket the location of the Linux application binary to be executed. Since we have generated a NodeJs application using HotPocket developer kit, it indicates the NodeJs install location within the HotPocket NodeJs docker image.
 
-`bin_args` specifies any arguments (space separated) to be passed to the application binary. In this case we are passing the final compiled script of our javascript application into nodejs.
+`bin_args` specifies any arguments (space separated) to be passed to the application binary. In this case we are passing the final compiled script of our javascript application into NodeJs.
 
 ## Run the smart contract
 
@@ -70,7 +70,7 @@ Blank contract
 Blank contract
 ```
 
-You can press ctrl+C to exit from logging output. The HotPocket instance will continue to run. To revisit the log you can use the command `hpdevkit logs 1`. The parameter '1' is the instance (node) number. By default HotPocket developer kit creates a 3-node cluster.
+You can press Ctrl+C to exit from logging output. The HotPocket instance will continue to run. To revisit the log you can use the command `hpdevkit logs 1`. The parameter '1' is the instance (node) number. By default HotPocket developer kit creates a 3-node cluster.
 
 _Under the hood, `npm start` command is simply using the command `hpdevkit deploy dist` to deploy the NodeJs build outputs directory, 'dist' into the HotPocket cluster. You can inspect the 'package.json' of your smart contract project to see this._
 
@@ -127,7 +127,7 @@ Connected users 0
 
 You can see now we are printing the ledger number passed from HotPocket inside our smart contract. We are also printing no. of [users](concepts/#users) connected to our smart contract but obviously it's returning 0. If there were any connected users, we could write logic in our contract to process any data sent by the users and do some useful things with it. In the next section let's see how users can connect to our contract.
 
-Press ctrl+C to stop the console output. HotPocket will continue to run in the background.
+Press Ctrl+C to stop the console output. HotPocket will continue to run in the background.
 
 This is how you would keep on updating and testing your contract on your local PC.
 
@@ -183,7 +183,7 @@ Connected to wss://localhost:8081
 HotPocket Connected.
 ```
 
-Do not terminate the client application. We'll keep it connected. (You can terminate it anytime with ctrl+C)
+Do not terminate the client application. We'll keep it connected. (You can terminate it anytime with Ctrl+C)
 
 You may recall that previously our contract was printing `Connected users 0` in the logs. Now, with the client application connected, let's look at HotPocket smart contract logs via a different terminal window using the command `hpdevkit logs 1`.
 
