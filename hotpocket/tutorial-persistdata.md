@@ -117,3 +117,5 @@ Thanks for talking to me 4 times
 As you can see, our HotPocket smart contract keeps users' input data independently of each other and the respective users can access their information using the correct key pair. This is the basis of maintaining 'user accounts' in HotPocket smart contracts.
 
 _In above examples, we are using simple text files to maintain saved data. But you can use any local database provider like SQLite according to your preference. As long as the files are maintained within the current working directory of the app, HotPocket will keep them in-sync across the cluster according to its consensus mechanism._
+
+Next: [Read requests](tutorial-readreq.md)
