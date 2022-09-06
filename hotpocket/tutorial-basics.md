@@ -76,7 +76,7 @@ _Under the hood, `npm start` command is simply using the command `hpdevkit deplo
 
 ### Consensus and contract execution
 
-You will notice that the above log prints an execution log every few seconds. This is due to the way HotPocket operates and how it executes your smart contract. HotPocket uses an interval called **consensus roundtime** which controls how often it attempts to exchange information with other HotPocket nodes in the cluster and arrive at [consensus](concepts/#consensus). At the end of every round, HotPocket creates a ledger using the information that was subjected to consensus. It then executes your smart contract and passes it the information corresponding to the consensus ledger that was just created. The smart contract should do what it wants with the data it was passed on and exit so HotPocket can start the next consensus round with the latest results from last smart contract execution.
+You will notice that the above log prints an execution log every few seconds. This is due to the way HotPocket operates and how it executes your smart contract. HotPocket uses an interval called **consensus roundtime** which controls how often it attempts to exchange information with other HotPocket nodes in the cluster and arrive at a [consensus](concepts/#consensus). At the end of every round, HotPocket creates a ledger using the information that was subjected to consensus. It then executes your smart contract and passes it the information corresponding to the consensus ledger that was just created. The smart contract should do what it wants with the data it was passed on and exit so HotPocket can start the next consensus round with the latest results from last smart contract execution.
 
 Now, with this understanding, let's revisit the code in 'mycontract.js'.
 
@@ -233,6 +233,8 @@ User public key ede63c896f04aef76df1d77a476ac511dc2b92da74557bbe1988846e84261ee7
 User public key eddf24ddcdddac0e4a7087529e3420575707791b1d7d201ec4efff0edbba62c2b2
 User public key ede63c896f04aef76df1d77a476ac511dc2b92da74557bbe1988846e84261ee71a
 ```
+
+NOTE : Make sure you have enabled at least a single client application instance. If not, run an instance of the client application with `node myclient.js`.
 
 ## Handle user inputs
 
