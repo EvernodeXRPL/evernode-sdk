@@ -47,7 +47,14 @@ export HP_CLUSTER_SIZE=5
 3. Deploy your contract again with `npm start`
 
 ## Creating HotPocket client application
-...in future...
+Using HotPocket developer kit you can generate a HotPocket client application so everything is pre-configured for you. Here, we are creating a NodeJs client. This assumes you have prior experience with developing NodeJs applications.
+```
+hpdevkit gen nodejs blank-client myclient
+cd myclient
+npm install
+node myclient.js
+```
+You should have HotPocket nodes running on your machine for the client to connect. This will start the client and connect a HotPocket node listening to port 8081.
 
 ## Advanced usage
 ```
