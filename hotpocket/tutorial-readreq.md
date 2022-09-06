@@ -54,7 +54,6 @@ console.log("HotPocket Connected.");
 client.on(HotPocket.events.contractOutput, (result) => {
     console.log("Received outputs:");
     result.outputs.forEach((o) => console.log(o));
-
 });
 
 // Read Request submission.
