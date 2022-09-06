@@ -50,9 +50,21 @@ Now, let's modify our client application to submit a read request.
 ```javascript
 console.log("HotPocket Connected.");
 
+// Register event handler to receive outputs before we start sending inputs.
+client.on(HotPocket.events.contractOutput, (result) => {
+    console.log("Received outputs:");
+    result.outputs.forEach((o) => console.log(o));
+
+});
+
+// Read Request submission.
 console.log("Submitting read request...");
 const count = await client.submitContractReadRequest("count");
 console.log("User file count:", count);
+
+// Contract input submission.
+console.log("Saying hello...");
+await client.submitContractInput("hello");
 ```
 
 Read requests are "synchronous", which means that the smart contract is expected to immediately respond for the request. Furthermore, unlike consensus user-inputs and user-outputs which did not have any association between them, read requests and replies are tightly coupled. Every user-input submitted as a read request is expected to produce exactly one user-output.
