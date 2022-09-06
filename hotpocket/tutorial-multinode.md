@@ -66,7 +66,7 @@ Start the stopped node with `hpdevkit start 5` and then immediately run `hpdevki
 20220829 13:51:44.676 [inf][hpc] ****Ledger created**** (lcl:92-1e676e7f state:7f8e4a33 patch:d75c5631)
 ```
 
-With the 5th node caught up with the rest of the cluster, the cluster can now operate with 5 active nodes. This means it now has the capacity to tolerate any one of the nodes failing without any distruption to the continuity.
+With the 5th node caught up with the rest of the cluster, the cluster can now operate with 5 active nodes. This means it now has the capacity to tolerate any one of the nodes failing without any disruption to the continuity.
 
 ## Connecting to different nodes
 
@@ -82,7 +82,7 @@ const client = await HotPocket.createClient(
 );
 ```
 
-Connect the client to node 1 with `node myclient.js 8081`. You should see simillar output as below.
+Connect the client to node 1 with `node myclient.js 8081`. You should see similar output as below.
 
 ```
 Connecting to wss://localhost:8081
@@ -92,3 +92,5 @@ Saying hello...
 ```
 
 Similarly you can connect to node 2 with `node myclient.js 8082` and so on.
+
+Next: [Persisting data](tutorial-persistdata.md)
