@@ -1,6 +1,6 @@
 # HotPocket basics tutorial
 
-HotPocket [smart contract](concepts/#smart-contract) development involves two areas. Developing the smart contract which contains the logic of your application, and developing the client application that interact with the smart contract as a [user](concepts/#users). HotPocket acts as the middleman of bridging your client applications with the smart contract.
+HotPocket [smart contract](concepts/#smart-contract) development involves two areas. Developing the smart contract which contains the logic of your application, and developing the client application that interacts with the smart contract as a [user](concepts/#users). HotPocket acts as the middleman of bridging your client applications with the smart contract.
 
 HotPocket runs only on Linux (Ubuntu 20.04) and is capable of using Linux POSIX-compliant applications as smart contracts. HotPocket uses [Docker](https://www.docker.com/) to bundle HotPocket and your smart contracts into a runnable Linux environment. Therefore, you can carry out your development activities on platforms such as Windows with the help of standard cross-platform programming environments.
 
