@@ -28,7 +28,7 @@ cd myproj
 npm install
 npm start
 ```
-The above 'npm start' will build and deploy the nodejs smart contract into a HotPocket cluster running in your machine. It will also start printing console output from the HotPocket instance. You can press ctrl+C to exit from monitoring HotPocket console output. HotPocket instance will continue to run even after you exit the monitoring console.
+The above 'npm start' will build and deploy the NodeJs smart contract into a HotPocket cluster running in your machine. It will also start printing console output from the HotPocket instance. You can press ctrl+C to exit from monitoring HotPocket console output. HotPocket instance will continue to run even after you exit the monitoring console.
 
 ### Viewing logs
 You can re-enter into the monitoring console with `hpdevkit logs 1` with `1` being the HotPocket instance number you want to monitor.
@@ -74,7 +74,7 @@ hpdevkit stop <node number>
 
 If the contract files directory also contains a file named `hp.cfg.override`, it will be used to override the hp.cfg of all nodes. This can be used to set contract specific parameters like 'bin_path' and 'bin_args'
 
-Example `hp.cfg.override` for a nodejs application. (HotPocket devkit nodejs starter contract automatically includes this file for you)
+Example `hp.cfg.override` for a NodeJs application. (HotPocket devkit NodeJs starter contract automatically includes this file for you)
 ```
 {
     "contract": {
@@ -93,8 +93,12 @@ Example `hp.cfg.override` for a nodejs application. (HotPocket devkit nodejs sta
 | HP_DEFAULT_NODE | The node the 'deploy' command uses to display logs. | `1` |
 | HP_DEVKIT_IMAGE | Docker image to be used for devkit cluster management. | `evernodedev/hpdevkit` |
 | HP_INSTANCE_IMAGE | Docker image to be used for HotPocket instances. | `evernodedev/hotpocket:latest-ubt.20.04-njs.16` |
+| HP_USER_PORT_BEGIN | Starting user port number for the cluster. | `8081` |
+| HP_PEER_PORT_BEGIN | Starting peer port number for the cluster. | `22861` |
 
 ## Updates
+Update `hpdevkit` to the latest and update the supporting docker images.
+
 ### Windows
 Run the following command on the command prompt.
 ```
@@ -106,8 +110,6 @@ Run the following command on the terminal. You need root (sudo) access for this.
 ```
 sudo hpdevkit update
 ```
-
-- This will update `hpdevkit` to the latest and update the supporting docker image.
 
 ## Reporting issues
 Report issues [here](https://github.com/HotPocketDev/evernode-sdk/issues).
