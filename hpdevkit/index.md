@@ -96,7 +96,7 @@ Example `hp.cfg.override` for a NodeJs application. (HotPocket devkit NodeJs sta
 
 | Name | Description | Default value |
 | --- | --- | --- |
-| HP_CLUSTER_SIZE | Number of nodes in the cluster. Only becomes effective with fresh cluster. | `1` |
+| HP_CLUSTER_SIZE | Number of nodes in the cluster. Only becomes effective with fresh cluster. | `3` |
 | HP_DEFAULT_NODE | The node the 'deploy' command uses to display logs. | `1` |
 | HP_DEVKIT_IMAGE | Docker image to be used for devkit cluster management. | `evernodedev/hpdevkit` |
 | HP_INSTANCE_IMAGE | Docker image to be used for HotPocket instances. | `evernodedev/hotpocket:latest-ubt.20.04-njs.16` |
