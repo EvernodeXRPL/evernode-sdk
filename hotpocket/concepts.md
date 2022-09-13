@@ -48,7 +48,7 @@ _**Smart contract in "state":** Although not required to do so, it is desirable 
 
 ### LCL - Last Closed Ledger
 
-At the end of each consensus round, the consensus is reached, before [smart contract](#smart-contract) execution HotPocket creates a ledger. Every ledger has a hash which includes previous ledger hash and the current data hash. This together builds the chain where every ledger hash is based on previous ledger hash. Furthermore ledger includes state hash, user input output hashes etc. Every ledger has a sequence number which increments in ledger creation. 
+At the end of each consensus round, after the consensus is reached, before [smart contract](#smart-contract) execution, HotPocket creates a ledger. Every ledger has a hash which includes previous ledger hash and the current data hash. This together builds the chain where every ledger hash is based on previous ledger hash. Furthermore ledger includes state hash, user hash and user input output hashes etc. Every ledger has a sequence number which increments in the ledger creation. 
 
 ## Read requests
 
