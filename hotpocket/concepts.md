@@ -45,6 +45,11 @@ If a HotPocket node finds out that its state is "out of sync" with other nodes o
 
 _**Smart contract in "state":** Although not required to do so, it is desirable for the smart contract application software itself to reside on "state". This ensures the application files of the smart contract are also subjected to consensus guaranteeing that each HotPocket node is hosting the same smart contract version/logic._
 
+
+### LCL - Last Closed Ledger
+
+At the end of each consensus round, the consensus is reached, before [smart contract](#smart-contract) execution HotPocket creates a ledger. Every ledger has a hash which includes previous ledger hash and the current data hash. This together builds the chain where every ledger hash is based on previous ledger hash. Furthermore ledger includes state hash, user input output hashes etc. Every ledger has a sequence number which increments in ledger creation. 
+
 ## Read requests
 
 In previous sections, it was explained how HotPocket nodes work in unison and how the smart contract is called upon to act on the consensed information. This ensures that the entire HotPocket cluster moves forward in-sync with each other and each smart contract acts upon the consensed information. Even though this is desirable for security, it has a time penalty due to having to carry out consensus verification among entire cluster.
