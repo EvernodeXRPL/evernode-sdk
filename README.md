@@ -29,9 +29,12 @@ HotPocket is the smart contract execution and consensus engine of Evernode. HotP
 
 To make it easy to get started and test HotPocket smart contracts on your local PC, you can use [HotPocket developer kit](hpdevkit/index.md). Follow the [tutorials](#tutorials) above to know how to use it.
 
-### HotPocket protocol reference
+### HotPocket references
 
-We will publish the HotPocket protocol reference in the future for smart contracts and clients so you can come up with your own libraries and tools to support HotPocket development on the platform of your choice.
+To obtain a better understanding of HotPocket configurations and protocols.
+
+- [Config reference](hotpocket/reference-configurations.md)
+
 
 ## Evernode integration
 
