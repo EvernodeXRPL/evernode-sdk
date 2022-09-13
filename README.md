@@ -33,8 +33,8 @@ To make it easy to get started and test HotPocket smart contracts on your local 
 
 To obtain a better understanding of HotPocket configurations and protocols.
 
-- [Client protocols reference](hotpocket/reference-client-protocols.md)
-- [Contract protocols reference](hotpocket/reference-contract-protocols.md)
+- [Client protocol reference](hotpocket/reference-client-protocols.md)
+- [Contract protocol reference](hotpocket/reference-contract-protocols.md)
 
 ## Evernode integration
 
