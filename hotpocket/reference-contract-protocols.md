@@ -1,4 +1,4 @@
-# HotPocket tutorial - Contract protocols
+# HotPocket references - Contract protocols
 [Smart contract](concepts.md#smart-contract) is spawn as a child process by HotPocket on each [consensus](concepts.md#consensus) round. The communication between smart contract and HotPocket happens as inter process communication using [file descriptors](https://en.wikipedia.org/wiki/File_descriptor).
 
 There are several file descriptors that are being used for different channels. Following are the file descriptors that are defined. Each and every message protocols will be described later.
@@ -31,5 +31,3 @@ Smart contract can add or remove peers from the HotPocket node by sending the pe
         'add': ['<ip1>:<port1>', '<ip2>:<port2>', ...],
         'remove': ['<ip1>:<port1>', '<ip2>:<port2>', ...]
     }
-
-Next: [HotPocket basics tutorial](tutorial-basics.md)

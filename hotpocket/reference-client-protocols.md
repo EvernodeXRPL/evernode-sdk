@@ -1,4 +1,4 @@
-# HotPocket tutorial - User protocols
+# HotPocket references - Client (User) protocols
 Users communicate with Hotpocket via a [WebSocket](https://en.wikipedia.org/wiki/WebSocket). There are no direct communication between [users](concepts.md#users) and [smart contract](concepts.md#smart-contract). The user communicates with HotPocket and HotPocket serves as a middleman between user - smart contract communication. There're special protocols for this communication.<br><br> Every message that's being send to/from HotPocket contains a type field. User messages can be send and received in [json](https://en.wikipedia.org/wiki/JSON) or [bson](https://en.wikipedia.org/wiki/BSON) formats. The format is decided when the initial handshake with the user. The handshake messages will be in json format. The message protocols are described below in detailed manor.
 
 ## Initiating an user connection
@@ -282,5 +282,3 @@ This is sent as the response for ledger query request. Inputs and outputs are po
         }, ...]
     }
 ```
-
-Next: [HotPocket contract protocols](tutorial-contract-protocols.md)
