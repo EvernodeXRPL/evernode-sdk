@@ -282,3 +282,5 @@ This is sent as the response for ledger query request. Inputs and outputs are po
         }, ...]
     }
 ```
+
+Next: [HotPocket contract protocols](tutorial-contract-protocols.md)

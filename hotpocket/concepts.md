@@ -56,4 +56,4 @@ In previous sections, it was explained how HotPocket nodes work in unison and ho
 
 "Read requests" are a great way to communicate with a smart contract on a single HotPocket node without the overhead of consensus. It constitutes a request/response cycle in which the smart contract provides the data that the user requested. To facilitate this, upon receiving a read request from user, HotPocket invokes the smart contract in **read-only** mode. In this mode, smart contract has read-only access to the last-consensed [state](#state) and extract the required information out of it according to the request it received as a "user input". It can then send the extracted information to the user in the form of a "user output".
 
-Next: [HotPocket basics tutorial](tutorial-basics.md)
+Next: [HotPocket user protocols](tutorial-user-protocols.md)

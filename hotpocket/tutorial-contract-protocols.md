@@ -31,3 +31,5 @@ Smart contract can add or remove peers from the HotPocket node by sending the pe
         'add': ['<ip1>:<port1>', '<ip2>:<port2>', ...],
         'remove': ['<ip1>:<port1>', '<ip2>:<port2>', ...]
     }
+
+Next: [HotPocket basics tutorial](tutorial-basics.md)
