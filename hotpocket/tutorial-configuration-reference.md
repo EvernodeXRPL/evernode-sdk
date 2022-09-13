@@ -126,5 +126,5 @@ Hence, let us learn these sections on by one as follows.
 
 
 ## ___NOTE:___
-The smart contract [mycontract](tutorial-basics.md) that you might have already created via HotPocket Dev Kit, contains a file called `hp.cfg.override`. Using that file you can bind attributes to the `hp.cfg` file that is used inside the node in your HotPocket cluster.
+The smart contract [mycontract](tutorial-basics.md/#create-the-smart-contract) that you might have already created via HotPocket Dev Kit, contains a file called `hp.cfg.override`. Using that file you can bind attributes to the `hp.cfg` file that is used inside the node in your HotPocket cluster.
 
