@@ -34,7 +34,7 @@ During normal operation, HotPocket will invoke your application and pass the rel
 
 #### dist/hp.cfg.override
 
-This file contains configuration specific to your smart contract. HotPocket supports many other configuration parameters, but here we are only specifying `bin_path` and `bin_args` parameters. HotPocket will use the default values for any parameters which haven't been specified. For the purpose of this guide, we will not discuss about other parameters that are not shown here.
+This file contains configuration specific to your smart contract. HotPocket supports many other [configuration parameters](tutorial-configuration-reference.md), but here we are only specifying `bin_path` and `bin_args` parameters. HotPocket will use the default values for any parameters which haven't been specified. For the purpose of this guide, we will not discuss about other parameters that are not shown here.
 
 ```json
 {
