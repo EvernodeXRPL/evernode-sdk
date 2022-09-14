@@ -1,11 +1,11 @@
 # HotPocket references - Client (User) protocols
-Users communicate with Hotpocket via a [WebSocket](https://en.wikipedia.org/wiki/WebSocket). There are no direct communication between [users](concepts.md#users) and [smart contract](concepts.md#smart-contract). The user communicates with HotPocket and HotPocket serves as a middleman between user - smart contract communication. There're special protocols for this communication.<br><br> Every message that's being send to/from HotPocket contains a type field. User messages can be send and received in [json](https://en.wikipedia.org/wiki/JSON) or [bson](https://en.wikipedia.org/wiki/BSON) formats. The format is decided when the initial handshake with the user. The handshake messages will be in json format. The message protocols are described below in detailed manor.
+Users communicate with Hotpocket via [WebSockets](https://en.wikipedia.org/wiki/WebSocket). There is no direct communication between [users](concepts.md#users) and [smart contracts](concepts.md#smart-contract). The user communicates with HotPocket, and HotPocket serves as an intermediary between the user and the smart contract. There are special protocols for this communication.<br><br> Every message that is being sent to and from HotPocket contains a type field. User messages can be sent and received in [json](https://en.wikipedia.org/wiki/JSON) or [bson](https://en.wikipedia.org/wiki/BSON) formats. The format is decided when the initial handshake happens with the user. The handshake messages will be in json format. The message protocols are described below in a detailed manner.
 
 ## Initiating an user connection
 
 ### User challenge
-In establishing user connection, When an user establishes a WebSoket connection to HotPocket, user challenge is sent to the user from HotPocket.
-This message includes HotPocket version, Running smart contract's id, Running smart contract's version and a user challenge hex string.
+When a user establishes a WebSoket connection to HotPocket, a user challenge is sent to the user from HotPocket.
+This message includes the HotPocket version, the running smart contract's id, the running smart contract's version, and a user challenge hex string.
 ```
     {
         "hp_version": "<hp protocol version>",
@@ -17,7 +17,7 @@ This message includes HotPocket version, Running smart contract's id, Running sm
 ```
 
 ### User handshake response
-Then user signs the challenge and sends back the handshake response with signature of user challenge, public key, a server challenge hex string and protocol to HotPocket.
+The user then signs the challenge and sends back the handshake response to HotPocket with the following data: the signature of the user challenge, the public key, a server challenge hex string, and the protocol.
 ```
     {
         "type": "user_challenge_response",
@@ -29,7 +29,7 @@ Then user signs the challenge and sends back the handshake response with signatu
 ```
 
 ### Server challenge response
-And when receives the handshake response HotPocket verifies the handshake signature and accepts user connection and sends server challenge response to the user with signature of concatenated server challenge + contract id + contract version, public key and list of hex public key [UNL](concepts.md#unl---unique-node-list). And from the user handshake request HotPocket decides the message protocol (json|bson).
+Upon receiving the handshake response, HotPocket verifies the handshake signature and accepts the user connection and sends the server challenge response to the user with the following data: the signature of the concatenated (server challenge + contract id + contract version), the public key, and a list of hex public keys ([UNL](concepts.md#unl---unique-node-list)). HotPocket decides the message protocol (json|bson) from the user's handshake request.
 ```
     {
         "type": "server_challenge_response",
@@ -40,17 +40,17 @@ And when receives the handshake response HotPocket verifies the handshake signat
 ```
 
 ## Requesting connected HotPocket node's status
-Users can request connected HotPocket node's status
+Users can request the connected HotPocket node's status.
 
 ### Status request
-Connected users can request the status from HotPocket node. Buy sending a status request.
+Connected users can request the status from the HotPocket node by sending a status request.
 ```
     {
         "type": "stat"
     }
 ```
 
-HotPocket will send back the status response with the details of the connected node. This includes the [LCL](concepts.md#lcl---last-closed-ledger) sequence number and hash as well
+HotPocket will send back the status response with the details of the connected node. This includes the [LCL](concepts.md#lcl---last-closed-ledger) sequence number and hash.
 ### Status response
 ```
     {
@@ -70,10 +70,10 @@ HotPocket will send back the status response with the details of the connected n
 ```
 
 ## Requesting connected HotPocket node's LCL
-Users can request connected HotPocket node's [LCL](concepts.md#lcl---last-closed-ledger).
+Users can request the connected HotPocket node's [LCL](concepts.md#lcl---last-closed-ledger).
 
 ### LCL request
-User can ask current ledger info from HotPocket node.
+Users can request the current ledger's info from the HotPocket node by sending a LCL request.
 ```
     {
         "type": "lcl"
@@ -81,7 +81,7 @@ User can ask current ledger info from HotPocket node.
 ```
 
 ### LCL response
-HotPocket will send LCL response with the current ledger sequence and hash.
+HotPocket will send the LCL response with the current ledger sequence and hash.
 ```
     {
         "type": "lcl_response",
@@ -91,10 +91,10 @@ HotPocket will send LCL response with the current ledger sequence and hash.
 ```
 
 ## User inputs
-[User inputs](concepts.md#user-inputs) are signed with user public key and sent to HotPocket along with input container and the signature. User inputs are subjected to [consensus](concepts.md#consensus).
+[User inputs](concepts.md#user-inputs) are signed with the user's public key and sent to HotPocket along with the input container and the signature. User inputs are subjected to [consensus](concepts.md#consensus).
 
 ### Input container
-Input is sent with a nonce and maximum [ledger sequence](concepts.md#lcl---last-closed-ledger) for the input to accept.
+The input is sent with a nonce and maximum [ledger sequence](concepts.md#lcl---last-closed-ledger) for the input to accept.
 ```
     {
         "input": "<any string>",
@@ -104,7 +104,7 @@ Input is sent with a nonce and maximum [ledger sequence](concepts.md#lcl---last-
 ```
 
 ### Signed input
-Input container is stringified and signed. Then sent both input and the signature to HotPocket.
+The input container is stringified, signed, and then both the input and the signature are sent to HotPocket.
 ```
     {
         "type": "contract_input",
@@ -114,7 +114,7 @@ Input container is stringified and signed. Then sent both input and the signatur
 ```
 
 ### User input status
-When HotPocket receives a user input, HotPocket sends a input status message stating the status of the input. If the input is rejected the reason is sent with the message. Ledger sequence number and ledger hash is included when input is accepted.
+When HotPocket receives a user input, HotPocket sends an input status message stating the status of the input. If the input is rejected, the reason is sent along with the message. The ledger sequence number and ledger hash are included when the input is accepted.
 ```
     {
         "type": "contract_input_status",
@@ -127,7 +127,7 @@ When HotPocket receives a user input, HotPocket sends a input status message sta
 ```
 
 ### User output
-HotPocket sends the [user output](concepts.md#user-outputs) with [ledger](concepts.md#lcl---last-closed-ledger) sequence number, ledger hash, outputs, hash of the outputs, hash tree and [UNL](concepts.md#unl---unique-node-list) signature.
+HotPocket sends the [user output](concepts.md#user-outputs) with the [ledger](concepts.md#lcl---last-closed-ledger) sequence number, the ledger hash, the outputs, the hash of the outputs, the hash tree, and the [UNL](concepts.md#unl---unique-node-list) signature.
 ```
     {
         "type": "contract_output",
@@ -141,10 +141,10 @@ HotPocket sends the [user output](concepts.md#user-outputs) with [ledger](concep
 ```
 
 ## Read request
-Users send [read requests](concepts.md#read-requests) when they need immediate response. Read requests execute contract in read only mode and returns output to the user.
+Users send [read requests](concepts.md#read-requests) when they need an immediate response. Read requests execute contracts in read-only mode and returns an output to the user.
 
 ### Read request
-This contains input content and an id.
+This contains the input content and an id.
 ```
     {
         "type": "contract_read_request",
@@ -154,7 +154,7 @@ This contains input content and an id.
 ```
 
 ### Read response
-Response for the read request is sent as a read response from HotPocket to the user. This includes request id as reply for field and the response content.
+The response for the read request is sent as a read response from HotPocket to the user. This includes the request id in the 'reply_for' field, and the response content.
 ```
     {
         "type": "contract_read_response",
@@ -163,11 +163,11 @@ Response for the read request is sent as a read response from HotPocket to the u
     }
 ```
 
-## Listening to the HotPocket notifications
+## Listening to HotPocket notifications
 Users can subscribe to HotPocket notifications and receive them.
 
 ### Subscription event request
-Subscription event request is sent from user to HotPocket to subscribe for notifications. This states which channel to subscribe and whether this is to enable or disable the subscription.
+A subscription event request is sent from the user to HotPocket to subscribe for notifications. This states which channel to subscribe to, and whether this is to enable or disable the subscription.
 ```
     {
         "type": "subscription",
@@ -177,7 +177,7 @@ Subscription event request is sent from user to HotPocket to subscribe for notif
 ```
 
 ### UNL change notification
-[UNL](concepts.md#unl---unique-node-list) change notification is sent to users from HotPcket when UNL is changed. User can subscribe to this notification by sending subscription request with unl_change channel.
+A [UNL](concepts.md#unl---unique-node-list) change notification is sent to users from HotPcket when the UNL is changed. Users can subscribe to this notification by sending a subscription request with the 'unl_change' channel.
 ```
     {
         "type": "unl_change",
@@ -186,7 +186,7 @@ Subscription event request is sent from user to HotPocket to subscribe for notif
 ```
 
 ### Ledger created notification
-Ledger created notification is sent to users when ledger created in HotPocket. User can subscribe to this notification by sending subscription request with ledger_event channel.
+A notification for ledger creation is sent to users when a ledger is created in HotPocket. Users can subscribe to this notification by sending a subscription request with the 'ledger_event' channel.
 ```
     {
         "type": "ledger_event",
@@ -206,7 +206,7 @@ Ledger created notification is sent to users when ledger created in HotPocket. U
 ```
 
 ### Sync status notification
-Sync status notification is sent to users when HotPocket node sync status is changed. User can subscribe to this notification by sending subscription request with ledger_event channel.
+A notification for sync status is sent to users when a HotPocket node's sync status is changed. Users can subscribe to this notification by sending a subscription request with the 'ledger_event' channel.
 ```
     {
         "type": "ledger_event",
@@ -216,7 +216,7 @@ Sync status notification is sent to users when HotPocket node sync status is cha
 ```
 
 ### Health notification
-Health notification is sent to users from HotPocket when health status is changed. User can subscribe to this notification by sending subscription request with health_event channel.
+A health notification is sent to users from HotPocket when the health status is changed. Users can subscribe to this notification by sending a subscription request with the 'health_event' channel.
 ```
 {
     "type": "health_event",
@@ -234,10 +234,10 @@ Health notification is sent to users from HotPocket when health status is change
 ```
 
 ## Querying the ledger info
-Users can query the ledger info and request filter out the ledger info.
+Users can query the ledger info and request to filter out the ledger info.
 
 ### Ledger query request
-This is sent from user to HotPocket requesting ledger info. HotPocket currently support filter by [seq_no](concepts.md#lcl---last-closed-ledger) only.
+This is sent from the user to HotPocket requesting the ledger info. HotPocket currently supports filter by [seq_no](concepts.md#lcl---last-closed-ledger) only.
 ```
     {
         "type": "ledger_query",
@@ -251,7 +251,7 @@ This is sent from user to HotPocket requesting ledger info. HotPocket currently 
 ```
 
 ### Ledger query response
-This is sent as the response for ledger query request. Inputs and outputs are populated if exist for the ledger.
+This is sent as the response for the ledger query request. Inputs and outputs are populated if they exist for the ledger.
 ```
     {
         "type": "ledger_query_result",
