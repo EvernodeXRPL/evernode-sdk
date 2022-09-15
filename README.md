@@ -31,6 +31,7 @@ You can use [HotPocket developer kit](hpdevkit/index.md) to get started easily a
 
 Use these references to get a better understanding of HotPocket configurations and protocols.
 
+- [Config reference](hotpocket/reference-configurations.md)
 - [Client protocol reference](hotpocket/reference-client-protocols.md)
 - [Contract protocol reference](hotpocket/reference-contract-protocols.md)
 
