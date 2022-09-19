@@ -4,21 +4,17 @@ Evernode uses HotPocket as its smart contract engine. HotPocket smart contracts 
 ## Installation
 
 ### Prerequisites
-HotPocket developer kit requires you to install [Docker Engine](https://docs.docker.com/engine/install/) on your development machine.
+HotPocket developer kit requires you to install [Docker Engine](https://docs.docker.com/engine/install/) and [NodeJs](https://nodejs.org/en/) on your development machine.
 
-### Windows installation
+### Supports cross platform
+This is a [npm global package](https://www.npmjs.com/package/hpdevkit) which supports both Linux and Windows
 1. Install [prerequisites](#prerequisites).
-2. Download [hpdevkit.exe](https://stevernode.blob.core.windows.net/evernode-beta/hpdevkit-windows/hpdevkit.exe) CLI tool for Windows.
-3. Place the `hpdevkit.exe` in a directory you want and add the directory to your PATH as follows
-<img alt="Windows PATH environment variable setup" src="https://user-images.githubusercontent.com/33562092/174452298-4771127c-247b-4cf6-8bcc-3fff00af08e1.png">
-
-### Linux installation
-
-1. Install [prerequisites](#prerequisites).
-2. Run the following command to install hpdevkit on your machine. You need root (sudo) access for this.
+2. Run the following command to install hpdevkit on your machine.
     ```
-    curl -fsSL https://stevernode.blob.core.windows.net/evernode-beta/hpdevkit-linux/hpdevkit.sh | cat | sudo bash -s install
+    npm i -g hpdevkit
     ```
+
+_**NOTE:** In Linux platforms, for Installation you'll need root privileges. Add `sudo` to above command._
 
 ## Creating HotPocket smart contract
 You can use the HotPocket developer kit to generate smart contract projects so everything is pre-configured for you. Here, we are creating a NodeJs smart contract. This assumes you have prior experience with developing NodeJs applications.
@@ -37,16 +33,16 @@ You can re-enter into the monitoring console with `hpdevkit logs 1` with `1` bei
 In order to resize the HotPocket cluster, you need to delete and create it again.
 1. Delete the existing cluster: `hpdevkit clean`
 2. Set HP_CLUSTER_SIZE environment variable to the size you want.
-```
-# Windows (command prompt)
-set HP_CLUSTER_SIZE=5
+    ```
+    # Windows (command prompt)
+    set HP_CLUSTER_SIZE=5
 
-# Windows (powershell)
-$env:HP_CLUSTER_SIZE=5
+    # Windows (powershell)
+    $env:HP_CLUSTER_SIZE=5
 
-# Linux (bash)
-export HP_CLUSTER_SIZE=5
-```
+    # Linux (bash)
+    export HP_CLUSTER_SIZE=5
+    ```
 3. Deploy your contract again with `npm start`
 
 ## Creating HotPocket client application
@@ -106,17 +102,30 @@ Example `hp.cfg.override` for a NodeJs application. (HotPocket devkit NodeJs sta
 ## Updates
 Update `hpdevkit` to the latest and update the supporting docker images.
 
-### Windows
-Run the following command on the command prompt.
-```
-hpdevkit update
-```
+Run one of following commands to update hpdevkit.
+- Method 1 - Using hpdevkit CLI
+    ```
+    hpdevkit update
+    ```
 
-### Linux
-Run the following command on the terminal. You need root (sudo) access for this.
-```
-sudo hpdevkit update
-```
+- Method 2 - Using npm
+    ```
+    npm update -g hpdevkit
+    ```
+
+**NOTE: You need to re-deploy your contracts to make the new changes effective.**
+
+## Uninstall
+Uninstall `hpdevkit` and the supporting docker images and containers.
+
+- Using hpdevkit CLI
+    ```
+    hpdevkit uninstall
+    ```
+
+**NOTE: Uninstalling from hpdevkit CLI is recommended. If you uninstall using npm you'll have to clean hpdevkit supporting docker images and containers manually.**
+
+_**NOTE:** In Linux platforms, for Update and Uninstallation you'll need root privileges. Add `sudo` to above commands._
 
 ## Reporting issues
 Report issues [here](https://github.com/HotPocketDev/evernode-sdk/issues).
