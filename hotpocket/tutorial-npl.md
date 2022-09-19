@@ -1,8 +1,10 @@
 # HotPocket tutorial - NPL (Node Party Line) messaging
 
-When executing smart contracts, there can be incidents where we need to exchange some information within the UNL (Unique Node List). Let's say, for instance, in the middle of the smart contract execution there can be a scenario where you need to create a random number for a database insert. However, that sort of thing cannot be achieved within a single node, if such has happened the state of the nodes may lead to a break of consensus.
+When executing smart contracts, there can be incidents where we need to exchange some information within the UNL (Unique Node List). Let's say, for instance, in the middle of the smart contract execution there can be a scenario where you need to create a random number for a database insert.
+However, that cannot be achieved within a single node. If such happens, it leads to a break of consensus because each node writes a different value to the database.
 
-Let's check it out with this simple practical example. Here each node generates a random number and saves it to file called `data.txt` in its state.
+
+Let's check it out with this simple practical example. Here each node generates a random number and saves it to a file called `data.txt` in its state.
 
 
 ```javascript
@@ -38,7 +40,7 @@ So you will receive an output like follows.
 
 This actually caused the entire cluster to go out of sync. So now you have an understanding of why consensus will break.
 
-Hence in this kind of scenario, we can get the support of NPL messaging. There nodes can come to a collective decision via using NPL messaging.
+Hence in this kind of scenario, we can get the support of NPL messaging. There, nodes can come to a collective decision via using NPL messaging.
 
 Before going to that level of complexity, let's have a basic hands-on experience of how NPL can be used.
 
