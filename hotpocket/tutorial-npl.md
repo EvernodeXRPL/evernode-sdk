@@ -35,7 +35,7 @@ So you will receive an output like follows.
 20220919 03:38:11.268 [inf][hpc] ****Ledger created**** (lcl:2-9fb66bf3 state:cd9e86ee patch:e1bb67c7)
 20220919 03:38:11.529 [inf][hpc] Hpfs cont sync: Target added. Hash:373fe9ef /state
 20220919 03:38:11.652 [inf][hpc] Hpfs cont sync: Achieved target:373fe9ef /state
-20220919 03:38:11.763 [inf][hpc] Not enough peers proposing to perform consensus. votes:1 needed:3``
+20220919 03:38:11.763 [inf][hpc] Not enough peers proposing to perform consensus. votes:1 needed:3
 ```
 
 This actually caused the entire cluster to go out of sync. So now you have an understanding of why consensus will break.
@@ -51,7 +51,7 @@ In the following code block, we are trying to send a message within the UNL and 
 
 ***NOTE :*** _The NPL messaging is not available in the read-only contract mode, hence this should be done in a consensus invocation ( !ctx.readonly )._
 
-By default [HotPocket config](reference-configurations.md) specifies `npl` mode as `private` so that NPL messages can only be passed between UNL nodes. Setting `npl` to `public` will make it possible for any connected node (non-UNL) nodes to receive NPL messages. In any case, HotPocket will reject NPL messages that are sent by non-UNL nodes.
+By default [HotPocket config](reference-configurations.md) specifies `npl` mode as `private` so that NPL messages can only be passed between UNL nodes. Setting `npl` to `public` will make it possible for any connected node (non-UNL) to receive NPL messages. In any case, HotPocket will reject NPL messages that are sent by non-UNL nodes.
 
 ```javascript
 const HotPocket = require("hotpocket-nodejs-contract");
@@ -90,7 +90,7 @@ ed66bcc2578ec0aca85868256431cdc7485afb5af5696203035e02a6aae382b7b2 said Hello to
 ```
 
 ## Collect multiple messages until timeout
-Here for the duration of the timeout (in milliseconds) is determined with the use of [roundtime](reference-configurations.md/#contract) of the consensus.
+Here the duration of the timeout (in milliseconds) is determined with the use of [roundtime](reference-configurations.md/#contract) of the consensus.
 ```javascript
 const HotPocket = require("hotpocket-nodejs-contract");
 
