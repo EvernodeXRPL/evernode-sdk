@@ -1,4 +1,4 @@
-# HotPocket tutorial - NPL (Node Party Line)
+# HotPocket tutorial - NPL (Node Party Line) Messaging
 
 When executing smart contracts, there can be incidents where we need to exchange some information within the UNL (Unique Node List). Let's say, for instance, in the middle of the smart contract execution there can be a scenario where you need to create a random number for a database insert. However, that sort of thing cannot be achieved within a single node, if such has happened the state of the nodes may lead to a break of consensus.
 
