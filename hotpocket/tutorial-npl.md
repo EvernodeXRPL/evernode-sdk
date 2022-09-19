@@ -15,7 +15,7 @@ const myContract = async (ctx) => {
 
     const random = Math.floor(Math.random() * (max - min + 1)) + min;
     const filename = "data.txt";
-    await fs.appendFile(filename, `${random}` + "\n");
+    await fs.appendFile(filename, random + "\n");
 }
 
 const hpc = new HotPocket.Contract();
@@ -36,8 +36,7 @@ So you will receive an output like follows.
 20220919 03:38:11.763 [inf][hpc] Not enough peers proposing to perform consensus. votes:1 needed:3``
 ```
 
-
-So this actually caused entire cluster to go out of sync. So now you have an understanding why consensus will break.
+This actually caused the entire cluster to go out of sync. So now you have an understanding of why consensus will break.
 
 Hence in this kind of scenario, we can get the support of NPL messaging. There nodes can come to a collective decision via using NPL messaging.
 
@@ -48,7 +47,7 @@ Before going to that level of complexity, let's have a basic hands-on experience
 In the following code block, we are trying to send a message within the UNL and if a particular node is able to listen to at least a single message from others in UNL, it will log the message.
 
 
-***NOTE :*** _The NPL messaging is not available in the read-only contract mode, hence this should be done in a consensus invocation ( !ctx.readonly ).
+***NOTE :*** _The NPL messaging is not available in the read-only contract mode, hence this should be done in a consensus invocation ( !ctx.readonly )._
 
 By default HotPocket config specifies `npl` mode as `private` so that NPL messages can only be passed between UNL nodes. Setting `npl` to `public` will make it possible for any connected node (non-UNL) nodes to receive NPL messages. In any case, HotPocket will reject NPL messages that are sent by non-UNL nodes.
 
@@ -159,10 +158,10 @@ ___NOTE :___  _Here we used 3 node HotPocket cluster._
 Okay, Now let's try to develop something useful using these NPL messages. As I have mentioned previously, nodes can attain collective decisions using these NPL messages. So let's get the example of random number generation.
 - First, each node generates a random number and broadcasts it to the UNL.
 - Then each node keeps an array of numbers that it has received.
-- Once a node received all messages from its peers or the timeout period was reached, the node has to select the maximum of the received random numbers.
+- Once a node receives all messages from its peers or the timeout period is reached, the node has to select the maximum of the received random numbers.
 - Then node tries to write that figure into the `data.txt` file in its state.
 
-___NOTE :___ _Here we have used stringified JSON object as a message._
+___NOTE :___ _Here we have used stringified JSON object as the message._
 
 ```javascript
 const HotPocket = require("hotpocket-nodejs-contract");
@@ -177,9 +176,9 @@ const myContract = async (ctx) => {
         // Wait only for half of roundtime.
         const timeoutMs = Math.ceil(hpconfig.consensus.roundtime / 2);
 
-        // Generate 3 rabdom numbers from timestamp.
         let completed = false;
 
+        // Start listening to incoming NPL messages before we send ours.
         const promise = new Promise((resolve, reject) => {
             let receivedNos = [];
 
@@ -241,7 +240,7 @@ const hpc = new HotPocket.Contract();
 hpc.init(myContract);
 ```
 
-The output will be like:
+The output will be :
 ```
 20220919 05:24:03.512 [inf][hpc] ****Ledger created**** (lcl:16-67a3e08e state:bd32fe65 patch:746911a7)
 Received Numbers : [ 2, 5, 5 ]
@@ -254,4 +253,6 @@ Received Numbers : [ 2, 1, 2 ]
 Decided Random No.: 2
 ```
 ___NOTE :___ _Here we used 3 node HotPocket cluster and with this implementation we did not receive any break of consensus due to a state mismatch._
+
+___If you want to implement a more advanced decision-making logic, you can extend this up to voting and selecting majority suggestions kind of approach.___
 
