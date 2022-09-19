@@ -40,7 +40,7 @@ So you will receive an output like follows.
 
 This actually caused the entire cluster to go out of sync. So now you have an understanding of why consensus will break.
 
-Hence in this kind of scenario, we can get the support of NPL messaging. There, nodes can come to a collective decision via using NPL messaging.
+Hence in this kind of scenario, we can get the support of [NPL messaging](reference-contract-protocols.md#npl-node-party-line-messages). There, nodes can come to a collective decision via using NPL messaging.
 
 Before going to that level of complexity, let's have a basic hands-on experience of how NPL can be used.
 
@@ -51,7 +51,7 @@ In the following code block, we are trying to send a message within the UNL and 
 
 ***NOTE :*** _The NPL messaging is not available in the read-only contract mode, hence this should be done in a consensus invocation ( !ctx.readonly )._
 
-By default HotPocket config specifies `npl` mode as `private` so that NPL messages can only be passed between UNL nodes. Setting `npl` to `public` will make it possible for any connected node (non-UNL) nodes to receive NPL messages. In any case, HotPocket will reject NPL messages that are sent by non-UNL nodes.
+By default [HotPocket config](reference-configurations.md) specifies `npl` mode as `private` so that NPL messages can only be passed between UNL nodes. Setting `npl` to `public` will make it possible for any connected node (non-UNL) nodes to receive NPL messages. In any case, HotPocket will reject NPL messages that are sent by non-UNL nodes.
 
 ```javascript
 const HotPocket = require("hotpocket-nodejs-contract");
@@ -157,7 +157,7 @@ ___NOTE :___  _Here we used 3 node HotPocket cluster._
 
 ## Advanced usage of NPL
 
-Okay, Now let's try to develop something useful using these NPL messages. As I have mentioned previously, nodes can attain collective decisions using these NPL messages. So let's get the example of random number generation.
+Okay, Now let's try to develop something useful using these NPL messages. As mentioned at the beginning, the nodes can attain collective decisions using these NPL messages. So let's get the example of random number generation.
 - First, each node generates a random number and broadcasts it to the UNL.
 - Then each node keeps an array of numbers that it has received.
 - Once a node receives all messages from its peers or the timeout period is reached, the node has to select the maximum of the received random numbers.
