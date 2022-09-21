@@ -1,11 +1,10 @@
 # HotPocket tutorial - NPL (Node Party Line) messaging
 
-When executing smart contracts, there can be incidents where we need to exchange some information within the UNL (Unique Node List). Let's say, for instance, in the middle of the smart contract execution there can be a scenario where you need to create a random number for a database insert.
-However, that cannot be achieved within a single node. If such happens, it leads to a break of consensus because each node writes a different value to the database.
+While executing smart contracts, information may sometimes need to be exchanged within the UNL (Unique Node List).
 
+For example, during smart contract execution, you may have a requirement to create a random number for a database insert. However, this cannot be achieved within a single node, and if such an event occurs, it would lead to a break of consensus, since each node writes a different value to the database.
 
-Let's check it out with this simple practical example. Here each node generates a random number and saves it to a file called `data.txt` in its state.
-
+See the code sample given below. Here, each node generates a random number and saves it to a file called `data.txt` in its state:
 
 ```javascript
 const HotPocket = require("hotpocket-nodejs-contract");
@@ -24,7 +23,7 @@ const hpc = new HotPocket.Contract();
 hpc.init(myContract);
 ```
 
-So you will receive an output like follows.
+The following output would then be generated:
 
 ```
 20220919 03:38:06.279 [inf][hpc] ****Ledger created**** (lcl:1-357f3289 state:9ae9215d patch:e1bb67c7)
@@ -38,20 +37,21 @@ So you will receive an output like follows.
 20220919 03:38:11.763 [inf][hpc] Not enough peers proposing to perform consensus. votes:1 needed:3
 ```
 
-This actually caused the entire cluster to go out of sync. So now you have an understanding of why consensus will break.
+This actually causes the entire cluster to go out of sync, and consensus will break.
 
-Hence in this kind of scenario, we can get the support of [NPL messaging](reference-contract-protocols.md#npl-node-party-line-messages). There, nodes can come to a collective decision via using NPL messaging.
+To avoid this problem, [NPL messaging](reference-contract-protocols.md#npl-node-party-line-messages) can be used. Using NPL messaging, nodes can come to a collective decision and break of consensus can be avoided.
 
-Before going to that level of complexity, let's have a basic hands-on experience of how NPL can be used.
+Let's try to get a basic understanding of how NPL can be used.
 
-## Send messages within the UNL of the HotPocket cluster
+## Sending messages within the UNL of the HotPocket cluster
 
-In the following code block, we are trying to send a message within the UNL and if a particular node is able to listen to at least a single message from others in UNL, it will log the message.
+If a particular node is able to listen to at least a single message from the others nodes in the UNL, it will log the message.
 
+[HotPocket config](reference-configurations.md) specifies `npl` mode as `private` by default, so NPL messages can only be passed between UNL nodes. Setting `npl` to `public` will enable any connected node (non-UNL) to receive NPL messages. However, HotPocket will reject NPL messages that are sent by non-UNL nodes.
 
-***NOTE :*** _The NPL messaging is not available in the read-only contract mode, hence this should be done in a consensus invocation ( !ctx.readonly )._
+***NOTE :*** _NPL messaging is not available in read-only contract mode, and therefore this should be done in a consensus invocation ( !ctx.readonly )._
 
-By default [HotPocket config](reference-configurations.md) specifies `npl` mode as `private` so that NPL messages can only be passed between UNL nodes. Setting `npl` to `public` will make it possible for any connected node (non-UNL) to receive NPL messages. In any case, HotPocket will reject NPL messages that are sent by non-UNL nodes.
+The following code attempts to send a message within the UNL:
 
 ```javascript
 const HotPocket = require("hotpocket-nodejs-contract");
@@ -80,7 +80,8 @@ const hpc = new HotPocket.Contract();
 hpc.init(myContract);
 ```
 
-The output will be like:
+The following output will be generated:
+
 ```
 20220916 03:53:23.360 [inf][hpc] ****Ledger created**** (lcl:1-1208b520 state:30e50b13 patch:68617629)
 ed371a8134200496a3a8a2439de0b61bd25bc2000bfe94e37b70276f357fc9702d said Hello to me.
@@ -89,8 +90,10 @@ ed66bcc2578ec0aca85868256431cdc7485afb5af5696203035e02a6aae382b7b2 said Hello to
 20220916 03:53:25.356 [inf][hpc] ****Ledger created**** (lcl:3-77821703 state:30e50b13 patch:68617629)
 ```
 
-## Collect multiple messages until timeout
-Here the duration of the timeout (in milliseconds) is determined with the use of [roundtime](reference-configurations.md/#contract) of the consensus.
+## Collecting multiple messages until timeout
+
+The duration of the timeout (in milliseconds) is determined with the use of [roundtime](reference-configurations.md/#contract) of the consensus:
+
 ```javascript
 const HotPocket = require("hotpocket-nodejs-contract");
 
@@ -139,7 +142,8 @@ const hpc = new HotPocket.Contract();
 hpc.init(myContract);
 ```
 
-The output will be :
+The following output will be generated:
+
 ```
 20220916 06:17:38.241 [inf][hpc] ****Ledger created**** (lcl:2-0d1cb434 state:1003873b patch:dd100440)
  
@@ -152,18 +156,20 @@ The output will be :
 20220916 06:17:42.243 [inf][hpc] ****Ledger created**** (lcl:4-cbc3d0bd state:1003873b patch:dd100440)
 ```
 
-___NOTE :___  _Here we used 3 node HotPocket cluster._
+___NOTE :___  _A 3-node HotPocket cluster is used in the example above._
 
+## Advance usage of NPL
 
-## Advanced usage of NPL
+Now let's try to develop something useful using NPL messages. As mentioned before, the nodes can make collective decisions using NPL messages.
 
-Okay, Now let's try to develop something useful using these NPL messages. As mentioned at the beginning, the nodes can attain collective decisions using these NPL messages. So let's get the example of random number generation.
+Let's go back to the example of random number generation:
+
 - First, each node generates a random number and broadcasts it to the UNL.
-- Then each node keeps an array of numbers that it has received.
-- Once a node receives all messages from its peers or the timeout period is reached, the node has to select the maximum of the received random numbers.
-- Then node tries to write that figure into the `data.txt` file in its state.
+- Each node then maintains an array of numbers that it has received.
+- Once a node receives all messages from its peers, or the timeout period is reached, the node has to select the maximum from the received random numbers.
+- The node then tries to save the maximum value in the `data.txt` file in its state.
 
-___NOTE :___ _Here we have used stringified JSON object as the message._
+___NOTE :___ _A stringified JSON object is used as the message in the example below._
 
 ```javascript
 const HotPocket = require("hotpocket-nodejs-contract");
@@ -242,7 +248,8 @@ const hpc = new HotPocket.Contract();
 hpc.init(myContract);
 ```
 
-The output will be :
+The following output will be generated:
+
 ```
 20220919 05:24:03.512 [inf][hpc] ****Ledger created**** (lcl:16-67a3e08e state:bd32fe65 patch:746911a7)
 Received Numbers : [ 2, 5, 5 ]
@@ -254,7 +261,6 @@ Decided Random No.: 4
 Received Numbers : [ 2, 1, 2 ]
 Decided Random No.: 2
 ```
-___NOTE :___ _Here we used 3 node HotPocket cluster and with this implementation we did not receive any break of consensus due to a state mismatch._
+___NOTE :___ _A 3-node HotPocket cluster is used in the example above, and there is no break of consensus due to a state mismatch._
 
-___If you want to implement a more advanced decision-making logic, you can extend this up to voting and selecting majority suggestions kind of approach.___
-
+___To implement a more advanced decision-making logic, you can extend this implementation to voting and selecting a majority from a list of suggestions.___
