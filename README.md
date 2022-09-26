@@ -35,6 +35,7 @@ Use these references to get a better understanding of HotPocket configurations a
 - [Config reference](hotpocket/reference-configurations.md)
 - [Client protocol reference](hotpocket/reference-client-protocols.md)
 - [Contract protocol reference](hotpocket/reference-contract-protocols.md)
+- [Smart contract reference](hotpocket/reference-smart-contract.md)
 
 ## Evernode integration
 
