@@ -28,7 +28,7 @@ A control channel should be there in every HotPocket smart contract, which helps
 
 The communication protocol of control messaging among connected nodes is Sequence Packet Protocol ([SPP](https://sites.ualberta.ca/dept/chemeng/AIX-43/share/man/info/C/a_doc_lib/aixprggd/progcomc/xns_seqprot.htm)). It is a byte-stream protocol used to support the SOCK_STREAM abstraction. Hence, in HotPocket there is an `upper bound` for the sequence packets maximum of 128KB.
 
-You can refer [control messages protocol](reference-client-protocols.md/#control-messages) for further information.
+You can refer [control messages protocol](reference-contract-protocols.md#user-inputs) for further information.
 
 ## Contract execution context
 
