@@ -21,7 +21,7 @@ Takes on parameter `options` which is a JSON object of options that is passed to
 
 
 ## Prepare the registry client - `async connect()`
-Connect the client to xrpl server and do the config loading and subscriptions.
+Connects the client to xrpl server and do the config loading and subscriptions.
 - [subscribe](#subscribe-to-the-events---async-subscribe) is called inside this.
 
 ### Response format
@@ -34,7 +34,7 @@ Returns boolean. `true` if success.
 
 
 ## Terminate the registry client - `async disconnect()`
-Disconnect the client to xrpl server and do the unsubscriptions.
+Disconnects the client to xrpl server and do the unsubscriptions.
 - [unsubscribe](#unsubscribe-from-the-events---async-unsubscribe) is called inside this.
 
 ### Response format
@@ -47,7 +47,7 @@ This is a void function.
 
 
 ## Subscribe to the events - `async subscribe()`
-Subscribe to the registry client events.
+Subscribes to the registry client events.
 
 ### Events
 | Name                 | Description                                                           |
@@ -69,7 +69,7 @@ This is a void function.
 
 
 ## Unsubscribe from the events - `async unsubscribe()`
-Unsubscribe from the registry client events.
+Unsubscribes from the registry client events.
 
 ### Response format
 This is a void function.
@@ -81,7 +81,7 @@ This is a void function.
 
 
 ## Attach the listener - `on(event, handler), once(event, handler)`
-Listen to the subscribed events.
+Listens to the subscribed events.
 - `on` function will listen for the event without deattaching the handler until it's [`off`](#deattach-the-listener---offevent-handler--null).
 - `once` function will listen only once and deattach the handler.
 
@@ -99,7 +99,7 @@ Listen to the subscribed events.
 
 
 ## Deattach the listener - `off(event, handler = null)`
-Deattach the listener event.
+Deattachs the listener event.
 
 ### Parameters
 | Name               | Type            | Description                                                                                                    |
@@ -114,7 +114,7 @@ Deattach the listener event.
 
 
 ## Get active hosts - `async getActiveHosts()`
-Get all the active hosts registered in Evernode without paginating.
+Gets all the active hosts registered in Evernode without paginating.
 
 ### Response format
 Returns the list of active hosts.
@@ -177,7 +177,7 @@ Returns the list of active hosts.
 
 
 ## Get all hosts - `async getHosts()`
-Get all the hosts registered in Evernode in paginated manor. The result's are paginated. Default page size is 20.
+Gets all the hosts registered in Evernode in paginated manor. The result's are paginated. Default page size is 20.
 _Note: Specifing both filter and pagination does not supported. _
 
 ### Parameters
@@ -252,7 +252,7 @@ Returns the list of active hosts. The response will be in `{data: [], nextPageTo
 
 
 ## Check EVR balance - `async getEVRBalance()`
-Get the EVR balance in the registry account.
+Gets the EVR balance in the registry account.
 
 ### Response format
 Returns the available EVR amount as a `string`.
@@ -264,7 +264,7 @@ Returns the available EVR amount as a `string`.
 
 
 ## Get hook states - `async getHookStates()`
-Get XRPL all hook states in the registry account.
+Gets XRPL all hook states in the registry account.
 
 ### Response format
 Returns the list of hook states including evernode configurations and hosts. 
@@ -293,7 +293,7 @@ Returns the list of hook states including evernode configurations and hosts.
 
 
 ## Get the moment - `async getMoment()`
-Get the moment from the given XRPL index. (1 Moment - 1190 XRP ledgers).
+Gets the moment from the given XRPL index. (1 Moment - 1190 XRP ledgers).
 
 ### Parameters
 | Name                   | Type   | Description                           |
@@ -310,7 +310,7 @@ Returns the moment of the given XPR ledger index as `number`. Returns current mo
 
 
 ## Get the moment start index - `async getMomentStartIndex()`
-Get start XRP ledger index of the moment (of the given XRPL index).
+Gets start XRP ledger index of the moment (of the given XRPL index).
 
 ### Parameters
 | Name                   | Type   | Description                           |
@@ -339,7 +339,7 @@ This is a void function.
 
 
 ## Extract the event details from a XRPL transaction - `async extractEvernodeEvent(tx)`
-Get start XRP ledger index of the moment (of the given XRPL index).
+Gets start XRP ledger index of the moment (of the given XRPL index).
 _Note: You need to deserialize memos before passing the transaction to this function._
 
 ### Parameters
@@ -390,7 +390,7 @@ Returns the event object in the format `{name: '', data: {}}`. Returns null if n
 
 
 ## Get host info - `async getHostInfo(hostAddress)`
-Get registered host information.
+Gets the registered host information.
 
 ### Parameters
 | Name        | Type   | Description          |
@@ -446,7 +446,7 @@ Returns the registered host information object. Returns null is not registered.
 ```
 
 ## Get all evernode configurations - `async getAllHosts()`
-Get all the hosts without paginating.
+Gets all the hosts without paginating.
 
 ### Response format
 Returns the list of hosts.
