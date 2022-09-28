@@ -476,7 +476,6 @@ Returns the list of hosts.
     }
 ]
 ```
-```
 | Name                | Type     | Description                                                        |
 | ------------------- | -------- | ------------------------------------------------------------------ |
 | id                  | string   | Identifier of the host. This is used for internal use in evernode. |
