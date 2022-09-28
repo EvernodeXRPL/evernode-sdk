@@ -10,7 +10,7 @@ You have learned how to test your Smart Contracts locally with hpdevkit in the [
 
 Let's go through them in detail.
 
-## Generate and prepare account account
+## Generate and prepare tenant account
 
 ### Step 1 - Teanant account preparation.
 First, You need to create XRPL account and start the tenant client preparation.
