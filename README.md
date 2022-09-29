@@ -38,7 +38,19 @@ Use these references to get a better understanding of HotPocket configurations a
 
 ## Evernode integration
 
-You need to interact with Evernode (via [XRPL](https://xrpl.org/)) to deploy your HotPocket smart contracts on the [Evernode network](https://dashboard.evernode.org). We will be introducing the necessary tools and libraries required for this purpose in the future.
+You need to interact with Evernode (via [XRPL](https://xrpl.org/)) to deploy your HotPocket smart contracts on the [Evernode network](https://dashboard.evernode.org). 
+
+### Tutorials
+1. [Basics tutorial](evernode/tutorial-basics.md)
+
+### Evernode references
+
+Use these references to get an idea about Evernode API methods.
+
+- [Evernode clients common methods](evernode/reference-api-common.md)
+- [Evernode registry client methods](evernode/reference-api-registry.md)
+- [Evernode tenant client methods](evernode/reference-api-tenant.md)
+- [Evernode client events](evernode/reference-api-events.md)
 
 ## Issues and feedback
 

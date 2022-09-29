@@ -120,7 +120,7 @@ Now the tenant client preparation part is done. As mentioned above you need to h
          instanceName = result.instance.name;
       }
       catch (err) {
-         console.log("Tenant recieved acquire error: ", err.reason);
+         console.log("Tenant received acquire error: ", err.reason);
       }
    ```
 
@@ -133,7 +133,7 @@ Now the tenant client preparation part is done. As mentioned above you need to h
             console.log(`Extend ref id: ${result.extendeRefId}, Expiry moments: ${result.expiryMoment}`);
          }
          catch (err) {
-            console.log("Tenant recieved extend error: ", err.reason)
+            console.log("Tenant received extend error: ", err.reason)
          }
       }
    ```
