@@ -204,7 +204,7 @@ Now the tenant client preparation part is done. As mentioned above you need to h
    npm install
    npm run build
    # hpdevkit bundle <acquired-node-public-key> <contract-path>
-   hpdevkit bundle 0001000056833048A72B65388ABDBE854F65324D7786A9EA559CFBED00000052 dist
+   hpdevkit bundle ede673726c2b5c8eb9c14af633b6b51613b1f1fc3266aea9877a6b99a996b33df9 dist
    ```
    Output will be,
    ```
