@@ -18,100 +18,9 @@ Takes on parameter `options` which is a JSON object of options that is passed to
 ```javascript
     const registryClient = new RegistryClient({registryAddress: 'r3cNR2bdao1NyvQ5ZuQvCUgqkoWGmgF34E'});
 ```
+<br>
 
-
-## Prepare the registry client - `async connect()`
-Connects the client to xrpl server and do the config loading and subscriptions.
-- [subscribe](#subscribe-to-the-events---async-subscribe) is called inside this.
-
-### Response format
-Returns boolean. `true` if success.
-
-### Example
-```javascript
-    const status = await registryClient.connect();
-```
-
-
-## Terminate the registry client - `async disconnect()`
-Disconnects the client to xrpl server and do the unsubscriptions.
-- [unsubscribe](#unsubscribe-from-the-events---async-unsubscribe) is called inside this.
-
-### Response format
-This is a void function.
-
-### Example
-```javascript
-    const status = await registryClient.disconnect();
-```
-
-
-## Subscribe to the events - `async subscribe()`
-Subscribes to the registry client events.
-
-### Events
-| Name                 | Description                                                           |
-| -------------------- | --------------------------------------------------------------------- |
-| HostRegistered       | Triggered when host registration event is received to the registry.   |
-| HostDeregistered     | Triggered when host deregistration event is received to the registry. |
-| HostRegUpdated       | Triggered when host sends an update info request.                     |
-| Heartbeat            | Triggered when registry receives a heartbeat from a host.             |
-| HostPostDeregistered | Triggered after the host is deregistered.                             |
-| DeadHostPrune        | Triggered when dead host prone request is received to the registry.   |
-
-### Response format
-This is a void function.
-
-### Example
-```javascript
-    await registryClient.subscribe();
-```
-
-
-## Unsubscribe from the events - `async unsubscribe()`
-Unsubscribes from the registry client events.
-
-### Response format
-This is a void function.
-
-### Example
-```javascript
-    await registryClient.unsubscribe();
-```
-
-
-## Attach the listener - `on(event, handler), once(event, handler)`
-Listens to the subscribed events.
-- `on` function will listen for the event without deattaching the handler until it's [`off`](#deattach-the-listener---offevent-handler--null).
-- `once` function will listen only once and deattach the handler.
-
-### Parameters
-| Name    | Type            | Description                            |
-| ------- | --------------- | -------------------------------------- |
-| event   | string          | [Event name](#events).                 |
-| handler | function(event) | Callback function to handle the event. |
-
-### Example
-```javascript
-    registryClient.on(EvernodeEvents.HostRegistered, (ev) => {});
-    registryClient.once(EvernodeEvents.HostRegistered, (ev) => {});
-```
-
-
-## Deattach the listener - `off(event, handler = null)`
-Deattachs the listener event.
-
-### Parameters
-| Name               | Type            | Description                                                                                                    |
-| ------------------ | --------------- | -------------------------------------------------------------------------------------------------------------- |
-| event              | string          | [Event name](#events).                                                                                         |
-| handler (optional) | function(event) | Can be sent if a specific handler need to be deattached. All the handlers will be deattached if not specified. |
-
-### Example
-```javascript
-    registryClient.off(EvernodeEvents.HostRegistered);
-```
-
+### [Go to common registry and tenant client api method references.](reference-api-common.md)<br><br>
 
 ## Get active hosts - `async getActiveHosts()`
 Gets all the active hosts registered in Evernode without paginating.
@@ -251,18 +160,6 @@ Returns the list of active hosts. The response will be in `{data: [], nextPageTo
 ```
 
 
-## Check EVR balance - `async getEVRBalance()`
-Gets the EVR balance in the registry account.
-
-### Response format
-Returns the available EVR amount as a `string`.
-
-### Example
-```javascript
-    const balance = await registryClient.getEVRBalance();
-```
-
-
 ## Get hook states - `async getHookStates()`
 Gets XRPL all hook states in the registry account.
 
@@ -289,103 +186,6 @@ Returns the list of hook states including evernode configurations and hosts.
 ### Example
 ```javascript
     const states = await registryClient.getHookStates();
-```
-
-
-## Get the moment - `async getMoment()`
-Gets the moment from the given XRPL index. (1 Moment - 1190 XRP ledgers).
-
-### Parameters
-| Name                   | Type   | Description                           |
-| ---------------------- | ------ | ------------------------------------- |
-| ledgerIndex (optional) | number | Ledger index to get the moment value. |
-
-### Response format
-Returns the moment of the given XPR ledger index as `number`. Returns current moment if ledger index is not given.
-
-### Example
-```javascript
-    const moment = await registryClient.getMoment();
-```
-
-
-## Get the moment start index - `async getMomentStartIndex()`
-Gets start XRP ledger index of the moment (of the given XRPL index).
-
-### Parameters
-| Name                   | Type   | Description                           |
-| ---------------------- | ------ | ------------------------------------- |
-| ledgerIndex (optional) | number | Ledger index to get the moment value. |
-
-### Response format
-Returns the XRP ledger index of the moment (of the given XRPL index) as `number`. Returns the current moment's start XRP ledger index if ledger index parameter is not given.
-
-### Example
-```javascript
-    const startIdx = await registryClient.getMomentStartIndex();
-```
-
-
-## Refresh the evernode config - `async refreshConfig()`
-Loads the configs from XRPL hook and updates the in memory config.
-
-### Response format
-This is a void function.
-
-### Example
-```javascript
-    await registryClient.refreshConfig();
-```
-
-
-## Extract the event details from a XRPL transaction - `async extractEvernodeEvent(tx)`
-Gets start XRP ledger index of the moment (of the given XRPL index).
-_Note: You need to deserialize memos before passing the transaction to this function._
-
-### Parameters
-| Name | Type   | Description                                   |
-| ---- | ------ | --------------------------------------------- |
-| tx   | object | Transaction to be deserialized and extracted. |
-
-### Response format
-Returns the event object in the format `{name: '', data: {}}`. Returns null if not handled.
-```
-{
-    name: 'HostRegUpdated',
-    data: {
-        transaction: {
-            Account: 'rJ2Vwa7PKR2VviWbZoW6nMVhd2nUTQGrvE',
-            Amount: '1',
-            Destination: 'r3cNR2bdao1NyvQ5ZuQvCUgqkoWGmgF34E',
-            Fee: '587',
-            Flags: 0,
-            LastLedgerSequence: 6321792,
-            Memos: [Array],
-            Sequence: 3898010,
-            SigningPubKey: '02003CB922F13E4880C542D87B02852F19039347115DC7370C157D9896E65AB690',
-            TransactionType: 'Payment',
-            TxnSignature: '3044022054EA456D5644A40CA0309A4F449E829695B2B4BEA8050AF42DAE9BF44C0BA4C5022066AC7328583529BAD91D10EC49B1405ED7AE7D862BD3036B8F31F6A2D6415BC9',
-            date: 717667781,
-            hash: 'B1A93A4F209F0EDD55A6ED42A96B545D1AD425592191F64B61611765B727B31D',
-            inLedger: 6321784,
-            ledger_index: 6321784
-        },
-        host: 'rJ2Vwa7PKR2VviWbZoW6nMVhd2nUTQGrvE',
-        version: '0.5.10',
-        specs: [ '', '', '', '', '', '', '0', '', '0.5.10' ]
-    }
-}
-```
-| Name        | Type   | Description                                   |
-| ----------- | ------ | --------------------------------------------- |
-| name        | string | [Event name](#events).                        |
-| transaction | object | The original transaction from the XRP ledger. |
-- There will be more properties in the response which are according to the event type.
-
-### Example
-```javascript
-    tx.Memos = evernode.TransactionHelper.deserializeMemos(tx.Memos);
-    const startIdx = await registryClient.extractEvernodeEvent(tx);
 ```
 
 
