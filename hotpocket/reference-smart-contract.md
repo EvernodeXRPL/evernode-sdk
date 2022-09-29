@@ -89,7 +89,7 @@ Under this, we can implement the UNL-related info retrieval as well as set up NP
 Under this section, we can manage the clients who have connected to this smart contract. When considering the user inputs and user outputs. HotPocket smart contract maintains a single file descriptor for User inputs and separate file descriptors for User outputs. Hence, now it is clear that we have to maintain a separate communication channel for each user. You can refer [Client Protocols](reference-client-protocols/../reference-client-protocols.md) further information. Currently, client/user messages can be sent and received in JSON or BSON formats.
 
 If you check the `users` object that is passed from the HotPocket consensus engine, it is according to the following format.
-```json
+```
 {
     ...
     "<public key user i>" : ["<output file descriptor for user i>", [<offset>, <length>]],
