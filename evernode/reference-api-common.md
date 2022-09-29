@@ -1,5 +1,11 @@
+# Evernode clients
+
+There are clients for registry and tenant in the Evernode library.
+- [Registry Client](reference-api-registry.md)
+- [Tenant Client](reference-api-tenant.md)
+
 ## Connect to the client - `async connect()`
-Connects the client to xrpl server and do the config loading and subscriptions.
+Connects the client to XRPL server and do the config loading and subscriptions.
 - [subscribe](#subscribe-to-the-events---async-subscribe) is called inside this.
 
 ### Response format
@@ -12,7 +18,7 @@ Returns boolean. `true` if success.
 
 
 ## Terminate the client - `async disconnect()`
-Disconnects the client to xrpl server and do the unsubscriptions.
+Disconnects the client to XRPL server and do the un-subscriptions.
 - [unsubscribe](#unsubscribe-from-the-events---async-unsubscribe) is called inside this.
 
 ### Response format
@@ -50,8 +56,8 @@ This is a void function.
 
 ## Attach the listener - `on(event, handler), once(event, handler)`
 Listens to the subscribed [events](reference-api-events.md).
-- `on` function will listen for the event without deattaching the handler until it's [`off`](#deattach-the-listener---offevent-handler--null).
-- `once` function will listen only once and deattach the handler.
+- `on` function will listen for the event without detaching the handler until it's [`off`](#deattach-the-listener---offevent-handler--null).
+- `once` function will listen only once and detach the handler.
 
 ### Parameters
 | Name    | Type            | Description                            |
@@ -73,7 +79,7 @@ Deattachs the listener event.
 | Name               | Type            | Description                                                                                                    |
 | ------------------ | --------------- | -------------------------------------------------------------------------------------------------------------- |
 | event              | string          | [Event name](reference-api-events.md).                                                                         |
-| handler (optional) | function(event) | Can be sent if a specific handler need to be deattached. All the handlers will be deattached if not specified. |
+| handler (optional) | function(event) | Can be sent if a specific handler need to be detached. All the handlers will be detached if not specified. |
 
 ### Example
 ```javascript
@@ -191,7 +197,7 @@ Returns the event object in the format `{name: '', data: {}}`. Returns null if n
 
 
 ## Prune dead hosts - `async pruneDeadHost(hostAddress)`
-Remove a host which is inactive for a long period. The inactivity is checked by evernode it self and only pruned if inactive thresholds are met.
+Remove a host which is inactive for a long period. The inactivity is checked by Evernode itself and only pruned if inactive thresholds are met.
 
 ### Parameters
 | Name        | Type   | Description                            |

@@ -1,4 +1,5 @@
 # Registry client
+
 ## RegistryClient class constructor - `RegistryClient(options = {})`
 
 ### Parameters
@@ -57,11 +58,11 @@ Returns the list of active hosts.
 ```
 | Name                | Type     | Description                                                        |
 | ------------------- | -------- | ------------------------------------------------------------------ |
-| id                  | string   | Identifier of the host. This is used for internal use in evernode. |
+| id                  | string   | Identifier of the host. This is used for internal use in Evernode. |
 | createTime          | datetime | Host record created date and time                                  |
 | updateTime          | datetime | Host record updated date and time                                  |
 | cpuCount            | number   | CPU count of the host machine                                      |
-| ramMb               | number   | Host machine's evernode allocated RAM in MBs                       |
+| ramMb               | number   | Host machine's Evernode allocated RAM in MBs                       |
 | registrationLedger  | number   | Host machine registered XRP ledger                                 |
 | lastHeartbeatLedger | number   | XRP ledger that the last heartbeat is received                     |
 | maxInstances        | number   | Max number of instances that can be created in the host            |
@@ -72,10 +73,10 @@ Returns the list of active hosts.
 | registrationFee     | number   | Registration fee paid by the host when it's registered.            |
 | address             | string   | XRPL account address of the host.                                  |
 | cpuModelName        | string   | CPU model of the host machine.                                     |
-| cpuMicrosec         | number   | CPU time in micro seconds allocated for evernode.                  |
+| cpuMicrosec         | number   | CPU time in micro seconds allocated for Evernode.                  |
 | description         | string   | IP address or the DNS of the host.                                 |
 | cpuMHz              | number   | CPU speed of the host.                                             |
-| diskMb              | number   | Disk space allocated for evernode in the host.                     |
+| diskMb              | number   | Disk space allocated for Evernode in the host.                     |
 | key                 | string   | Same as the `id`. Used for internal use.                           |
 | active              | boolean  | Boolean indicating whether the host is active or not.              |
 
@@ -87,7 +88,7 @@ Returns the list of active hosts.
 
 ## Get all hosts - `async getHosts()`
 Gets all the hosts registered in Evernode in paginated manor. The result's are paginated. Default page size is 20.
-_Note: Specifing both filter and pagination does not supported. _
+_Note: Specifying both filter and pagination does not supported. _
 
 ### Parameters
 | Name                     | Type   | Description                                                                               |
@@ -131,11 +132,11 @@ Returns the list of active hosts. The response will be in `{data: [], nextPageTo
 ```
 | Name                | Type     | Description                                                        |
 | ------------------- | -------- | ------------------------------------------------------------------ |
-| id                  | string   | Identifier of the host. This is used for internal use in evernode. |
+| id                  | string   | Identifier of the host. This is used for internal use in Evernode. |
 | createTime          | datetime | Host record created date and time                                  |
 | updateTime          | datetime | Host record updated date and time                                  |
 | cpuCount            | number   | CPU count of the host machine                                      |
-| ramMb               | number   | Host machine's evernode allocated RAM in MBs                       |
+| ramMb               | number   | Host machine's Evernode allocated RAM in MBs                       |
 | registrationLedger  | number   | Host machine registered XRP ledger                                 |
 | lastHeartbeatLedger | number   | XRP ledger that the last heartbeat is received                     |
 | maxInstances        | number   | Max number of instances that can be created in the host            |
@@ -146,10 +147,10 @@ Returns the list of active hosts. The response will be in `{data: [], nextPageTo
 | registrationFee     | number   | Registration fee paid by the host when it's registered.            |
 | address             | string   | XRPL account address of the host.                                  |
 | cpuModelName        | string   | CPU model of the host machine.                                     |
-| cpuMicrosec         | number   | CPU time in micro seconds allocated for evernode.                  |
+| cpuMicrosec         | number   | CPU time in micro seconds allocated for Evernode.                  |
 | description         | string   | IP address or the DNS of the host.                                 |
 | cpuMHz              | number   | CPU speed of the host.                                             |
-| diskMb              | number   | Disk space allocated for evernode in the host.                     |
+| diskMb              | number   | Disk space allocated for Evernode in the host.                     |
 | key                 | string   | Same as the `id`. Used for internal use.                           |
 | active              | boolean  | Boolean indicating whether the host is active or not.              |
 | nextPageToken       | string   | Token reference for the next page.                                 |
@@ -164,7 +165,7 @@ Returns the list of active hosts. The response will be in `{data: [], nextPageTo
 Gets XRPL all hook states in the registry account.
 
 ### Response format
-Returns the list of hook states including evernode configurations and hosts. 
+Returns the list of hook states including Evernode configurations and hosts. 
 ```
 [
     {
@@ -236,16 +237,16 @@ Returns the registered host information object. Returns null is not registered.
 | cpuModelName        | string  | CPU model of the host machine.                          |
 | cpuCount            | number  | CPU count of the host machine                           |
 | cpuMHz              | number  | CPU speed of the host.                                  |
-| cpuMicrosec         | number  | CPU time in micro seconds allocated for evernode.       |
-| ramMb               | number  | Host machine's evernode sllocated RAM in MBs            |
-| diskMb              | number  | Disk space allocated for evernode in the host.          |
+| cpuMicrosec         | number  | CPU time in micro seconds allocated for Evernode.       |
+| ramMb               | number  | Host machine's Evernode sllocated RAM in MBs            |
+| diskMb              | number  | Disk space allocated for Evernode in the host.          |
 
 ### Example
 ```javascript
     const hostInfo = await registryClient.getHostInfo('r3tSGeDFJaz8GEVmM6oUuYTAiNdDJhitCt');
 ```
 
-## Get all evernode configurations - `async getAllHosts()`
+## Get all Evernode configurations - `async getAllHosts()`
 Gets all the hosts without paginating.
 
 ### Response format
@@ -278,7 +279,7 @@ Returns the list of hosts.
 ```
 | Name                | Type     | Description                                                        |
 | ------------------- | -------- | ------------------------------------------------------------------ |
-| id                  | string   | Identifier of the host. This is used for internal use in evernode. |
+| id                  | string   | Identifier of the host. This is used for internal use in Evernode. |
 | createTime          | datetime | Host record created date and time                                  |
 | updateTime          | datetime | Host record updated date and time                                  |
 | nfTokenId           | string   | Registration NFT ID of the host                                    |
@@ -288,12 +289,12 @@ Returns the list of hosts.
 | description         | string   | IP address or the DNS of the host.                                 |
 | registrationFee     | number   | Registration fee paid by the host when it's registered.            |
 | lastHeartbeatLedger | number   | XRP ledger that the last heartbeat is received                     |
-| ramMb               | number   | Host machine's evernode sllocated RAM in MBs                       |
+| ramMb               | number   | Host machine's Evernode allocated RAM in MBs                       |
 | cpuCount            | number   | CPU count of the host machine                                      |
 | cpuModelName        | string   | CPU model of the host machine.                                     |
-| diskMb              | number   | Disk space allocated for evernode in the host.                     |
+| diskMb              | number   | Disk space allocated for Evernode in the host.                     |
 | activeInstances     | number   | Currently allocated instance count in the host machine.            |
-| cpuMicrosec         | number   | CPU time in micro seconds allocated for evernode.                  |
+| cpuMicrosec         | number   | CPU time in micro seconds allocated for Evernode.                  |
 | address             | string   | XRPL account address of the host.                                  |
 | maxInstances        | number   | Max number of instances that can be created in the host            |
 | key                 | string   | Same as the `id`. Used for internal use.                           |

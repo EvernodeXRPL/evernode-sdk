@@ -1,8 +1,8 @@
 # Evernode basics tutorial
 
-You have learned how to test your Smart Contracts locally with hpdevkit in the [hpdevkit basic tutorial](../hotpocket/tutorial-basics.md). Now let's see how you can acquire instances from evernode and deploy smart contract you've implemented. To be a tenant and deploy a smart contract in the evernode network you'll have to follow following steps. 
-- **Step 1** - First, you have to have a xrpl account.
-- **Step 2** - You need to have EVRs on your xrpl account. (Since this is beta network we will be give away free EVRs for you to test smart contracts on evernode)
+You have learned how to test your Smart Contracts locally with hpdevkit in the [hpdevkit basic tutorial](../hotpocket/tutorial-basics.md). Now let's see how you can acquire instances from Evernode and deploy smart contract you've implemented. To be a tenant and deploy a smart contract in the Evernode network you'll have to follow following steps. 
+- **Step 1** - First, you have to have a XRPL account.
+- **Step 2** - You need to have EVRs on your XRPL account. (Since this is beta network we will be give away free EVRs for you to test smart contracts on Evernode)
 - **Step 3** - You need to pick a host and acquire a lease from the picked host.
 - **Step 4** - Initially with the amount you paid for the lease you'll get an instance with life time of 1 Moment (1190 XRP ledgers) approx 1 hour. You can extend the instance life time by extending the lease.
 - **Step 5** - You need prepare starter contract client and user keys before acquiring the instance.
@@ -15,7 +15,7 @@ Let's go through them in detail.
 ### Step 1 - Teanant account preparation.
 First, You need to create XRPL account and start the tenant client preparation.
 1. You can generate a faucet XRPL account on [hooks-testnet-v2](https://xrpl-hooks.readme.io/) from [here](https://hooks-testnet-v2.xrpl-labs.com/).
-2. Go to your work directory and create a new directory `evernode-project` for your evernode test.
+2. Go to your work directory and create a new directory `evernode-project` for your Evernode test.
 3. Go to the project directory and run `npm init` to prepare a npm project.
 4. Now run,
    ```
@@ -120,7 +120,7 @@ Now the tenant client preparation part is done. As mentioned above you need to h
          instanceName = result.instance.name;
       }
       catch (err) {
-         console.log("Tenant recieved acquire error: ", err.reason);
+         console.log("Tenant received acquire error: ", err.reason);
       }
    ```
 
@@ -133,7 +133,7 @@ Now the tenant client preparation part is done. As mentioned above you need to h
             console.log(`Extend ref id: ${result.extendeRefId}, Expiry moments: ${result.expiryMoment}`);
          }
          catch (err) {
-            console.log("Tenant recieved extend error: ", err.reason)
+            console.log("Tenant received extend error: ", err.reason)
          }
       }
    ```
@@ -224,7 +224,7 @@ Now the tenant client preparation part is done. As mentioned above you need to h
    ```
    status
    ```
-   - If bootsrap contract is running, It'll output.
+   - If bootstrap contract is running, It'll output.
    ```
    (ledger:29)>> Bootstrap contract is online
    ```
