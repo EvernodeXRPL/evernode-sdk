@@ -279,26 +279,24 @@ const response = await watchAcquireResponse(tx);
 
 <br>
 
-# Extend Lease
-
-## extendLease(hostAddress, moments, instanceName, options = {}) => "`async extendLease(hostAddress, moments, instanceName, options = {})`"
+## Extend Lease - extendLease(hostAddress, moments, instanceName, options = {}) => "`async extendLease(hostAddress, moments, instanceName, options = {})`"
 
 This function is called by a tenant client to extend an available instance in certain host. This function can take four parameters as follows.
 
 ### Parameters
 
-| Name         | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ------------ | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| hostAddress  | string | HostAddress is a cryptographic code that allows a user to receive cryptocurrencies. <br><br> example: "rKtuh3pGwkPk86BuVrPNS58JkyMuz79DbB"                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| moments      |        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| instanceName | string | Tenant received instance name. this name can be retrieve by performing [acquire Lease](https://google.com).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| options      | object | This is an optional field and contains necessary details for the transactions. The attributes are explained down below. <br><br> **transactionOptions** - During the extending lease process, a [Payment](https://xrpl.org/payment.html#payment) transaction takes place. Therefore the fields defined in the official XRPL documentation for the Payment transaction can be specified within this object. <br><br> **timeout** - This specifies a timeout for the transaction to be completed. it accepts a number and time in milliseconds. this is optional and defaults to 60000 unless provided. |
+| Name         | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------ | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| hostAddress  | string | HostAddress is a cryptographic code that allows a user to receive cryptocurrencies. <br><br> example: "rKtuh3pGwkPk86BuVrPNS58JkyMuz79DbB"                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| moments      | number | Moment is 1190 ledgers (est. 1 hour).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| instanceName | string | Tenant received instance name. this name can be retrieve by performing [acquire Lease](#acquire-lease---async-acquireleasehostaddress-requirement-options).                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| options      | object | This is an optional field and contains necessary details for the transactions. The attributes are explained down below. <br><br> **transactionOptions** - During the extending lease process, a [Payment](https://xrpl.org/payment.html#payment) transaction takes place. Therefore the fields defined in the official XRPL documentation for the Payment transaction can be specified within this object. <br><br> **timeout** - This specifies a timeout for the transaction to be completed. it accepts a number and time in miliseconds. this is optional and defaults to 60000 unless provided. |
 
 ### Responce Format
 
 An example of a successful response:
 
-```javascript
+```
 exampleResponce {
   transaction: {
     LedgerHash: 'A4C1F8FB2F34F03B3621CF4418857977921B5B38B2C05E456499399BED938045',
@@ -353,26 +351,30 @@ Now let's see the details of the response fields.
 
 ### Example
 
-```
-const result = await tenant.extendLease( "rGhvPCX1x2qyUTEEGQNneVYwgwXWYCvp8P", 2,           &"00010000A547B3F85414A33C2AB38F7788E42AC0F4D273473BD96868000001CD", { timeout: 2000, });
+```javascript
+const result = await tenant.extendLease(hostAddress, moments, instanceName, {
+  timeout: timeout,
+});
 ```
 
-# extendLeaseSubmit(hostAddress, amount, tokenID, options = {}) => "`async extendLeaseSubmit(hostAddress, amount, tokenID, options = {})`"
+<br>
+
+## Extend Lease Submit - extendLeaseSubmit(hostAddress, amount, tokenID, options = {}) => "`async extendLeaseSubmit(hostAddress, amount, tokenID, options = {})`"
 
 This function is called by a tenant client to submit the extend lease transaction in certain host. This function will be called inside extendLease function. This function can take four parameters as follows.
 
-| Name        | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ----------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| hostAddress | string | HostAddress is a cryptographic code that allows a user to receive cryptocurrencies. <br><br> example: "rKtuh3pGwkPk86BuVrPNS58JkyMuz79DbB"                                                                                                                                                                                                                                                                             |
-| moments     |        |                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| tokenID     | string |                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| options     | object | `(optional)`This is an optional field and contains necessary details for the transactions. The attributes are explained down below. <br><br> **transactionOptions** - During the extending lease process, a [Payment](https://xrpl.org/payment.html#payment) transaction takes place. Therefore the fields defined in the official XRPL documentation for the Payment transaction can be specified within this object. |
+| Name        | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                |
+| ----------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| hostAddress | string | HostAddress is a cryptographic code that allows a user to receive cryptocurrencies. <br><br> example: "rKtuh3pGwkPk86BuVrPNS58JkyMuz79DbB"                                                                                                                                                                                                                                                                 |
+| moments     | number | Moment is 1190 ledgers (est. 1 hour).                                                                                                                                                                                                                                                                                                                                                                      |
+| tokenID     | string | Tenant received instance name. this name can be retrieve by performing [acquire Lease](#acquire-lease---async-acquireleasehostaddress-requirement-options).                                                                                                                                                                                                                                                |
+| options     | object | This is an optional field and contains necessary details for the transactions. The attributes are explained down below. <br><br> **transactionOptions** - During the extending lease process, a [Payment](https://xrpl.org/payment.html#payment) transaction takes place. Therefore the fields defined in the official XRPL documentation for the Payment transaction can be specified within this object. |
 
 ## Responce Format
 
 An example of a successful response:
 
-```javascript
+```
 exampleResponce  {
   id: '753EC1763AF94FCAC17680FE712B4C962A61E4C9C36B5E791D5F223B8574FF16',
   code: 'tesSUCCESS',
@@ -442,7 +444,9 @@ Now let's see the details of the response fields.
 const tx = await this.extendLeaseSubmit(hostAddress, amount, tokenID, options);
 ```
 
-# watchExtendResponse(tx, options = {}) => "`async watchExtendResponse(tx, options = {})`"
+<br>
+
+## Watch Extend Response - watchExtendResponse(tx, options = {}) => "`async watchExtendResponse(tx, options = {})`"
 
 This function watches for an extendlease-success response(transaction) and returns the response or throws the error response on extendlease-error response from the host XRPL account. This function is called within the [_extendLease_](#extend-lease---async-acquireleasehostaddress-requirement-options---) function.
 
