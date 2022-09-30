@@ -190,6 +190,7 @@ Now the tenant client preparation part is done. As mentioned above you need to h
    Waiting for extend lease response... (txHash: 8263959C09469952B06A39D966DA79E9C60224DD06F1E2D5677F69D66DDDF710)
    Extend ref id: 8263959C09469952B06A39D966DA79E9C60224DD06F1E2D5677F69D66DDDF710, Expiry moments: 5290
    ```
+   _Note: Since the Host is picked randomly, we cannot guarantee that the picked host is always a perfect one. So, if you receive any errors during [instance acquiring](#step-5---acquire-evernode-instance) or [smart contract deployment](#step-6---smart-contract-deployment) you should try with a different host._
 
 ### Step 6 - Smart contract deployment.
 1. Now you have an Evernode instance, which is ready to be deployed a new [smart contract](../hotpocket/concepts.md#smart-contract). So, let's deploy the contract to the Evernode instance.
