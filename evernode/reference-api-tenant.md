@@ -297,7 +297,7 @@ This function is called by a tenant client to extend an available instance in ce
 An example of a successful response:
 
 ```
-exampleresponse {
+exampleResponse {
   transaction: {
     LedgerHash: 'A4C1F8FB2F34F03B3621CF4418857977921B5B38B2C05E456499399BED938045',
     LedgerIndex: 6316452,
@@ -375,7 +375,7 @@ This function is called by a tenant client to submit the extend lease transactio
 An example of a successful response:
 
 ```
-exampleresponse  {
+exampleResponse  {
   id: '753EC1763AF94FCAC17680FE712B4C962A61E4C9C36B5E791D5F223B8574FF16',
   code: 'tesSUCCESS',
   details: {
