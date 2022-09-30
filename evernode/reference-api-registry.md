@@ -3,7 +3,7 @@
 ## RegistryClient class constructor - `RegistryClient(options = {})`
 
 ### Parameters
-Takes on parameter `options` which is a JSON object of options that is passed to RegistryClient.
+Takes one parameter `options` which is a JSON object of options that is passed to RegistryClient.
 ```
 {
     registryAddress: 'r3cNR2bdao1NyvQ5ZuQvCUgqkoWGmgF34E',
