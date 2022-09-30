@@ -1,4 +1,6 @@
-# Evernode basics tutorial
+# Deploying a contract to Evernode
+
+You need to interact with Evernode (via [XRPL](https://xrpl.org/)) to deploy your HotPocket smart contracts on the [Evernode network](https://dashboard.evernode.org).
 
 You have learned how to test your Smart Contracts locally with hpdevkit in the [hpdevkit basic tutorial](../hotpocket/tutorial-basics.md). Now let's see how you can acquire instances from Evernode and deploy smart contract you've implemented. To be a tenant and deploy a smart contract in the Evernode network you'll have to follow following steps.
 - **Step 1** - First, you have to have an XRPL account.

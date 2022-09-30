@@ -2,11 +2,9 @@
 
 The Evernode SDK consists of libraries and tools required to develop and deploy HotPocket smart contracts on Evernode. This repo is used to provide early access to libraries and tools that are work-in-progress and to get feedback.
 
-## HotPocket development
+## Tutorials
 
-HotPocket is the smart contract execution and consensus engine of Evernode. HotPocket smart contracts can be developed using any POSIX-compliant language/framework. You can also develop client applications that interact with HotPocket smart contracts using web sockets. Please go through the following material to gain an understanding of HotPocket development.
-
-### Tutorials
+HotPocket is the smart contract execution and consensus engine of Evernode. HotPocket smart contracts can be developed using any POSIX-compliant language/framework. You can also develop client applications that interact with HotPocket smart contracts using web sockets. Please go through the following material to gain an understanding of HotPocket development and deployment to Evernode.
 
 1. [HotPocket concepts](hotpocket/concepts.md)
 2. [Basics tutorial](hotpocket/tutorial-basics.md)
@@ -14,6 +12,13 @@ HotPocket is the smart contract execution and consensus engine of Evernode. HotP
 4. [Persisting data](hotpocket/tutorial-persistdata.md)
 5. [Read requests](hotpocket/tutorial-readreq.md)
 6. [NPL messaging](hotpocket/tutorial-npl.md)
+7. [Deploying to Evernode](evernode/tutorial-basics.md)
+
+## Tools
+
+You can use [HotPocket developer kit](hpdevkit/index.md) to get started easily and test HotPocket smart contracts on your local PC. Follow the [tutorials](#tutorials) above to understand how to use it.
+
+## Libraries
 
 ### HotPocket smart contract library
 
@@ -27,34 +32,16 @@ HotPocket is the smart contract execution and consensus engine of Evernode. HotP
 ### Evernode client library
 
 - [Javascript library](https://www.npmjs.com/package/evernode-js-client) for nodejs. ([source](https://github.com/HotPocketDev/evernode-js-client))
+  - [Common client functionality](evernode/reference-api-common.md)
+  - [Registry client](evernode/reference-api-registry.md)
+  - [Tenant client](evernode/reference-api-tenant.md)
+  - [Events](evernode/reference-api-events.md)
 
-### HotPocket developer kit
+## Protocol reference
 
-You can use [HotPocket developer kit](hpdevkit/index.md) to get started easily and test HotPocket smart contracts on your local PC. Follow the [tutorials](#tutorials) above to understand how to use it.
-
-### HotPocket references
-
-Use these references to get a better understanding of HotPocket configuration and protocol.
-
-- [Config reference](hotpocket/reference-configuration.md)
-- [Client protocol reference](hotpocket/reference-client-protocol.md)
-- [Contract protocol reference](hotpocket/reference-contract-protocol.md)
-
-## Evernode integration
-
-You need to interact with Evernode (via [XRPL](https://xrpl.org/)) to deploy your HotPocket smart contracts on the [Evernode network](https://dashboard.evernode.org). 
-
-### Tutorials
-1. [Basics tutorial](evernode/tutorial-basics.md)
-
-### Evernode references
-
-Use these references to get an idea about Evernode API methods.
-
-- [Evernode clients common methods](evernode/reference-api-common.md)
-- [Evernode registry client methods](evernode/reference-api-registry.md)
-- [Evernode tenant client methods](evernode/reference-api-tenant.md)
-- [Evernode client events](evernode/reference-api-events.md)
+- [HotPocket Config reference](hotpocket/reference-configuration.md)
+- [HotPocket Client protocol](hotpocket/reference-client-protocol.md)
+- [HotPocket Contract protocol](hotpocket/reference-contract-protocol.md)
 
 ## Issues and feedback
 
