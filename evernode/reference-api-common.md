@@ -57,7 +57,7 @@ This is a void function.
 
 ## Attach the listener - `on(event, handler), once(event, handler)`
 Listens to the subscribed [events](reference-api-events.md).
-- `on` function will listen for the event without detaching the handler until it's [`off`](#deattach-the-listener---offevent-handler--null).
+- `on` function will listen for the event without detaching the handler until it's [`off`](#detach-the-listener---offevent-handler--null).
 - `once` function will listen only once and detach the handler.
 
 ### Parameters
@@ -73,8 +73,8 @@ Listens to the subscribed [events](reference-api-events.md).
 ```
 <br>
 
-## Deattach the listener - `off(event, handler = null)`
-Deattachs the listener event.
+## Detach the listener - `off(event, handler = null)`
+Detaches the listener event.
 
 ### Parameters
 | Name               | Type            | Description                                                                                                    |
@@ -109,7 +109,7 @@ Gets the moment from the given XRPL index. (1 Moment - 1190 XRP ledgers).
 | ledgerIndex (optional) | number | Ledger index to get the moment value. |
 
 ### Response format
-Returns the moment of the given XPR ledger index as `number`. Returns current moment if ledger index is not given.
+Returns the moment of the given XRP ledger index as `number`. Returns current moment if ledger index is not given.
 
 ### Example
 ```javascript
