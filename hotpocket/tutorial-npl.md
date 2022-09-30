@@ -39,7 +39,7 @@ The following output would then be generated:
 
 This actually causes the entire cluster to go out of sync, and consensus will break.
 
-To avoid this problem, [NPL messaging](reference-contract-protocols.md#npl-node-party-line-messages) can be used. Using NPL messaging, nodes can come to a collective decision and break of consensus can be avoided.
+To avoid this problem, [NPL messaging](reference-contract-protocol.md#npl-node-party-line-messages) can be used. Using NPL messaging, nodes can come to a collective decision and break of consensus can be avoided.
 
 Let's try to get a basic understanding of how NPL can be used.
 
@@ -47,7 +47,7 @@ Let's try to get a basic understanding of how NPL can be used.
 
 If a particular node is able to listen to at least a single message from the others nodes in the UNL, it will log the message.
 
-[HotPocket config](reference-configurations.md) specifies `npl` mode as `private` by default, so NPL messages can only be passed between UNL nodes. Setting `npl` to `public` will enable any connected node (non-UNL) to receive NPL messages. However, HotPocket will reject NPL messages that are sent by non-UNL nodes.
+[HotPocket config](reference-configuration.md) specifies `npl` mode as `private` by default, so NPL messages can only be passed between UNL nodes. Setting `npl` to `public` will enable any connected node (non-UNL) to receive NPL messages. However, HotPocket will reject NPL messages that are sent by non-UNL nodes.
 
 ***NOTE :*** _NPL messaging is not available in read-only contract mode, and therefore this should be done in a consensus invocation ( !ctx.readonly )._
 
@@ -92,14 +92,14 @@ ed66bcc2578ec0aca85868256431cdc7485afb5af5696203035e02a6aae382b7b2 said Hello to
 
 ## Collecting multiple messages until timeout
 
-The duration of the timeout (in milliseconds) is determined with the use of [roundtime](reference-configurations.md/#contract) of the consensus:
+The duration of the timeout (in milliseconds) is determined with the use of [roundtime](reference-configuration.md/#contract) of the consensus:
 
 ```javascript
 const HotPocket = require("hotpocket-nodejs-contract");
 
 const myContract = async (ctx) => {
     if (!ctx.readonly) {
-        // To get the HotPocket contract configurations.
+        // To get the HotPocket contract configuration.
         const hpconfig = await ctx.getConfig();
 
         // Start listening to incoming NPL messages before we send ours.

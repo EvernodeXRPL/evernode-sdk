@@ -1,5 +1,11 @@
+# Evernode clients
+
+There are clients for registry and tenant in the Evernode library.
+- [Registry Client](reference-api-registry.md)
+- [Tenant Client](reference-api-tenant.md)
+
 ## Connect to the client - `async connect()`
-Connects the client to xrpl server and do the config loading and subscriptions.
+Connects the client to XRPL server and do the config loading and subscriptions.
 - [subscribe](#subscribe-to-the-events---async-subscribe) is called inside this.
 
 ### Response format
@@ -12,7 +18,7 @@ Returns boolean. `true` if success.
 
 
 ## Terminate the client - `async disconnect()`
-Disconnects the client to xrpl server and do the unsubscriptions.
+Disconnects the client to XRPL server and do the un-subscriptions.
 - [unsubscribe](#unsubscribe-from-the-events---async-unsubscribe) is called inside this.
 
 ### Response format
@@ -22,7 +28,7 @@ This is a void function.
 ```javascript
     const status = await client.disconnect();
 ```
-
+<br>
 
 ## Subscribe to the events - `async subscribe()`
 Subscribes to the client [events](reference-api-events.md).
@@ -34,6 +40,7 @@ This is a void function.
 ```javascript
     await client.subscribe();
 ```
+<br>
 
 
 ## Unsubscribe from the events - `async unsubscribe()`
@@ -46,12 +53,12 @@ This is a void function.
 ```javascript
     await client.unsubscribe();
 ```
-
+<br>
 
 ## Attach the listener - `on(event, handler), once(event, handler)`
 Listens to the subscribed [events](reference-api-events.md).
-- `on` function will listen for the event without deattaching the handler until it's [`off`](#deattach-the-listener---offevent-handler--null).
-- `once` function will listen only once and deattach the handler.
+- `on` function will listen for the event without detaching the handler until it's [`off`](#deattach-the-listener---offevent-handler--null).
+- `once` function will listen only once and detach the handler.
 
 ### Parameters
 | Name    | Type            | Description                            |
@@ -64,7 +71,7 @@ Listens to the subscribed [events](reference-api-events.md).
     client.on(EvernodeEvents.HostRegistered, (ev) => {});
     client.once(EvernodeEvents.HostRegistered, (ev) => {});
 ```
-
+<br>
 
 ## Deattach the listener - `off(event, handler = null)`
 Deattachs the listener event.
@@ -73,13 +80,13 @@ Deattachs the listener event.
 | Name               | Type            | Description                                                                                                    |
 | ------------------ | --------------- | -------------------------------------------------------------------------------------------------------------- |
 | event              | string          | [Event name](reference-api-events.md).                                                                         |
-| handler (optional) | function(event) | Can be sent if a specific handler need to be deattached. All the handlers will be deattached if not specified. |
+| handler (optional) | function(event) | Can be sent if a specific handler need to be detached. All the handlers will be detached if not specified. |
 
 ### Example
 ```javascript
     client.off(EvernodeEvents.HostRegistered);
 ```
-
+<br>
 
 ## Check EVR balance - `async getEVRBalance()`
 Gets the EVR balance in the registry account.
@@ -91,7 +98,7 @@ Returns the available EVR amount as a `string`.
 ```javascript
     const balance = await client.getEVRBalance();
 ```
-
+<br>
 
 ## Get the moment - `async getMoment()`
 Gets the moment from the given XRPL index. (1 Moment - 1190 XRP ledgers).
@@ -108,7 +115,7 @@ Returns the moment of the given XPR ledger index as `number`. Returns current mo
 ```javascript
     const moment = await client.getMoment();
 ```
-
+<br>
 
 ## Get the moment start index - `async getMomentStartIndex()`
 Gets start XRP ledger index of the moment (of the given XRPL index).
@@ -125,7 +132,7 @@ Returns the XRP ledger index of the moment (of the given XRPL index) as `number`
 ```javascript
     const startIdx = await client.getMomentStartIndex();
 ```
-
+<br>
 
 ## Refresh the evernode config - `async refreshConfig()`
 Loads the configs from XRPL hook and updates the in memory config.
@@ -137,7 +144,7 @@ This is a void function.
 ```javascript
     await client.refreshConfig();
 ```
-
+<br>
 
 ## Extract the event details from a XRPL transaction - `async extractEvernodeEvent(tx)`
 Gets start XRP ledger index of the moment (of the given XRPL index).
@@ -188,10 +195,10 @@ Returns the event object in the format `{name: '', data: {}}`. Returns null if n
     tx.Memos = evernode.TransactionHelper.deserializeMemos(tx.Memos);
     const startIdx = await client.extractEvernodeEvent(tx);
 ```
-
+<br>
 
 ## Prune dead hosts - `async pruneDeadHost(hostAddress)`
-Remove a host which is inactive for a long period. The inactivity is checked by evernode it self and only pruned if inactive thresholds are met.
+Remove a host which is inactive for a long period. The inactivity is checked by Evernode itself and only pruned if inactive thresholds are met.
 
 ### Parameters
 | Name        | Type   | Description                            |

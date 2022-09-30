@@ -24,21 +24,37 @@ HotPocket is the smart contract execution and consensus engine of Evernode. HotP
 
 - [Javascript library](https://www.npmjs.com/package/hotpocket-js-client) for nodejs and browser. ([source](https://github.com/HotPocketDev/hp-js-client))
 
+### Evernode client library
+
+- [Javascript library](https://www.npmjs.com/package/evernode-js-client) for nodejs. ([source](https://github.com/HotPocketDev/evernode-js-client))
+
 ### HotPocket developer kit
 
 You can use [HotPocket developer kit](hpdevkit/index.md) to get started easily and test HotPocket smart contracts on your local PC. Follow the [tutorials](#tutorials) above to understand how to use it.
 
 ### HotPocket references
 
-Use these references to get a better understanding of HotPocket configurations and protocols.
+Use these references to get a better understanding of HotPocket configuration and protocol.
 
-- [Config reference](hotpocket/reference-configurations.md)
-- [Client protocol reference](hotpocket/reference-client-protocols.md)
-- [Contract protocol reference](hotpocket/reference-contract-protocols.md)
+- [Config reference](hotpocket/reference-configuration.md)
+- [Client protocol reference](hotpocket/reference-client-protocol.md)
+- [Contract protocol reference](hotpocket/reference-contract-protocol.md)
 
 ## Evernode integration
 
-You need to interact with Evernode (via [XRPL](https://xrpl.org/)) to deploy your HotPocket smart contracts on the [Evernode network](https://dashboard.evernode.org). We will be introducing the necessary tools and libraries required for this purpose in the future.
+You need to interact with Evernode (via [XRPL](https://xrpl.org/)) to deploy your HotPocket smart contracts on the [Evernode network](https://dashboard.evernode.org). 
+
+### Tutorials
+1. [Basics tutorial](evernode/tutorial-basics.md)
+
+### Evernode references
+
+Use these references to get an idea about Evernode API methods.
+
+- [Evernode clients common methods](evernode/reference-api-common.md)
+- [Evernode registry client methods](evernode/reference-api-registry.md)
+- [Evernode tenant client methods](evernode/reference-api-tenant.md)
+- [Evernode client events](evernode/reference-api-events.md)
 
 ## Issues and feedback
 
