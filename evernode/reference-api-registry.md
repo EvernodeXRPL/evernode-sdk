@@ -87,7 +87,7 @@ Returns the list of active hosts.
 <br>
 
 ## Get all hosts - `async getHosts()`
-Gets all the hosts registered in Evernode in paginated manor. The result's are paginated. Default page size is 20.
+Get all the hosts registered in Evernode. The result's are paginated. Default page size is 20.
 _Note: Specifying both filter and pagination does not supported. _
 
 ### Parameters
@@ -98,7 +98,7 @@ _Note: Specifying both filter and pagination does not supported. _
 | nextPageToken (optional) | string | Next page's token, If received by the previous result set.                                |
 
 ### Response format
-Returns the list of active hosts. The response will be in `{data: [], nextPageToken: ''}` only if there are more pages. Otherwise the response will only contain the host list. 
+Returns the list of active hosts. The response will be in `{data: [], nextPageToken: ''}` only if there are more pages. Otherwise the response will only contain the host list.
 ```
 {
     data: [
@@ -165,7 +165,7 @@ Returns the list of active hosts. The response will be in `{data: [], nextPageTo
 Gets XRPL all hook states in the registry account.
 
 ### Response format
-Returns the list of hook states including Evernode configuration and hosts. 
+Returns the list of hook states including Evernode configuration and hosts.
 ```
 [
     {
@@ -238,7 +238,7 @@ Returns the registered host information object. Returns null is not registered.
 | cpuCount            | number  | CPU count of the host machine                           |
 | cpuMHz              | number  | CPU speed of the host.                                  |
 | cpuMicrosec         | number  | CPU time in micro seconds allocated for Evernode.       |
-| ramMb               | number  | Host machine's Evernode sllocated RAM in MBs            |
+| ramMb               | number  | Host machine's Evernode allocated RAM in MBs            |
 | diskMb              | number  | Disk space allocated for Evernode in the host.          |
 
 ### Example
