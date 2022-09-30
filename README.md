@@ -31,7 +31,7 @@ You can use [HotPocket developer kit](hpdevkit/index.md) to get started easily a
 
 ### Evernode client library
 
-- [Javascript library](https://www.npmjs.com/package/evernode-js-client) for nodejs. ([source](https://github.com/HotPocketDev/evernode-js-client))
+- [Javascript library](https://www.npmjs.com/package/evernode-js-client) for nodejs and browser. ([source](https://github.com/HotPocketDev/evernode-js-client))
   - [Common client functionality](evernode/reference-api-common.md)
   - [Registry client](evernode/reference-api-registry.md)
   - [Tenant client](evernode/reference-api-tenant.md)
