@@ -131,7 +131,7 @@ The fields other than those mentioned in the successful response section above, 
 | error  | string           | Error code: 'ACQUIRE_ERR'                                                                                                                                                              |
 | reason | string           | Reason for the failure of acquisition.                                                                                                                                                 |
 | Amount | object           | An instance acquisition costs 2 EVRs and this transaction returns that 2 EVRs back due to acquisition failure. This object contains the three fields  shown in the example code above. |
-| Memos  | array of objects | This array contains two objects. The following is an example and the objects are in the same order in the response:<br><br> ![image.png](./Assets/Images/memo_error_response.png)      |
+| Memos  | array of objects | This array contains two objects. The following is an example and the objects are in the same order in the response:<br> <pre lang="javascript">{<br> type: 'evnAcquireError',<br> format: 'text/json',<br> data: '{"type":"ACQUIRE_ERR","reason":"docker_image_invalid"}'<br>},<br>{<br> type: 'evnAcquireError',<br> format: 'text/json',<br> data: '{"type":"ACQUIRE_ERR","reason":"docker_image_invalid"}'<br>}</pre>      |
 
 
 ### Example
