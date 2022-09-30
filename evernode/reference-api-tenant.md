@@ -70,13 +70,10 @@ Now let's see the details of the response fields.
 
 ### Example
 
-```
-const result = await tenant.extendLease(hostAddress,
-                                        moments,
-                                        instanceName,
-                                        { timeout: timeout }
-                                        );
-
+```javascript
+const result = await tenant.extendLease(hostAddress, moments, instanceName, {
+  timeout: timeout,
+});
 ```
 
 # Extend Lease Submit - async extendLeaseSubmit(hostAddress, amount, tokenID, options = {})
@@ -160,13 +157,8 @@ Now let's see the details of the response fields.
 
 ## Example
 
-```
-const tx = await this.extendLeaseSubmit(hostAddress,
-                                        moments * uriInfo.leaseAmount,
-                                        tokenID,
-                                        options
-                                       );
-
+```javascript
+const tx = await this.extendLeaseSubmit(hostAddress, amount, tokenID, options);
 ```
 
 # Watch Extend Response - watchExtendResponse(tx, options = {})
@@ -234,3 +226,9 @@ Now let's see the details of the response fields.
 | date               | number           | A number of seconds since January 1, 2000 (00:00 UTC) indicating the close time of the ledger in which the transaction was applied. This value does not have a precise relationship with physical time, and is dependent on the close time resolution.                                                                                                                                           |
 | hash               | string           | Every signed transaction has a unique "hash" that identifies it. The server provides the hash in the response when you submit the transaction.                                                                                                                                                                                                                                                   |
 | expiryMoment       | number           | Defines which moment instance going to expire.                                                                                                                                                                                                                                                                                                                                                   |
+
+## Example
+
+```javascript
+const response = await this.watchExtendResponse(tx, options);
+```
