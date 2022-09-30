@@ -4,7 +4,7 @@ HotPocket [smart contract](concepts/#smart-contract) development involves two ar
 
 HotPocket runs only on Linux (Ubuntu 20.04) and is capable of using Linux POSIX-compliant applications as smart contracts. HotPocket uses [Docker](https://www.docker.com/) to bundle HotPocket and your smart contracts into a runnable Linux environment. Therefore, you can carry out your development activities on platforms such as Windows with the help of standard cross-platform programming environments.
 
-This guide explains the journey of developing a smart contract and a client application using NodeJs. Therefore it'll help you if you have prior knowledge of developing NodeJs applications. We will also use [HotPocket developer kit](../hpdevkit/index.md) throughout this guide so most of the setup work like HotPocket and docker container configurations are done for you automatically. Therefore you can carry out the steps on this guide even if you do not have prior NodeJs experience.
+This guide explains the journey of developing a smart contract and a client application using NodeJs. Therefore it'll help you if you have prior knowledge of developing NodeJs applications. We will also use [HotPocket developer kit](../hpdevkit/index.md) throughout this guide so most of the setup work like HotPocket and docker container configuration are done for you automatically. Therefore you can carry out the steps on this guide even if you do not have prior NodeJs experience.
 
 ## Install HotPocket developer kit
 

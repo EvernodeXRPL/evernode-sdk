@@ -24,17 +24,21 @@ HotPocket is the smart contract execution and consensus engine of Evernode. HotP
 
 - [Javascript library](https://www.npmjs.com/package/hotpocket-js-client) for nodejs and browser. ([source](https://github.com/HotPocketDev/hp-js-client))
 
+### Evernode client library
+
+- [Javascript library](https://www.npmjs.com/package/evernode-js-client) for nodejs. ([source](https://github.com/HotPocketDev/evernode-js-client))
+
 ### HotPocket developer kit
 
 You can use [HotPocket developer kit](hpdevkit/index.md) to get started easily and test HotPocket smart contracts on your local PC. Follow the [tutorials](#tutorials) above to understand how to use it.
 
 ### HotPocket references
 
-Use these references to get a better understanding of HotPocket configurations and protocols.
+Use these references to get a better understanding of HotPocket configuration and protocol.
 
-- [Config reference](hotpocket/reference-configurations.md)
-- [Client protocol reference](hotpocket/reference-client-protocols.md)
-- [Contract protocol reference](hotpocket/reference-contract-protocols.md)
+- [Config reference](hotpocket/reference-configuration.md)
+- [Client protocol reference](hotpocket/reference-client-protocol.md)
+- [Contract protocol reference](hotpocket/reference-contract-protocol.md)
 
 ## Evernode integration
 

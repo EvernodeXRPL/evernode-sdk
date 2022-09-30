@@ -165,7 +165,7 @@ Returns the list of active hosts. The response will be in `{data: [], nextPageTo
 Gets XRPL all hook states in the registry account.
 
 ### Response format
-Returns the list of hook states including Evernode configurations and hosts. 
+Returns the list of hook states including Evernode configuration and hosts. 
 ```
 [
     {
@@ -247,7 +247,7 @@ Returns the registered host information object. Returns null is not registered.
 ```
 <br>
 
-## Get all Evernode configurations - `async getAllHosts()`
+## Get Evernode hosts - `async getAllHosts()`
 Gets all the hosts without paginating.
 
 ### Response format
@@ -304,4 +304,45 @@ Returns the list of hosts.
 ### Example
 ```javascript
     const hosts = await registryClient.getAllHosts();
+```
+<br>
+
+## Get Evernode configs - `async getAllConfigs()`
+Gets all the configuration values without paginating.
+
+### Response format
+Returns the list of config values.
+```
+[
+    {
+        id: '4556520100000000000000000000000000000000000000000000000000000007',
+        createTime: 2022-06-24T10:08:52.756Z,
+        updateTime: 2022-06-24T10:08:52.756Z,
+        value: '2',
+        key: '4556520100000000000000000000000000000000000000000000000000000007',
+        type: 'configuration'
+    },
+    {
+        id: '4556523400000000000000000000000000000000000000000000000000000000',
+        createTime: 2022-06-24T10:08:51.624Z,
+        updateTime: 2022-06-24T10:08:51.624Z,
+        key: '4556523400000000000000000000000000000000000000000000000000000000',
+        type: 'singleton',
+        value: 5120
+    },
+    ...
+]
+```
+| Name       | Type     | Description                                                                         |
+| ---------- | -------- | ----------------------------------------------------------------------------------- |
+| id         | string   | Identifier of the config. This is used for internal use in Evernode.                |
+| createTime | datetime | Config record created date and time                                                 |
+| updateTime | datetime | Config record updated date and time                                                 |
+| type       | string   | Configuration type (`configuration`,`singleton`)                                    |
+| key        | string   | Same as the `id`. Used for internal use.                                            |
+| value      | any      | Configuration value. This can be an any type according to the configuration format. |
+
+### Example
+```javascript
+    const configs = await registryClient.getAllConfigs();
 ```
