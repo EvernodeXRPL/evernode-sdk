@@ -241,7 +241,7 @@ The fields in detail:
 
 This method makes an NFTokenAcceptOffer  transaction. Therefore, this can raise [these errors](https://xrpl.org/nftokenacceptoffer.html#error-cases) explained in the XRPL official documentation.
 
-<br><br>
+<br>
 
 ## Watch Acquire Response - `async watchAcquireResponse(tx, options = {})`
 
