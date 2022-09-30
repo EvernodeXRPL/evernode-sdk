@@ -1,4 +1,6 @@
-## Extend Lease - extendLease(hostAddress, moments, instanceName, options = {})
+# Tenant Client
+
+## extendLease(hostAddress, moments, instanceName, options = {}) => "`async extendLease(hostAddress, moments, instanceName, options = {})`"
 
 This function is called by a tenant client to extend an available instance in certain host. This function can take four parameters as follows.
 
@@ -76,7 +78,7 @@ const result = await tenant.extendLease(hostAddress, moments, instanceName, {
 });
 ```
 
-# Extend Lease Submit - async extendLeaseSubmit(hostAddress, amount, tokenID, options = {})
+# extendLeaseSubmit(hostAddress, amount, tokenID, options = {}) => "`async extendLeaseSubmit(hostAddress, amount, tokenID, options = {})`"
 
 This function is called by a tenant client to submit the extend lease transaction in certain host. This function will be called inside extendLease function. This function can take four parameters as follows.
 
@@ -161,7 +163,7 @@ Now let's see the details of the response fields.
 const tx = await this.extendLeaseSubmit(hostAddress, amount, tokenID, options);
 ```
 
-# Watch Extend Response - watchExtendResponse(tx, options = {})
+# watchExtendResponse(tx, options = {}) => "`async watchExtendResponse(tx, options = {})`"
 
 This function watches for an extendlease-success response(transaction) and returns the response or throws the error response on extendlease-error response from the host XRPL account. This function is called within the [_extendLease_](#extend-lease---async-acquireleasehostaddress-requirement-options---) function.
 
