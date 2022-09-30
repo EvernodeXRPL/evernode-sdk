@@ -1,7 +1,7 @@
-# HotPocket references - Client (User) protocols
-Users communicate with Hotpocket via [WebSockets](https://en.wikipedia.org/wiki/WebSocket). There is no direct communication between [users](concepts.md#users) and [smart contracts](concepts.md#smart-contract). The user communicates with HotPocket, and HotPocket serves as an intermediary between the user and the smart contract. There are special protocols for this communication.<br><br> Every message that is being sent to and from HotPocket contains a type field. User messages can be sent and received in [json](https://en.wikipedia.org/wiki/JSON) or [bson](https://en.wikipedia.org/wiki/BSON) formats. The format is decided when the initial handshake happens with the user. The handshake messages will be in json format. The message protocols are described below in a detailed manner.
+# HotPocket references - Client (User) protocol
+Users communicate with Hotpocket via [WebSockets](https://en.wikipedia.org/wiki/WebSocket). There is no direct communication between [users](concepts.md#users) and [smart contracts](concepts.md#smart-contract). The user communicates with HotPocket, and HotPocket serves as an intermediary between the user and the smart contract. There are special protocol for this communication.<br><br> Every message that is being sent to and from HotPocket contains a type field. User messages can be sent and received in [json](https://en.wikipedia.org/wiki/JSON) or [bson](https://en.wikipedia.org/wiki/BSON) formats. The format is decided when the initial handshake happens with the user. The handshake messages will be in json format. The message protocol are described below in a detailed manner.
 
-## Initiating an user connection
+## Initiating a user connection
 
 ### User challenge
 When a user establishes a WebSoket connection to HotPocket, a user challenge is sent to the user from HotPocket.

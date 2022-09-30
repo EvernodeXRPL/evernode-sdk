@@ -1,4 +1,4 @@
-# HotPocket configurations reference
+# HotPocket configuration reference
 
 ## What is "hp.cfg" in HotPocket?
 
