@@ -84,7 +84,7 @@ Returns the list of active hosts.
 ```javascript
     const activeHosts = await registryClient.getActiveHosts();
 ```
-
+<br>
 
 ## Get all hosts - `async getHosts()`
 Gets all the hosts registered in Evernode in paginated manor. The result's are paginated. Default page size is 20.
@@ -159,7 +159,7 @@ Returns the list of active hosts. The response will be in `{data: [], nextPageTo
 ```javascript
     const activeHosts = await registryClient.getHosts();
 ```
-
+<br>
 
 ## Get hook states - `async getHookStates()`
 Gets XRPL all hook states in the registry account.
@@ -188,7 +188,7 @@ Returns the list of hook states including Evernode configurations and hosts.
 ```javascript
     const states = await registryClient.getHookStates();
 ```
-
+<br>
 
 ## Get host info - `async getHostInfo(hostAddress)`
 Gets the registered host information.
@@ -245,6 +245,7 @@ Returns the registered host information object. Returns null is not registered.
 ```javascript
     const hostInfo = await registryClient.getHostInfo('r3tSGeDFJaz8GEVmM6oUuYTAiNdDJhitCt');
 ```
+<br>
 
 ## Get all Evernode configurations - `async getAllHosts()`
 Gets all the hosts without paginating.

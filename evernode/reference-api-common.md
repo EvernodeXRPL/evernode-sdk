@@ -28,7 +28,7 @@ This is a void function.
 ```javascript
     const status = await client.disconnect();
 ```
-
+<br>
 
 ## Subscribe to the events - `async subscribe()`
 Subscribes to the client [events](reference-api-events.md).
@@ -40,6 +40,7 @@ This is a void function.
 ```javascript
     await client.subscribe();
 ```
+<br>
 
 
 ## Unsubscribe from the events - `async unsubscribe()`
@@ -52,7 +53,7 @@ This is a void function.
 ```javascript
     await client.unsubscribe();
 ```
-
+<br>
 
 ## Attach the listener - `on(event, handler), once(event, handler)`
 Listens to the subscribed [events](reference-api-events.md).
@@ -70,7 +71,7 @@ Listens to the subscribed [events](reference-api-events.md).
     client.on(EvernodeEvents.HostRegistered, (ev) => {});
     client.once(EvernodeEvents.HostRegistered, (ev) => {});
 ```
-
+<br>
 
 ## Deattach the listener - `off(event, handler = null)`
 Deattachs the listener event.
@@ -85,7 +86,7 @@ Deattachs the listener event.
 ```javascript
     client.off(EvernodeEvents.HostRegistered);
 ```
-
+<br>
 
 ## Check EVR balance - `async getEVRBalance()`
 Gets the EVR balance in the registry account.
@@ -97,7 +98,7 @@ Returns the available EVR amount as a `string`.
 ```javascript
     const balance = await client.getEVRBalance();
 ```
-
+<br>
 
 ## Get the moment - `async getMoment()`
 Gets the moment from the given XRPL index. (1 Moment - 1190 XRP ledgers).
@@ -114,7 +115,7 @@ Returns the moment of the given XPR ledger index as `number`. Returns current mo
 ```javascript
     const moment = await client.getMoment();
 ```
-
+<br>
 
 ## Get the moment start index - `async getMomentStartIndex()`
 Gets start XRP ledger index of the moment (of the given XRPL index).
@@ -131,7 +132,7 @@ Returns the XRP ledger index of the moment (of the given XRPL index) as `number`
 ```javascript
     const startIdx = await client.getMomentStartIndex();
 ```
-
+<br>
 
 ## Refresh the evernode config - `async refreshConfig()`
 Loads the configs from XRPL hook and updates the in memory config.
@@ -143,7 +144,7 @@ This is a void function.
 ```javascript
     await client.refreshConfig();
 ```
-
+<br>
 
 ## Extract the event details from a XRPL transaction - `async extractEvernodeEvent(tx)`
 Gets start XRP ledger index of the moment (of the given XRPL index).
@@ -194,7 +195,7 @@ Returns the event object in the format `{name: '', data: {}}`. Returns null if n
     tx.Memos = evernode.TransactionHelper.deserializeMemos(tx.Memos);
     const startIdx = await client.extractEvernodeEvent(tx);
 ```
-
+<br>
 
 ## Prune dead hosts - `async pruneDeadHost(hostAddress)`
 Remove a host which is inactive for a long period. The inactivity is checked by Evernode itself and only pruned if inactive thresholds are met.
