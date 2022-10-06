@@ -11,10 +11,11 @@ The HotPocket [smart contract](concepts.md#smart-contract) is spawned as a child
 
 When implementing a smart contract on top of HotPocket consensus engine, you need consider following basic components of that HotPocket smart contract.
 
-- Contract execution context
-- Control channel
-- Users / Clients messaging
-- NPL messaging
+
+  - [Contract execution context](#contract-execution-context)
+  - [Control channel](#control-channel)
+  - [Users/Clients channel](#usersclients-channel)
+  - [NPL (Node Party Line) channel](#npl-node-party-line-channel)
 
 Let's try to get a basic understanding of what are these components.
 
@@ -75,7 +76,7 @@ Smart contracts can add or remove peers from the HotPocket node by sending the '
 
 NOTE: This control messages should not exceed 128KB.
 
-## Users / Clients messaging
+## Users/Clients channel
 
 HotPocket smart contract maintains a single file descriptor for User inputs and separate file descriptors for User outputs. Currently, user messages can be sent and received in JSON or BSON formats.
 
@@ -122,5 +123,6 @@ Once a node receives NPL messages, hose NPL inputs are fed into the contract sid
 When sending a message,it is written the content into the NPL file descriptor. This message length also should not exceed the 128KB limit. You can write inputs like text inputs and `JSON` objects in to this file descriptor as buffers.
 
 
-## Note : The `patch.cfg` file.
+## Note :
+>The `patch.cfg` file.
 Normally in each consensus round the contract block of _hp.cfg_ is synced with the peers in the cluster. That separated block is maintained inside the state directory of the node and it is called as patch.cfg file. There can be situations we have to update the patch.cfg and also retrieve relevant configurations from that configuration file withing the smart contract.
