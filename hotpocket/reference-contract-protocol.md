@@ -5,9 +5,9 @@ HotPocket defines the smart contract as a regular POSIX application that can rec
 Currently, there are two such libraries available for [NodeJS](https://github.com/HotPocketDev/hp-nodejs-contract) and [C](https://github.com/HotPocketDev/hp-c-contract).
 
 The HotPocket [smart contract](concepts.md#smart-contract) is spawned as a child process by HotPocket for each [consensus](concepts.md#consensus) round. The communication between the smart contract and HotPocket consensus engine happens as an inter-process communication using [file descriptors](https://en.wikipedia.org/wiki/File_descriptor). As per the IBM definition, the file descriptor is an unsigned integer used by a process to identify an open file. In HotPocket there is a set of application-specific file descriptors.These file descriptors are used for different channels. Following are the file descriptors that are currently defined. Each and every message protocol will be described later.
-- [User input](concepts.md#user-inputs)/[output](concepts.md#user-outputs) file descriptor
-- [NPL](#npl-node-party-line-messages) file descriptor
-- [Control](#control-messages) file descriptor
+- User input/output file descriptors
+- NPL file descriptor
+- Control file descriptor
 
 When implementing a smart contract on top of HotPocket consensus engine, you need consider following basic components of that HotPocket smart contract.
 
