@@ -104,7 +104,7 @@ When sending messages to the users, the HotPocket smart contract should serializ
 
 <br>
 
-Please refer the user protocols described in the [User Protocol](reference-client-protocol.md) section to get further details of the user messaging feature.
+Please refer the user protocol described in the [User Protocol](reference-client-protocol.md) section to get further details of the user messaging feature.
 
 ## NPL (Node Party Line) channel
 The NPL channel is used to interchange messages between [smart contracts](concepts.md#smart-contract) running on each and every node in the [cluster](concepts.md#hotpocket-cluster), where HotPocket acts as an intermediary. The smart contract sends NPL messages to HotPocket via the NPL file descriptor, and HotPocket broadcasts the message to all the connected [UNL](concepts.md#unl---unique-node-list) nodes in the cluster. Furthermore, the NPL messages sent by other peers are also sent to the smart contract from HotPocket using this file descriptor.<br><br> The NPL message can be in any format that needs to be transferred between peers. This channel can be used if we cannot assure that all the smart contracts in the cluster nodes are generating the same particular result (e.g.- random number). Hence, using this channel we can share the result between all the nodes and elect one result upon agreement.
