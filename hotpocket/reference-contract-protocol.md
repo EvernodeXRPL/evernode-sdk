@@ -100,7 +100,14 @@ In this way, when reading user inputs from the user input file descriptor (`user
 ### Send outputs
 For the [user output](concepts.md#user-outputs) file descriptors, the smart contract receives a map of users with their file descriptors. The contract outputs are passed via each user's output file descriptor from the smart contract. You can observe the locality of the file descriptor in the above described format.
 
-When sending messages to the users, the HotPocket smart contract should serialize the message accordingly based on the type of the message and the protocol that is used (BSON or JSON). This serialized message is written into the user output file descriptor as an array of two buffers. The first element of the buffer array contains the byte length of the serialized content (message length is in [Big Indian format](https://www.ibm.com/docs/en/epfz/5.3?topic=control-bigendian-littleendian-attributes)). The other element will be the serialized content.
+When sending messages to the users, the HotPocket smart contract should serialize the message accordingly based on the type of the message and the protocol that is used (BSON or JSON). This serialized message is written into the user output file descriptor as an array of two buffers. The first element of the buffer array contains the byte length of the serialized content (message length is in [Big Endian format](https://www.ibm.com/docs/en/epfz/5.3?topic=control-bigendian-littleendian-attributes)). The other element will be the serialized content.
+
+```
+[
+    <4 byte Header Buffer - contains the length (Big Endian format)>,
+    <Message Buffer - serialized message>
+]
+```
 
 <br>
 
@@ -115,7 +122,7 @@ The HotPocket consensus engine reads the corresponding file descriptor, obtains 
 Once a node receives NPL messages, the NPL inputs are fed into the contract as sequence packets. It first sends the HEX `public key` buffer which has a length of 33 bytes (66 chars. = 2 chars. for key type prefix + 64 chars. for key) and then the `data` buffer (`<pub_key><data>`).
 
 ### Send NPL messages
-When sending a message, the content is written into the NPL file descriptor. This message length should also not exceed 128KB. You can write inputs such as text inputs and `JSON` objects to this file descriptor as buffers.
+When sending a message, the content is written into the NPL file descriptor. This message length should also not exceed 128KB. You can write inputs such as text inputs and `JSON` objects (after converting into strings) to this file descriptor as buffers.
 
 ## Note :
 > The `patch.cfg` file -
