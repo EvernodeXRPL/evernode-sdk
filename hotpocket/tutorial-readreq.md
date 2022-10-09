@@ -2,6 +2,8 @@
 
 Read requests are a user input/output mechanism that operates on a single HotPocket node. They do not have the overhead of operating across the entire cluster for consensus verification. In read requests, user inputs are processed only by the node that the input was sent to, and the output is sent back to the user immediately. The benefit is the lesser wait time compared to consensus-based input/output at the expense of cluster-wide consistency. Because read requests are not subjected to consensus, the smart contract is not allowed to perform any writes to [state](concepts.md/#state) during processing of read requests.
 
+It is recommended to not use read requests to retrieve critical information from the cluster as a single HotPocket node could be corrupted and return an inaccurate output to the user. If you think the output is critical to the client (i.e XRPL address for payment), use a consensus-based output for it to pass consensus verification.
+
 ## Smart contract readonly mode
 
 Let's modify our smart contract with following `if..else` block to support read requests.
