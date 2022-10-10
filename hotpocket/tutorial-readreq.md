@@ -2,6 +2,8 @@
 
 Read requests are a user input/output mechanism that operates on a single HotPocket node. They do not have the overhead of operating across the entire cluster for consensus verification. In read requests, user inputs are processed only by the node that the input was sent to, and the output is sent back to the user immediately. The benefit is the lesser wait time compared to consensus-based input/output at the expense of cluster-wide consistency. Because read requests are not subjected to consensus, the smart contract is not allowed to perform any writes to [state](concepts.md/#state) during processing of read requests.
 
+**Security consideration:** Read requests bypass consensus and are processed on a single node which could be compromised. You should not use read requests to retrieve sensitive data that could be manipulated by a single compromised node. It offers a peformance boost at the expense of security and consistency so you should use this feature with care.
+
 ## Smart contract readonly mode
 
 Let's modify our smart contract with following `if..else` block to support read requests.
@@ -91,4 +93,4 @@ User file count: 1
 
 Using above example, you should be able to observe the difference in delay between inputs and outputs when using read requests as opposed to consensus. The time different between `Submitting read request...` and `User file count: 1` should be shorter than the time difference between `Saying hello...` and `Received outputs:`. You can benefit from this to provide a faster response time to users depending on the needs of your application.
 
-Read requests are a way of submitting user inputs and receiving outputs while bypassing consensus. It's a great way to retrieve information from a HotPocket node but the information consistency is not guaranteed as we are bypassing consensus.
+Read requests are a way of submitting user inputs and receiving outputs while bypassing consensus. It's a fast and convenient way to retrieve information from a HotPocket node when data security and consistency is not a concern.
