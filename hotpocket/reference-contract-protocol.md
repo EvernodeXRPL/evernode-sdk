@@ -98,7 +98,7 @@ The key will be the user public key hex value, while the value is an array where
 In this way, when reading user inputs from the user input file descriptor (`user_in_fd` in stdin arguments), you have to use the message offset and length to separate each message.
 
 ### Send outputs
-For the [user output](concepts.md#user-outputs) file descriptors, the smart contract receives a map of users with their file descriptors. The contract outputs are passed via each user's output file descriptor from the smart contract. You can observe the locality of the file descriptor in the above described format.
+For the [user output](concepts.md#user-outputs) file descriptors, the smart contract receives a map of users with their file descriptors. The contract outputs are passed via each user's output file descriptor from the smart contract. The positioning of the output file descriptors inside the `users` object can be observed in the previous section which is about  `reading users' inputs`.
 
 When sending messages to the users, the HotPocket smart contract should serialize the message accordingly based on the type of the message and the protocol that is used (BSON or JSON). This serialized message is written into the user output file descriptor as an array of two buffers. The first element of the buffer array contains the byte length of the serialized content (message length is in [Big Endian format](https://www.ibm.com/docs/en/epfz/5.3?topic=control-bigendian-littleendian-attributes)). The other element will be the serialized content.
 
@@ -117,7 +117,7 @@ Please refer the user protocol described in the [User Protocol](reference-client
 The NPL channel is used to interchange messages between [smart contracts](concepts.md#smart-contract) running on each and every node in the [cluster](concepts.md#hotpocket-cluster), where HotPocket acts as an intermediary. The smart contract sends NPL messages to HotPocket via the NPL file descriptor, and HotPocket broadcasts the message to all the connected [UNL](concepts.md#unl---unique-node-list) nodes in the cluster. Furthermore, the NPL messages sent by other peers are also sent to the smart contract from HotPocket using this file descriptor.<br><br> The NPL message can be in any format that needs to be transferred between peers. This channel can be used if we cannot assure that all the smart contracts in the cluster nodes are generating the same particular result (e.g.- random number). Hence, using this channel we can share the result between all the nodes and elect one result upon agreement.
 
 ### Read NPL messages
-The HotPocket consensus engine reads the corresponding file descriptor, obtains the message, and broadcasts it to the UNL. However, the node is an OBSERVER or a non-UNL node, which means it does not broadcast the NPL messages. This role is defined in the HotPocket configuration file `hp.cfg`.
+The HotPocket consensus engine reads the corresponding file descriptor, obtains the message, and broadcasts it to the UNL. However, the node is an OBSERVER or a non-UNL node, which means it does not broadcast the NPL messages. This role is defined in the HotPocket configuration file [hp.cfg](reference-configuration.md).
 
 Once a node receives NPL messages, the NPL inputs are fed into the contract as sequence packets. It first sends the HEX `public key` buffer which has a length of 33 bytes (66 chars. = 2 chars. for key type prefix + 64 chars. for key) and then the `data` buffer (`<pub_key><data>`).
 
