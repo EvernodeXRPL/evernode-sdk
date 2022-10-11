@@ -16,7 +16,7 @@ When implementing a smart contract on the HotPocket consensus engine, you need t
   - [Users/Clients channel](#usersclients-channel)
   - [NPL (Node Party Line) channel](#npl-node-party-line-channel)
 
-Let's get a basic understanding of what these components do.
+Let's get a basic understanding of these components.
 
 ## Contract execution context
 
