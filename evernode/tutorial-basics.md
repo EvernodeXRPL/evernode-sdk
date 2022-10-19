@@ -76,6 +76,7 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
       ```
    - This will create a Evernode instance in a random host and outputs the instance details
       ```bash
+      ...
       Instance created! {
          name: '00010000414A6FB83385362D61A89FDE24414914AE05FCB8AACE82C400000029',
          ip: '66.42.63.218',
@@ -128,6 +129,7 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
         - Replace `/usr/bin/node` `index.js` with your binary path and arguments.
    - This will bundle your smart contract and outputs the path to the zip file.
       ```bash
+      ...
       Archive finished. (location: $HOME/bundle/bundle.zip)
       ```
 
@@ -142,6 +144,41 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
       ```
    - This will deploy the contract and output following if successfully uploaded.
       ```
+      ...
       Contract bundle uploaded!
       ```
 4. You can test the uploaded contract by implementing a user client same as you did in [hpdevkit basic tutorial](../hotpocket/tutorial-basics.md#create-the-client-application).
+
+## Acquire and deploy instance in one go
+Using Evernode devkit you can acquire and deploy Evenode instances using one command.
+1. You can follow the same [instance acquire 1, 2, 3 steps](#acquire-an-instance) in here as well.
+2. If you are going to override HotPocket config contract section, follow [create deployable package 3rd step](#create-deployable-smart-contract-package).
+3. Now you can just run the following command to acquire and deploy.
+   - Run this command.
+      ```bash
+      evdevkit acquire-and-deploy $HOME/contract /usr/bin/node -a index.js
+      ```
+      - Note:
+        - Replace `$HOME/contract` with your contract directory path (Path to build directory of contract binaries).
+        - Replace `/usr/bin/node` `index.js` with your binary path and arguments.
+   - This will output following after deploying the contract.
+      ```bash
+      ...
+      Instance created! {
+         name: '000100004B2CDD9D208422C913DFB2EDB880FCA30D653644920E65060000006B',
+         ip: '107.173.83.83',
+         pubkey: 'ede6d05dc23bf9aba9cabf6de65d280acc0ba3f2a356484af28b140a125308705d',
+         contract_id: '7902171c-3d34-4c10-a5f7-d436e3525852',
+         peer_port: '22861',
+         user_port: '8081'
+      }
+      ...
+      Archive finished. (location: $HOME/bundle/bundle.zip)
+      ...
+      Contract bundle uploaded!
+      Contract deployed!      
+      ```
+   - You can specify more options (Ex: `-h` specify a host) to the `acquire-and-deploy` command. Check the supported options using the below command.
+      ```bash
+      evdevkit acquire-and-deploy --help
+      ```
