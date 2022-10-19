@@ -23,6 +23,7 @@ You can use [HotPocket developer kit](hpdevkit/index.md) to get started easily a
 - [Example C contract](https://github.com/HotPocketDev/hp-c-contract/blob/main/example_contract.c)
 - [Evernode bootstrap contract (C++)](https://github.com/HotPocketDev/evernode-bootstrap-contract)
 - [Evernode javascript client usage examples](https://github.com/HotPocketDev/evernode-js-client/blob/main/test/test.js)
+- [Example calculator contract and client (nodejs)](https://github.com/HotPocketDev/example-calculator-contract)
 
 ## Libraries
 
