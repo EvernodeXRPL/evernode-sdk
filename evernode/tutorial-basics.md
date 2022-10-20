@@ -24,6 +24,7 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
          publicKey: 'edf9d1af6ff29af9287b0411758aac472016fb186220ef39db7959294c28857909'
       }
       ```
+
 2. Let's override the HotPocket configuration in the Evernode instance. You can skip this step if you do not want to.
    - Create a new json file anywhere you prefer.
    - Add following content inside the file.
@@ -55,6 +56,7 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
       export EV_HP_CONFIG_PATH=$HOME/hp.cfg.override
       ```
       - Note: Replace `$HOME/contract.cfg.override` with your json file path.
+
 3. Now you need to set [environment variables](../evdevkit/index.md#environment-variables) for tenant secret and user private key.
    ```bash
    # Windows (command prompt)
@@ -69,6 +71,7 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
    export EV_TENANT_SECRET=snmyH19JLWVaUJKtM4cNxTT6t38eA
    export EV_USER_PRIVATE_KEY=ed797ecd191b0364db559896c648c21cda7763db551a97577ed9ffb0ebb41881d8f9d1af6ff29af9287b0411758aac472016fb186220ef39db7959294c28857909
    ```
+
 4. Now you are ready to acquire an Evernode instance.
    - Run following command to acquire.
       ```bash
@@ -90,11 +93,14 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
       ```bash
       evdevkit acquire --help
       ```
+
 5. At this point you have acquired a Evernode instance successfully and you have the instance details including public key, IP, ports etc.
 
 ## Create deployable smart contract package
 1. If you have already implemented smart contract package you can proceed, Otherwise go through [HotPocket developer kit tutorials](../hotpocket/tutorial-basics.md) and create a new smart contract.
+   
 2. Build your smart contract and note the build path.
+   
 3. Let's override the contract section HotPocket configuration in the Evernode instance. You can skip this step if you do not want to.
    - Create a new json file anywhere you prefer.
    - Add following content inside the file.
@@ -118,6 +124,7 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
       export EV_CONTRACT_CONFIG_PATH=$HOME/contract.cfg.override
       ```
       - Note: Replace `$HOME/contract.cfg.override` with your json file path.
+
 4. Now you can create the smart contract package
    - Run the following command. Assuming this is a node contract last binary path and binary args parameters will be `/usr/bin/node` and `index.js`.
       ```bash
@@ -135,8 +142,10 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
 
 ## Deploy smart contract to the Evernode instance
 1. Now you have the deployable contract bundle, We can deploy this bundle to the acquired Evernode instance.
+   
 2. `EV_USER_PRIVATE_KEY` is required for this step. Since we've already set this in [acquire instance](#acquire-an-instance) step, we do not need to set this again.
    - Make sure you use the same user keys which you've set when acquiring the instance, Otherwise you wont be allowed to upload this bundle.
+
 3. Now let's upload the bundle to the Evernode instance.
    - Run the following command to upload the bundle.
       ```
@@ -147,12 +156,15 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
       ...
       Contract bundle uploaded!
       ```
+
 4. You can test the uploaded contract by implementing a user client same as you did in [hpdevkit basic tutorial](../hotpocket/tutorial-basics.md#create-the-client-application).
 
 ## Acquire and deploy instance in one go
 Using Evernode devkit you can acquire and deploy Evenode instances using one command.
-1. You can follow the same [instance acquire 1, 2, 3 steps](#acquire-an-instance) in here as well.
-2. If you are going to override HotPocket config contract section, follow [create deployable package 3rd step](#create-deployable-smart-contract-package).
+1. First you need to follow the same 1, 2, 3 steps in ["Acquire an instance"](#acquire-an-instance) here as well.
+   
+2. If you are going to override HotPocket config contract section, follow 3rd step in ["Create deployable smart contract package"](#create-deployable-smart-contract-package).
+   
 3. Now you can just run the following command to acquire and deploy.
    - Run this command.
       ```bash
