@@ -194,3 +194,5 @@ Using Evernode devkit you can acquire and deploy Evenode instances using one com
       ```bash
       evdevkit acquire-and-deploy --help
       ```
+
+Next: [Deploying smart contract to Evernode cluster](tutorial-cluster.md)
