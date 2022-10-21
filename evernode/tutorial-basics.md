@@ -25,7 +25,22 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
       }
       ```
 
-2. Let's override the HotPocket configuration in the Evernode instance. You can skip this step if you do not want to.
+2. Now you need to set [environment variables](../evdevkit/index.md#environment-variables) for tenant secret and user private key.
+   ```bash
+   # Windows (command prompt)
+   set EV_TENANT_SECRET=snmyH19JLWVaUJKtM4cNxTT6t38eA
+   set EV_USER_PRIVATE_KEY=ed797ecd191b0364db559896c648c21cda7763db551a97577ed9ffb0ebb41881d8f9d1af6ff29af9287b0411758aac472016fb186220ef39db7959294c28857909
+
+   # Windows (powershell)
+   $env:EV_TENANT_SECRET=snmyH19JLWVaUJKtM4cNxTT6t38eA
+   $env:EV_USER_PRIVATE_KEY=ed797ecd191b0364db559896c648c21cda7763db551a97577ed9ffb0ebb41881d8f9d1af6ff29af9287b0411758aac472016fb186220ef39db7959294c28857909
+
+   # Linux (bash)
+   export EV_TENANT_SECRET=snmyH19JLWVaUJKtM4cNxTT6t38eA
+   export EV_USER_PRIVATE_KEY=ed797ecd191b0364db559896c648c21cda7763db551a97577ed9ffb0ebb41881d8f9d1af6ff29af9287b0411758aac472016fb186220ef39db7959294c28857909
+   ```
+
+3. Let's override the HotPocket configuration in the Evernode instance. You can skip this step if you do not want to.
    - Create a new json file anywhere you prefer.
    - Add following content inside the file.
       ```json
@@ -57,27 +72,12 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
       ```
       - Note: Replace `$HOME/contract.cfg.override` with your json file path.
 
-3. Now you need to set [environment variables](../evdevkit/index.md#environment-variables) for tenant secret and user private key.
-   ```bash
-   # Windows (command prompt)
-   set EV_TENANT_SECRET=snmyH19JLWVaUJKtM4cNxTT6t38eA
-   set EV_USER_PRIVATE_KEY=ed797ecd191b0364db559896c648c21cda7763db551a97577ed9ffb0ebb41881d8f9d1af6ff29af9287b0411758aac472016fb186220ef39db7959294c28857909
-
-   # Windows (powershell)
-   $env:EV_TENANT_SECRET=snmyH19JLWVaUJKtM4cNxTT6t38eA
-   $env:EV_USER_PRIVATE_KEY=ed797ecd191b0364db559896c648c21cda7763db551a97577ed9ffb0ebb41881d8f9d1af6ff29af9287b0411758aac472016fb186220ef39db7959294c28857909
-
-   # Linux (bash)
-   export EV_TENANT_SECRET=snmyH19JLWVaUJKtM4cNxTT6t38eA
-   export EV_USER_PRIVATE_KEY=ed797ecd191b0364db559896c648c21cda7763db551a97577ed9ffb0ebb41881d8f9d1af6ff29af9287b0411758aac472016fb186220ef39db7959294c28857909
-   ```
-
 4. Now you are ready to acquire an Evernode instance.
    - Run following command to acquire.
       ```bash
       evdevkit acquire
       ```
-   - This will create a Evernode instance in a random host and outputs the instance details
+   - This will create an Evernode instance in a random host and outputs the instance details
       ```bash
       ...
       Instance created! {
@@ -94,7 +94,7 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
       evdevkit acquire --help
       ```
 
-5. At this point you have acquired a Evernode instance successfully and you have the instance details including public key, IP, ports etc.
+5. At this point you have acquired an Evernode instance successfully and you have the instance details including public key, IP, ports etc.
 
 ## Create deployable smart contract package
 1. If you have already implemented smart contract package you can proceed, Otherwise go through [HotPocket developer kit tutorials](../hotpocket/tutorial-basics.md) and create a new smart contract.
@@ -190,7 +190,7 @@ Using Evernode devkit you can acquire and deploy Evenode instances using one com
       Contract bundle uploaded!
       Contract deployed!      
       ```
-   - You can specify more options (Ex: `-h` specify a host) to the `acquire-and-deploy` command. Check the supported options using the below command.
+   - You can specify more options (Ex: `-h` specify a host) to the `acquire-and-deploy` command. Check the supported options using below command.
       ```bash
       evdevkit acquire-and-deploy --help
       ```
