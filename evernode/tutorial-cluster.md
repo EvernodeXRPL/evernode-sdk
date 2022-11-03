@@ -162,7 +162,7 @@ In Evernode developer kit, single command does the cluster creation and the depl
          }
       ]
       ```
-   - You can specify more options (Ex: `-h` specify a host) to the `cluster-create` command. Check the supported options using below command.
+   - You can specify [more options](./options.md#options-cluster-create) (Ex: `-h` specify a host) to the `cluster-create` command. Check the supported options using below command.
       ```bash
       evdevkit cluster-create --help
       ```
