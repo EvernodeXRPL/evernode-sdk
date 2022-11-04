@@ -59,18 +59,18 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
       }
       ```
    - See [Hotpocket configuration reference](/hotpocket/reference-configuration.md) for more details.
-   - Now set the json file path as `EV_HP_CONFIG_PATH` [environment variable](../evdevkit/index.md#environment-variables).
+   - Now set the json file path as `EV_INSTANCE_CONFIG_PATH` [environment variable](../evdevkit/index.md#environment-variables).
       ```bash
       # Windows (command prompt)
-      set EV_HP_CONFIG_PATH=$HOME/hp.cfg.override
+      set EV_INSTANCE_CONFIG_PATH=<Path to your HotPocket instance configuration file.>
       
       # Windows (powershell)
-      $env:EV_HP_CONFIG_PATH=$HOME/hp.cfg.override
+      $env:EV_INSTANCE_CONFIG_PATH=<Path to your HotPocket instance configuration file.>
       
       # Linux (bash)
-      export EV_HP_CONFIG_PATH=$HOME/hp.cfg.override
+      export EV_INSTANCE_CONFIG_PATH=<Path to your HotPocket instance configuration file.>
       ```
-      - Note: Replace `$HOME/contract.cfg.override` with your json file path.
+
 
 4. Now you are ready to acquire an Evernode instance.
    - Run following command to acquire.
@@ -115,15 +115,14 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
    - Now set the json file path as `EV_CONTRACT_CONFIG_PATH` [environment variable](../evdevkit/index.md#environment-variables).
       ```bash
       # Windows (command prompt)
-      set EV_CONTRACT_CONFIG_PATH=$HOME/contract.cfg.override
+      set EV_CONTRACT_CONFIG_PATH=<Path to your contract configuration json file>
       
       # Windows (powershell)
-      $env:EV_CONTRACT_CONFIG_PATH=$HOME/contract.cfg.override
+      $env:EV_CONTRACT_CONFIG_PATH=<Path to your contract configuration json file>
       
       # Linux (bash)
-      export EV_CONTRACT_CONFIG_PATH=$HOME/contract.cfg.override
+      export EV_CONTRACT_CONFIG_PATH=<Path to your contract configuration json file>
       ```
-      - Note: Replace `$HOME/contract.cfg.override` with your json file path.
 
 4. Now you can create the smart contract package
    - Run the following command. Assuming this is a node contract last binary path and binary args parameters will be `/usr/bin/node` and `index.js`.

@@ -60,20 +60,20 @@ In Evernode developer kit, single command does the cluster creation and the depl
       }
       ```
    - See [Hotpocket configuration reference](/hotpocket/reference-configuration.md) for more details.
-   - Now set the json file path as `EV_HP_CONFIG_PATH` [environment variable](../evdevkit/index.md#environment-variables).
+   - Now set the json file path as `EV_INSTANCE_CONFIG_PATH` [environment variable](../evdevkit/index.md#environment-variables).
       ```bash
       # Windows (command prompt)
-      set EV_HP_CONFIG_PATH=$HOME/hp.cfg.override
+      set EV_INSTANCE_CONFIG_PATH=<Path to your instance configuration json file>
       
       # Windows (powershell)
-      $env:EV_HP_CONFIG_PATH=$HOME/hp.cfg.override
+      $env:EV_INSTANCE_CONFIG_PATH=<Path to your instance configuration json file>
       
       # Linux (bash)
-      export EV_HP_CONFIG_PATH=$HOME/hp.cfg.override
+      export EV_INSTANCE_CONFIG_PATH=<Path to your instance configuration json file>
       ```
-      - Note: Replace `$HOME/contract.cfg.override` with your json file path.
 
-4. Now let's override the contract section HotPocket configuration in the Evernode instance. if you do not want you can skip this step as well but you can set the original roundtime you are intending to give for your smart contract here in the `consensus.roundtime` section.
+
+4. Now let's override the contract section of the HotPocket configuration in the Evernode instance. This section will be identical in each HotPocket instance in the cluster as the contract configuration is synchronized within the cluster. If you do not want, you can skip this step as well. However you can set the original `roundtime` you are intending to give for your smart contract here in the `consensus.roundtime` section.
    - Create a new json file anywhere you prefer.
    - Add following content inside the file.
       ```json
@@ -87,15 +87,14 @@ In Evernode developer kit, single command does the cluster creation and the depl
    - Now set the json file path as `EV_CONTRACT_CONFIG_PATH` [environment variable](../evdevkit/index.md#environment-variables).
       ```bash
       # Windows (command prompt)
-      set EV_CONTRACT_CONFIG_PATH=$HOME/contract.cfg.override
+      set EV_CONTRACT_CONFIG_PATH=<Path to your contract configuration json file>
       
       # Windows (powershell)
-      $env:EV_CONTRACT_CONFIG_PATH=$HOME/contract.cfg.override
+      $env:EV_CONTRACT_CONFIG_PATH=<Path to your contract configuration json file>
       
       # Linux (bash)
-      export EV_CONTRACT_CONFIG_PATH=$HOME/contract.cfg.override
+      export EV_CONTRACT_CONFIG_PATH=<Path to your contract configuration json file>
       ```
-      - Note: Replace `$HOME/contract.cfg.override` with your json file path.
 
 5. Now you are ready to deploy the smart contract to an Evernode cluster.
    - Let's create a 5 node cluster. Run following command to create the cluster.
