@@ -9,7 +9,7 @@ HotPocket developer kit requires you to install [NodeJs](https://nodejs.org/en/)
 ### Supports cross platform
 This is a npm global package which supports both Linux and Windows
 1. Install [prerequisites](#prerequisites).
-2. Run the following command to install evdevkit on your machine.
+2. Run the following command to install `evdevkit` on your machine.
     ```
     npm i -g evdevkit
     ```
@@ -69,7 +69,7 @@ In order to change the tenant info you need to override the [environment variabl
 # Do [acquire](#acquiring-instance-from-evernode), [bundle](#creating-the-deployable-contract-package) and [deploy](#uploading-a-contract-to-evernode) in one command
 evdevkit acquire-and-deploy <path to contract directory> <contract binary> -a <contract binary arguments>
 
-# Lost active hosts in evernode
+# List the active hosts in Evernode
 evdevkit list
 
 # See host info
@@ -108,7 +108,7 @@ An example HotPocket contract configuration:
 }
 ```
 
-_See [Hotpocket configuration reference](/hotpocket/reference-configuration.md) for more details._
+_See [HotPocket configuration reference](/hotpocket/reference-configuration.md) for more details._
 
 ## Environment variables
 `evdevkit` CLI supports the following environment variables:

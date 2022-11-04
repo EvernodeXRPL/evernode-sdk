@@ -1,9 +1,9 @@
 # Deploying a smart contract to an Evernode cluster
 
-Using Evernode developer kit, you can create an instance cluster in Evernode and deploy your [smart contract](../hotpocket/concepts.md#smart-contract), like you did locally in ["HotPocket tutorial - multiple nodes"](/hotpocket/tutorial-multinode.md). Even though you can give a single command and create a up and running cluster with your [smart contract](../hotpocket/concepts.md#smart-contract) running on it, It's important to have an understanding about what it does internally when creating the cluster. So, these are the steps it follow.
-1. Creates a single node in one of the Evernode hosts.
+Using Evernode developer kit, you can create an instance cluster in Evernode and deploy your [smart contract](../hotpocket/concepts.md#smart-contract), like you did locally in ["HotPocket tutorial - multiple nodes"](/hotpocket/tutorial-multinode.md). Even though you can give a single command and create an up and running cluster with your [smart contract](../hotpocket/concepts.md#smart-contract) running on it, it's important to have an understanding about what it does internally when creating the cluster. So, these are the steps it follow.
+1. Creates a single node in one of Evernode hosts.
    
-2. Creates rest of the nodes with only first node's public key in them as the [UNL](../hotpocket/concepts.md#unl---unique-node-list).
+2. Creates rest of the nodes with only first node's public key in their [UNL](../hotpocket/concepts.md#unl---unique-node-list).
    
 3. Creates a contract bundle with your smart contract binaries and HotPocket contract configuration containing list of all the nodes public key as the [UNL](../hotpocket/concepts.md#unl---unique-node-list).
    
@@ -83,7 +83,7 @@ In Evernode developer kit, single command does the cluster creation and the depl
          }
       }
       ```
-   - See [Hotpocket contract configuration reference](/hotpocket/reference-configuration.md#contract) for more details.
+   - See [HotPocket contract configuration reference](/hotpocket/reference-configuration.md#contract) for more details.
    - Now set the json file path as `EV_CONTRACT_CONFIG_PATH` [environment variable](../evdevkit/index.md#environment-variables).
       ```bash
       # Windows (command prompt)
