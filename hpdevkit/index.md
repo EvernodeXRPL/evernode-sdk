@@ -11,7 +11,7 @@ The HotPocket developer kit is a [global npm package](https://www.npmjs.com/pack
 1. Install [prerequisites](#prerequisites).
 2. Run the following command to install hpdevkit on your machine:
     ```
-    npm i -g hpdevkit
+    npm i hpdevkit -g
     ```
 
 _**NOTE:** In Linux platforms, installation requires root privileges. Hence, add `sudo` to the above command._
@@ -108,7 +108,7 @@ Run one of the following commands to update `hpdevkit` to the latest version, an
 
 - Using npm
     ```
-    npm update -g hpdevkit
+    npm update hpdevkit -g
     ```
 
 **NOTE: You need to re-deploy your contracts for the new changes to take effect.**
