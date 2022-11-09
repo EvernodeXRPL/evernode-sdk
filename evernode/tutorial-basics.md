@@ -62,13 +62,13 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
    - Now set the json file path as `EV_INSTANCE_CONFIG_PATH` [environment variable](../evdevkit/index.md#environment-variables).
       ```bash
       # Windows (command prompt)
-      set EV_INSTANCE_CONFIG_PATH=<Path to your HotPocket instance configuration file.>
+      set EV_INSTANCE_CONFIG_PATH=<Path to your HotPocket instance configuration file>
       
       # Windows (powershell)
-      $env:EV_INSTANCE_CONFIG_PATH=<Path to your HotPocket instance configuration file.>
+      $env:EV_INSTANCE_CONFIG_PATH=<Path to your HotPocket instance configuration file>
       
       # Linux (bash)
-      export EV_INSTANCE_CONFIG_PATH=<Path to your HotPocket instance configuration file.>
+      export EV_INSTANCE_CONFIG_PATH=<Path to your HotPocket instance configuration file>
       ```
 
 
