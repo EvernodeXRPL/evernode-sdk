@@ -15,7 +15,7 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
 1. Then you need to prepare a user key pair for the Evernode instance.
   - Run below command to prepare a new key pair.
       ```bash
-      hpdevkit keygen
+      evdevkit keygen
       ```
   - This will output the generated key pair as follows.
       ```bash
