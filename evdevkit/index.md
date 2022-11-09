@@ -27,7 +27,7 @@ evdevkit acquire
 - This will return the acquired instance details.
 
 ## Deploying a contract to Evernode
-You can deploy your already implemented [smart contract](../hotpocket/concepts.md#smart-contract) with any language to the acquired Evernode instance.
+You can deploy your already implemented [smart contract](../hotpocket/concepts.md#smart-contract) to the acquired Evernode instance.
 
 ### Creating the deployable contract package
 You can package your contract using evdevkit.
