@@ -1,8 +1,8 @@
-Creating Anchor Nodes.
+## Creating Anchor Nodes.
 
-Once you deploy a contract to Evernode instance cluster you do not have any access to the data of the smart contract. Hence, if you face to a data recovery requirement there may be a hassle. Hence, Evernode recommend you use anchor nodes when deploying smart contracts.
+Once you deploy a contract to Evernode instance cluster, you do not have access to the data of the smart contract. Hence, if you face to a data recovery requirement there may be a hassle. Hence, Evernode foundation recommend you to use anchor nodes when deploying smart contracts.
 
-Mainly there are two methods that you can adhere to when creating an anchor node for your cluster.
+Mainly there are two methods that you can adhere when creating an anchor node for your cluster.
 
 ### First Method : Create the anchor node when starting to create cluster.
 
