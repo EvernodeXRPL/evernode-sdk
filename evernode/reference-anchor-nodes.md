@@ -1,16 +1,16 @@
 ## Creating Anchor Nodes.
 
-Once you deploy a contract to Evernode instance cluster, you do not have direct access to the data of the smart contract. Hence, if you face to a data recovery requirement there may be a hassle. Hence, Evernode foundation recommend you to use anchor nodes when deploying smart contracts.
+Once you deploy a contract to Evernode instance cluster, you do not have direct access to the data of the smart contract. Hence, if you need to recover your data, Evernode foundation recommends you to use anchor nodes when deploying smart contracts.
 
 Mainly there are two methods that you can adhere to when creating an anchor node for your cluster.
 
-### First Method : Create the anchor node when starting a create cluster.
+### First Method : Create an anchor node before creating the contract cluster.
 
+In here we are using a Docker container to set up our anchor node.
 
-There,you have to run your own HotPocket contract on your machine.
+In Evernode there are pre-packaged HotPocket docker images that support NodeJS and C contracts (evernodedev/hotpocket:0.6.0-ubt.20.04, evernodedev/hotpocket:0.6.0-ubt.20.04-njs.16)
 
-Here we are using a Docker container to setup our anchor node.
-You can define your own `Docker image` for this process with other additional command line tools for your ease.
+We have to use one of those to create the docker container. Also, you can define your own `Docker image` for this process based on the above images and other additional command line tools that you want to use inside your container as follows.
 
 ```Dockerfile
 # Dockerfile content
