@@ -2,16 +2,14 @@
 
 You can use [Evernode developer kit](../evdevkit/index.md) to deploy your [HotPocket smart contracts](../hotpocket/concepts.md#smart-contract) on Evernode. Evernode developer kit Internally interact with Evernode (via [XRPL](https://xrpl.org/)) to create Evernode instances and deploy your smart contracts on the [Evernode network](https://dashboard.evernode.org).
 
-You have learned how to test your Smart Contracts locally with `hpdevkit` in the [hpdevkit basic tutorial](../hotpocket/tutorial-basics.md). Now let's see how you can acquire instances from Evernode and deploy smart contract you've implemented. First you need to have a XRPL account for the tenant.
-- Since this is the Beta network, Evernode will be giving away limited amount of free EVRs (100EVRs per day) for you to test smart contracts on Evernode
-- EVR fund request and recharge will be done automatically when you are trying to acquire instance from `evdevkit`.
+You have learned how to test your Smart Contracts locally with `hpdevkit` in the [hpdevkit basic tutorial](../hotpocket/tutorial-basics.md). Now let's see how you can acquire instances from Evernode and deploy smart contract you've implemented. First you need to have a XRPL account with EVRs for the tenant.
 
 ## Install Evernode developer kit
 
 Follow [installation instructions](../evdevkit//index.md#installation) to install Evernode developer kit on your PC.
 
 ## Acquire an instance
-- First you need to have a tenant XRPL account. You can generate an XRPL faucet account on [hooks-testnet-v2](https://xrpl-hooks.readme.io/) from [here](https://hooks-testnet-v2.xrpl-labs.com/).
+- First you need to have a tenant XRPL account. You can generate an XRPL faucet account with 6000 EVRs on [hooks-testnet-v2](https://xrpl-hooks.readme.io/) from [here](https://dashboard.evernode.org/#/testnet-faucet).
 1. Then you need to prepare a user key pair for the Evernode instance.
   - Run below command to prepare a new key pair.
       ```bash
