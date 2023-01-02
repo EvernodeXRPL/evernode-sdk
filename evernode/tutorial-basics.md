@@ -2,7 +2,7 @@
 
 You can use [Evernode developer kit](../evdevkit/index.md) to deploy your [HotPocket smart contracts](../hotpocket/concepts.md#smart-contract) on Evernode. Evernode developer kit Internally interact with Evernode (via [XRPL](https://xrpl.org/)) to create Evernode instances and deploy your smart contracts on the [Evernode network](https://dashboard.evernode.org).
 
-You have learned how to test your Smart Contracts locally with `hpdevkit` in the [hpdevkit basic tutorial](../hotpocket/tutorial-basics.md). Now let's see how you can acquire instances from Evernode and deploy smart contract you've implemented. First you need to have a XRPL account with EVRs for the tenant.
+You have learned how to test your Smart Contracts locally with `hpdevkit` in the [hpdevkit basic tutorial](../hotpocket/tutorial-basics.md). Now let's see how you can acquire instances from Evernode and deploy smart contract you've implemented. First you need to have an XRPL account with EVRs for the tenant.
 
 ## Install Evernode developer kit
 
