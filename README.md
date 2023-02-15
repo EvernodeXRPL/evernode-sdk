@@ -2,6 +2,8 @@
 
 The Evernode SDK consists of libraries and tools required to develop and deploy HotPocket smart contracts on Evernode. This repo is used to provide early access to libraries and tools that are work-in-progress and to get feedback.
 
+Read [Evernode - Primer](primer.md) for an overview on Evernode.
+
 ## Tutorials
 
 HotPocket is the smart contract execution and consensus engine of Evernode. HotPocket smart contracts can be developed using any POSIX-compliant language/framework. You can also develop client applications that interact with HotPocket smart contracts using web sockets. Please go through the following material to gain an understanding of HotPocket development and deployment to Evernode.
