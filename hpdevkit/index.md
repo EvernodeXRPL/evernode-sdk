@@ -73,6 +73,10 @@ hpdevkit stop
 # Start/stop a specific node
 hpdevkit start <node number>
 hpdevkit stop <node number>
+
+# Add a new node to the cluster
+# (The new node will use the existing UNL and become an observer node)
+hpdevkit spawn
 ```
 
 If the contract files directory also contains a file named `hp.cfg.override`, it will be used to override the hp.cfg of all nodes. This can be used to set contract-specific parameters like 'bin_path' and 'bin_args'
@@ -86,6 +90,11 @@ An example `hp.cfg.override` file for a NodeJs application (the HotPocket develo
     }
 }
 ```
+
+### Inspect contract files of all nodes
+You can inspect the files of all the nodes of the cluster using Docker Desktop.
+<img height="500" alt="image" src="https://user-images.githubusercontent.com/33562092/236630735-f39a3da0-78ca-4e91-9ef0-5c6400bd5bae.png" />
+
 
 ## Environment variables
 `hpdevkit` CLI supports the following environment variables:
