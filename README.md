@@ -14,8 +14,10 @@ HotPocket is the smart contract execution and consensus engine of Evernode. HotP
 4. [Persisting data](hotpocket/tutorial-persistdata.md)
 5. [Read requests](hotpocket/tutorial-readreq.md)
 6. [NPL messaging](hotpocket/tutorial-npl.md)
-7. [Deploying contracts to Evernode - single instance](evernode/tutorial-basics.md)
-8. [Deploying contracts to Evernode - cluster of instances](evernode/tutorial-cluster.md)
+7. [Instance sync](hotpocket/instance-sync.md)
+8. [Contract context](hotpocket/contract-context.md)
+9. [Deploying contracts to Evernode - single instance](evernode/tutorial-basics.md)
+10. [Deploying contracts to Evernode - cluster of instances](evernode/tutorial-cluster.md)
 
 ## Tools
 
@@ -23,6 +25,7 @@ HotPocket is the smart contract execution and consensus engine of Evernode. HotP
 - evdevkit - You can use [Evernode developer kit](evdevkit/index.md) to deploy your HotPocket smart contracts Evernode hosts. Follow the [evernode tutorial](evernode/tutorial-basics.md) to understand how to use it.
 
 ## Example code
+
 - [Simple echo contract (nodejs)](https://github.com/HotPocketDev/hp-nodejs-contract/blob/main/example/echo-contract.js)
 - [Example C contract](https://github.com/HotPocketDev/hp-c-contract/blob/main/example_contract.c)
 - [Evernode bootstrap contract (C++)](https://github.com/HotPocketDev/evernode-bootstrap-contract)
@@ -47,9 +50,10 @@ HotPocket is the smart contract execution and consensus engine of Evernode. HotP
   - [Registry client](evernode/reference-api-registry.md)
   - [Tenant client](evernode/reference-api-tenant.md)
   - [Events](evernode/reference-api-events.md)
-  
+
 ### Community libraries
-  - XRPL-based Decentralized Key Management framework for HotPocket: DKM - [intro](https://devpost.com/software/decentralized-key-management-evernode) | [source](https://github.com/wojake/DKM) (by [@wojake](https://github.com/wojake))
+
+- XRPL-based Decentralized Key Management framework for HotPocket: DKM - [intro](https://devpost.com/software/decentralized-key-management-evernode) | [source](https://github.com/wojake/DKM) (by [@wojake](https://github.com/wojake))
 
 ## Protocol reference
 
