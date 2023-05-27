@@ -34,7 +34,7 @@ This client will drop the connection if the contract id presented by the HotPock
 
 ### publicKey and privateKey
 
-ed22519 public key of the node in hexadecimal format prefixed with 'ed'. HotPocket uses this key pair to sign its messages to other nodes and users. Any party can get the help of this to verify that it is indeed communicating with the a trusted node.
+ed22519 key pair of the node in hexadecimal format prefixed with 'ed'. HotPocket uses this key pair to sign its messages to other nodes and users. Any party can get the help of this to verify that it is indeed communicating with a trusted node.
 
 Example with javascript client using public key validation:
 
@@ -52,15 +52,15 @@ const client = await HotPocket.createClient(
 
 ### readonly
 
-A boolean indicating whether the contract is being invoked due to a consensus execution or a [read request](tutorial-readreq.md). In readonly mode, the filesystem is readonly and represents the last consensus state.
+A boolean indicating whether the contract is being invoked due to a consensus execution or a [read request](tutorial-readreq.md). In readonly mode, the filesystem is readonly and represents the last consensus state. At any given time, multiple readonly executions of the contract can happen. However only one consensus execution will happen at any given time.
 
 ### timestamp
 
-Consensus timestamp of the last closed ledger in UNIX epoch milliseconds. If you need to use a deterministic timestamp in your contract that is compatible with consensus, you should use this. Using the system time for consensus data (eg. user outputs or state) will cause consensus to fail.
+Consensus timestamp of the last closed ledger in UNIX epoch milliseconds. If you need to use a deterministic timestamp in your contract that is compatible with consensus, you should use this. Using the system time for consensus data (eg. user outputs or state) will cause consensus to fail because the system time will differ between different nodes.
 
 ### users
 
-Contains the list of [users](tutorial-basics.md#access-user-information) who were connected to the cluster during the last consensus round. Via this, you can retrieave any inputs sent by users and also generate user outputs.
+Contains the list of [users](tutorial-basics.md#access-user-information) who were connected to the cluster during the last consensus round. Via this, you can retrieve any inputs sent by users and also generate user outputs.
 
 ### unl
 
@@ -68,4 +68,4 @@ Contains information about the nodes that participate in consensus. Via this you
 
 ### lclSeqNo and lclHash
 
-This is the last closed ledger sequence number and the hexadecimal hash. During consensus the ledger data is salted with an agreed-upon random value. Therefore, you could use the lcl hash as a deterministic random seed for your contract.
+This is the last closed ledger sequence number and the hexadecimal hash. During consensus, the ledger data is salted with an agreed-upon random value. Therefore, you could use the lcl hash as a deterministic random seed for your contract.
