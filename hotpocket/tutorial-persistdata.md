@@ -4,9 +4,15 @@ This tutorial is a continuation of [working with multiple nodes](tutorial-multin
 
 Because HotPocket smart contracts are regular Linux applications, they have direct access to on-device file storage. Therefore, you can use regular filesystem operations to save data onto disk and access them between subsequent executions of the smart contract.
 
+### Consensus (state) data
+
 When HotPocket invokes your smart contract, it sets the "current working directory" of the smart contract application to be the "state" directory monitored by HotPocket. After the smart contract exits, HotPocket subjects the data that was written under that directory to consensus so the HotPocket cluster [state](concepts.md#state) is in-sync. Therefore, any files/databases that you maintain under the "current working directory" of the smart contract will be subjected to consensus.
 
 _Your smart contract can even make web/API calls to upload data or anything else that a regular application can do. However, those activities will not be subjected to consensus._
+
+### Non-consensus (private) data
+
+Any files you maintain outside of the "current working directory" will not be subjected to consensus. This way you can maintain any data specific for that particular node in the filesystem. Your smart contract is allowed to access "one level up" from the current working directory. Here you can create any file/folder structure you prefer and maintain files private to each node.
 
 ## Save user inputs into state
 
@@ -117,5 +123,21 @@ Thanks for talking to me 4 times
 As you can see, our HotPocket smart contract keeps users' input data independently of each other and the respective users can access their information using the correct key pair. This is the basis of maintaining 'user accounts' in HotPocket smart contracts.
 
 _In above examples, we are using simple text files to maintain saved data. But you can use any local database provider like SQLite according to your preference. As long as the files are maintained within the current working directory of the app, HotPocket will keep them in-sync across the cluster according to its consensus mechanism._
+
+## Saving non-consensus (private) data
+
+As mentioned earlier, your smart contract have access to "up one level" from the current working directory and any data you persist outside of the current working directory is private to that node.
+
+For example, in your smart contract, you can use the location `../` to maintain a private event log for your application like this:
+
+```javascript
+const filepath = `../my-node-specific-data.log`;
+await fs.appendFile(
+  filepath,
+  `${new Date().toISOString()} - Example log event`
+);
+```
+
+Please note that, normally, it is not recommended to use non-deterministic values like system timestamps or random-generated values in your smart contract since that would cause consensus to fail. However, in this case you can do that since this data is not subjected to consensus. The data in the file `../my-node-specific-data.log` is available to each individual node only.
 
 Next: [Read requests](tutorial-readreq.md)
