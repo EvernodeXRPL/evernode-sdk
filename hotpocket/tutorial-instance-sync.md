@@ -51,10 +51,10 @@ As you can see we are passing 'red green blue' as arguments to index.js which re
 Run `npm start`. As expected, you will see following output from **node 1** which is showing the colors we are passing in "bin_args" property of our contract configuration. It is also indicating that the node 1 is in fact a part of the UNL. This is because when hpdevkit creates a cluster, it configures all the nodes to be in each other's UNL.
 
 ```
-20230526 15:16:30.045 [inf][hpc] ****Ledger created**** (lcl:1-49d4b023 state:03de61cf patch:e85c0d60)
+20230527 00:58:46.650 [inf][hpc] ****Ledger created**** (lcl:1-f192e9d1 state:3c90183b patch:35968a27)
 These are my cli args [ 'red', 'green', 'blue' ]
 I'm in the UNL.
-20230526 15:16:31.041 [inf][hpc] ****Ledger created**** (lcl:2-1a0a7706 state:03de61cf patch:e85c0d60)
+20230527 00:58:47.645 [inf][hpc] ****Ledger created**** (lcl:2-bbf23bc9 state:3c90183b patch:35968a27)
 These are my cli args [ 'red', 'green', 'blue' ]
 I'm in the UNL.
 ```
@@ -67,7 +67,7 @@ What we are going to do now is to create a completely new/blank node which does 
 
 1. The contract id of the existing contract.
 2. The IP/domain address and the peer port of at least one of the existing nodes.
-3. At least one public key of the existing UNL nodes.
+3. At least one public key of the existing UNL nodes (this does not ncessaraily need to be the same node as [2]).
 
 When the new node is created, it is capable of using the limited information available to it and discover the existing contract cluster and sync with it. So the expectation is for the new node to eventually behave exactly the same as existing nodes and execute the same contract code.
 
@@ -77,16 +77,16 @@ Run the command `hpdevkit spawn`. This simulates a new/blank node (**node 4**) b
 
 ```
 ...
-20230526 15:30:54.787 [inf][hpc] Hpfs ldgr sync: Achieved target:582dd2c9 /primary/0
+20230527 00:58:59.212 [inf][hpc] Hpfs ldgr sync: Achieved target:54bad461 /primary/0
 These are my cli args [ 'red', 'green', 'blue' ]
-I'm NOT in the UNL. My public key: ed78def229de2dc465dcb0953c6595956db875c037b764b3e51c55f53291042f37
-20230526 15:30:56.239 [inf][hpc] ****Ledger created**** (lcl:19-1c01d3e7 state:a4a3cb8e patch:d5969ba3)
+I'm NOT in the UNL. My public key: edecee17cf622edfe35a6850c462ed86bde9952ecf2179d244f2fb1806b77903aa
+20230527 00:59:00.646 [inf][hpc] ****Ledger created**** (lcl:15-a7ef4035 state:3c90183b patch:35968a27)
 These are my cli args [ 'red', 'green', 'blue' ]
-I'm NOT in the UNL. My public key: ed78def229de2dc465dcb0953c6595956db875c037b764b3e51c55f53291042f37
+I'm NOT in the UNL. My public key: edecee17cf622edfe35a6850c462ed86bde9952ecf2179d244f2fb1806b77903aa
 ...
 ```
 
-As you can see the new node is capable of requesting canonical configuration and "state" from the existing cluster and become a "clone". The key difference is that the new node is NOT in the cluster UNL as shown by its log output.
+As you can see the new node is capable of requesting canonical configuration and "state" from the existing cluster and become a "clone". The contract code files (in this case, "index.js") also lives in the filesystem "state" hence we get a copy of the contract code itself. The key difference is that the new node is NOT in the cluster UNL as shown by its log output.
 
 ## UNL acceptance logic
 
@@ -119,7 +119,7 @@ Run `npm start` to update the cluster with new contract code. Exit the node 1 lo
 
 ```
 These are my cli args [ 'red', 'green', 'blue' ]
-I'm NOT in the UNL. My public key: ed78def229de2dc465dcb0953c6595956db875c037b764b3e51c55f53291042f37
+I'm NOT in the UNL. My public key: edecee17cf622edfe35a6850c462ed86bde9952ecf2179d244f2fb1806b77903aa
 ```
 
 ## Adding the new node to UNL
@@ -134,7 +134,7 @@ const HotPocket = require("hotpocket-js-client");
 async function clientApp() {
   const userKeyPair = await HotPocket.generateKeys();
   const client = await HotPocket.createClient(
-    ["wss://localhost:8081"], // Submit the input to node 1
+    ["wss://localhost:8081"],
     userKeyPair
   );
 
@@ -152,3 +152,38 @@ async function clientApp() {
 
 clientApp();
 ```
+
+Please replace `<your node 4 public key>` with the public key mentioned in your node 4 log output.
+
+Keep watching the node 4 log output. In the "colorsclient" directory, run `npm i` and then `node colorsclient.js`. You should see the following output:
+
+```
+Connecting to wss://localhost:8081
+Connected to wss://localhost:8081
+HotPocket Connected.
+Submitting UNL request.
+```
+
+Meanwhile in the node 4 log output, you should see following:
+
+```
+20230527 00:59:40.644 [inf][hpc] ****Ledger created**** (lcl:55-eee7c852 state:3c90183b patch:35968a27)
+These are my cli args [ 'red', 'green', 'blue' ]
+I'm NOT in the UNL. My public key: edecee17cf622edfe35a6850c462ed86bde9952ecf2179d244f2fb1806b77903aa
+Added new public key to UNL.
+20230527 00:59:41.645 [inf][hpc] ****Ledger created**** (lcl:56-60eef9b4 state:3c90183b patch:c3d8e20f)
+20230527 00:59:41.647 [inf][hpc] Contract config updated from patch file.
+These are my cli args [ 'red', 'green', 'blue' ]
+I'm in the UNL.
+20230527 00:59:42.645 [inf][hpc] ****Ledger created**** (lcl:57-cd6f112c state:3c90183b patch:c3d8e20f)
+These are my cli args [ 'red', 'green', 'blue' ]
+I'm in the UNL.
+```
+
+Here you can see upon receiving the user input, the cluster added the new public key to the UNL. `[inf][hpc] Contract config updated from patch file.` denotes when HotPocket recognized the UNL update from the **configuration patch file**, which is used to subject the contract configuration to consensus. In subsequent executions of the contract in node 4, it is recognizing itself as being in the UNL.
+
+_**Node**: If you cluster is small enough, adding a wrong public key to the UNL can halt the forward progress of the cluster irrecoverably, since it will no longer be able to reach majotiry (usually 80%) UNL agreement._
+
+## Mesh network
+
+In the above example, `hpdevkit` creates the new node and configures it so that it knows about network address/port details and public keys of all existing UNL nodes. However, in the real-world, it may be the case that the new node was created with the knowledge of only one existing nodes ip/port details. Still, eventually the new HotPocket node would discover the rest of the nodes on the network and form connections to them too. This would also make the existing nodes to add the new node's network details to their own "known peers" too. This is achieved by HotPocket's peer discovery mechanism and this happens irrespective of whether a particular node belongs to the UNL or not.
