@@ -1,12 +1,12 @@
 # HotPocket instance synchronization
 
-HotPocket uses a synchronization mechanism which allows the nodes in the cluster to compare with and sync with each other. This allows the entire cluster to maintains a canonical state which has the support of the majority of the UNL nodes. In [node recovery](tutorial-multinode.md#node-recovery) and [persisting data](tutorial-persistdata.md) tutorials, it was shown how the filesystem "state" stays in-sync between all the nodes.
+HotPocket uses a synchronization mechanism which allows the nodes in the cluster to compare with and sync with each other. This allows the entire cluster to maintain a canonical state which has the support of the majority of the UNL nodes. In [node recovery](tutorial-multinode.md#node-recovery) and [persisting data](tutorial-persistdata.md) tutorials, it was shown how the filesystem "state" stays in-sync between all the nodes.
 
-In addition to filesystem "state" sync, HotPocket also handles syncing of contract configuration sync as well. This means the configuration used to setup the contract must also be the same across the cluster. The combination of "state" and configuration sync combined, provides a powerfull way for a cluster to create newly cloned instances. This allows a new blank HotPocket node to become a part of an existing contract cluster with a minimul set of information. Let's demonstrate that using a simple contract and `hpdevkit`.
+In addition to filesystem "state" sync, HotPocket also handles syncing of contract configuration as well. This means the configuration used to setup the contract must also be the same across the cluster. The combination of "state" and configuration sync, provides a powerfull way for a cluster to create newly cloned instances of itself. This allows a new blank HotPocket node to become a part of an existing contract cluster with a minimul set of information. Let's demonstrate that using a simple contract and `hpdevkit`.
 
 ## Create a new smart contract
 
-1. Run `hpdevkit clean` to make sure any previous clusters are purged.
+1. Run `hpdevkit clean` to make sure any previous clusters are purged. This article assumes your hpdevkit cluster size is 3 (default size).
 2. Run `hpdevkit gen nodejs blank-contract colorscontract` to create a new contract for this tutorial.
 3. Navigate to 'colorscontract' directory and run `npm install`.
 
@@ -33,7 +33,7 @@ hpc.init(mycontract);
 
 The colors contract is using nodejs "process" module to print the command line arguments passed to the app. It is also stating that the node executing the contract is a part of the UNL by checking whether the node's public key is included in the UNL public key list.
 
-Let's pass some arguments we need to edit the contract configuration using `hp.cfg.override` file.
+In order to pass CLI arguments to our app, we need to edit the contract configuration using `hp.cfg.override` file.
 
 ### hp.cfg.override
 
@@ -65,7 +65,7 @@ Press Ctrl+C to exit from the log output.
 
 What we are going to do now is to create a completely new/blank node which does not have any files/configuration from the colors contract cluster but still get it to become a clone of that cluster eventually. To make this work, the new node must have the following information:
 
-1. The contract id of the existing contract.
+1. The [contract id](contract-context.md#contractid) of the existing contract.
 2. The IP/domain address and the peer port of at least one of the existing nodes.
 3. At least one public key of the existing UNL nodes (this does not ncessaraily need to be the same node as [2]).
 
@@ -73,7 +73,7 @@ When the new node is created, it is capable of using the limited information ava
 
 However, even if the new node becomes a "clone", it should be noted that the existing nodes will not know about the new node and hence will not include it in their UNL. We should be able to see this via the new node's contract log output indicating its UNL status.
 
-Run the command `hpdevkit spawn`. This simulates a new/blank node (**node 4**) being created with only the aforementioned information and displays it's log output.
+Run the command `hpdevkit spawn`. This simulates a new/blank node (**node 4**) being created with only the aforementioned information and displays its log output.
 
 ```
 ...
@@ -182,7 +182,7 @@ I'm in the UNL.
 
 Here you can see upon receiving the user input, the cluster added the new public key to the UNL. `[inf][hpc] Contract config updated from patch file.` denotes when HotPocket recognized the UNL update from the **configuration patch file**, which is used to subject the contract configuration to consensus. In subsequent executions of the contract in node 4, it is recognizing itself as being in the UNL.
 
-_**Node**: If you cluster is small enough, adding a wrong public key to the UNL can halt the forward progress of the cluster irrecoverably, since it will no longer be able to reach majotiry (usually 80%) UNL agreement._
+_**NOTE**: If you cluster is small enough, adding a wrong public key to the UNL can halt the forward progress of the cluster irrecoverably, since it will no longer be able to reach majotiry (usually 80%) UNL agreement._
 
 ## Mesh network
 

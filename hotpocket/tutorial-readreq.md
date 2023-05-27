@@ -54,8 +54,8 @@ console.log("HotPocket Connected.");
 
 // Register event handler to receive outputs before we start sending inputs.
 client.on(HotPocket.events.contractOutput, (result) => {
-    console.log("Received outputs:");
-    result.outputs.forEach((o) => console.log(o));
+  console.log("Received outputs:");
+  result.outputs.forEach((o) => console.log(o));
 });
 
 // Read Request submission.
@@ -94,3 +94,5 @@ User file count: 1
 Using above example, you should be able to observe the difference in delay between inputs and outputs when using read requests as opposed to consensus. The time different between `Submitting read request...` and `User file count: 1` should be shorter than the time difference between `Saying hello...` and `Received outputs:`. You can benefit from this to provide a faster response time to users depending on the needs of your application.
 
 Read requests are a way of submitting user inputs and receiving outputs while bypassing consensus. It's a fast and convenient way to retrieve information from a HotPocket node when data security and consistency is not a concern.
+
+Next: [NPL messaging](tutorial-npl.md)
