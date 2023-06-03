@@ -293,8 +293,8 @@ for (const input of user.inputs) {
 
   const message = buffer.toString();
   console.log("Received input:", message);
-  user.send(`You said '${message}'`);
-  user.send(`Thanks for talking to me!`);
+  await user.send(`You said '${message}'`);
+  await user.send(`Thanks for talking to me!`);
 }
 ```
 
