@@ -143,7 +143,7 @@ The fields other than those mentioned in the successful response section above, 
 ### Example
 
 ```javascript
-const evernode = require("evernode");
+const evernode = require("evernode-js-client");
 
 async function acquire() {
   const tenant = new evernode.TenantClient(tenantAddress, tenantSecret);
