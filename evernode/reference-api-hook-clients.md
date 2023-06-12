@@ -37,10 +37,20 @@ evernode.Defaults.set({
 });
 
 /**
- * Instantiate the Registry client, which is
- * under the provided Governor Address via HookClientFactory.
+ * Instantiate a Governor client for the provided Governor Address via HookClientFactory.
+ **/
+const governorClient = await evernode.HookClientFactory.create('GOVERNOR');
+
+/**
+ * Instantiate a Registry client that is associated with the provided Governor Address via HookClientFactory.
  **/
 const registryClient = await evernode.HookClientFactory.create('REGISTRY');
+
+/**
+ * Instantiate a Heartbeat client that is associated with the provided Governor Address via HookClientFactory.
+ **/
+const heartbeatClient = await evernode.HookClientFactory.create('HEARTBEAT');
+...
 ```
 <br/>
 
