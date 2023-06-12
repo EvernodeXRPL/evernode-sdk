@@ -1,6 +1,6 @@
 # Evernode defaults
 
-## Override Evernode defaults - `set(newDefaults)`
+## Override Evernode defaults - `static set(newDefaults)`
 Override Evernode default configs.
 
 ### Parameters
@@ -18,7 +18,7 @@ This is a void function.
     });
 ```
 
-## Read Evernode defaults - `get()`
+## Read Evernode defaults - `static get()`
 Read Evernode default configs.
 
 ### Response format
