@@ -11,46 +11,37 @@ This section aims to enhance your comprehension of the available hook clients in
 
 <br/>
 
-# Hook Client Factory Class
+# Hook Client Factory
 
 ## Description
-The Hook Client Factory class provides a common interface for creating hook clients. Developers can instantiate hook clients with minimal effort.
+The Hook Client Factory provides a common interface for creating hook clients. Developers can instantiate hook clients with minimal effort.
 
 ## Create a particular Hook Client - `static async create(hookType)`
+Creates a hook client from given type.
 
-### __Parameters :__
-
+### Parameters
 | Name     | Type   | Description                                                                              |
 | -------- | ------ | ---------------------------------------------------------------------------------------- |
 | hookType | string | Type of the Required Hook. (Supported Hook types 'GOVERNOR', 'REGISTRY' and 'HEARTBEAT') |
 
-## Example
-```javascript
-const evernode = require("evernode-js-client");
-const xrplApi = new evernode.XrplApi('wss://hooks-testnet-v3.xrpl-labs.com');
+### Response format
+Instance of requested HookClient type.
 
+### Example
+```javascript
 // Set the Default configuration.
-evernode.Defaults.set({
-    governorAddress: "rGVHr1PrfL93UAjyw3DWZoi9adz2sLp2yL",
-    xrplApi: xrplApi,
-    networkID: 21338
+Defaults.set({
+    governorAddress: "rGVHr1PrfL93UAjyw3DWZoi9adz2sLp2yL"
 });
 
-/**
- * Instantiate a Governor client for the provided Governor Address via HookClientFactory.
- **/
-const governorClient = await evernode.HookClientFactory.create('GOVERNOR');
+// Instantiate a Governor client for the provided Governor Address via HookClientFactory.
+const governorClient = await HookClientFactory.create('GOVERNOR');
 
-/**
- * Instantiate a Registry client that is associated with the provided Governor Address via HookClientFactory.
- **/
-const registryClient = await evernode.HookClientFactory.create('REGISTRY');
+// Instantiate a Registry client that is associated with the provided Governor Address via HookClientFactory.
+const registryClient = await HookClientFactory.create('REGISTRY');
 
-/**
- * Instantiate a Heartbeat client that is associated with the provided Governor Address via HookClientFactory.
- **/
-const heartbeatClient = await evernode.HookClientFactory.create('HEARTBEAT');
-...
+// Instantiate a Heartbeat client that is associated with the provided Governor Address via HookClientFactory.
+const heartbeatClient = await HookClientFactory.create('HEARTBEAT');
 ```
 <br/>
 
@@ -58,22 +49,20 @@ const heartbeatClient = await evernode.HookClientFactory.create('HEARTBEAT');
 
 ## GovernorClient class constructor - `GovernorClient(options = {})`
 
-### __Parameters :__
+### Parameters
 Takes one parameter `options` which is a JSON object of options that is passed to GovernorClient.
-
 ```
 {
     governorAddress: "rGVHr1PrfL93UAjyw3DWZoi9adz2sLp2yL",
 }
 ```
-
 | Name                       | Type   | Description                         |
 | -------------------------- | ------ | ----------------------------------- |
 | governorAddress (optional) | string | Governor Hook Account XRPL address. |
 
-## Example
+### Example
 ```javascript
-const governorClient = new evernode.GovernorClient({
+const governorClient = new GovernorClient({
     governorAddress: "rGVHr1PrfL93UAjyw3DWZoi9adz2sLp2yL"
 });
 ```
@@ -85,7 +74,7 @@ const governorClient = new evernode.GovernorClient({
 
 ## RegistryClient class constructor - `RegistryClient(options = {})`
 
-### __Parameters :__
+### Parameters
 Takes one parameter `options` which is a JSON object of options that is passed to RegistryClient.
 ```
 {
@@ -98,11 +87,9 @@ Takes one parameter `options` which is a JSON object of options that is passed t
 | registryAddress          | string | Registry Hook Account XRPL address. |
 | rippledServer (optional) | string | Rippled server URL.                 |
 
-## Example
+### Example
 ```javascript
-const evernode = require("evernode-js-client");
-...
-const registryClient = new evernode.RegistryClient({
+const registryClient = new RegistryClient({
     registryAddress: 'rQUhXd7sopuga3taru3jfvc1BgVbscrb1X',
     rippledServer: 'wss://hooks-testnet-v3.xrpl-labs.com'
 });
@@ -112,7 +99,7 @@ const registryClient = new evernode.RegistryClient({
 ## Get active hosts - `async getActiveHosts()`
 Gets all the active hosts registered in Evernode without paginating.
 
-## Response format
+### Response format
 Returns the list of active hosts.
 ```
 [
@@ -182,7 +169,7 @@ Returns the list of active hosts.
 | domain                  | string   | The DNS of the host.                                               |
 | active                  | boolean  | Boolean indicating whether the host is active or not.              |
 
-## Example
+### Example
 ```javascript
     const activeHosts = await registryClient.getActieHosts();
 ```
@@ -192,7 +179,7 @@ Returns the list of active hosts.
 
 ## HeartbeatClient class constructor - `HeartbeatClient(options = {})`
 
-### __Parameters :__
+### Parameters
 Takes one parameter `options` which is a JSON object of options that is passed to HeartbeatClient.
 ```
 {
@@ -205,18 +192,15 @@ Takes one parameter `options` which is a JSON object of options that is passed t
 | heartbeatAddress         | string | Heartbeat Hook Account XRPL address. |
 | rippledServer (optional) | string | Rippled server URL.                  |
 
-## Example
+### Example
 ```javascript
-const evernode = require("evernode-js-client");
-...
-const heartbeatClient = new evernode.HeartbeatClient({
+const heartbeatClient = new HeartbeatClient({
     heartbeatAddress: 'raPSFU999HcwpyRojdNh2i96T22gY9fgxL',
     rippledServer: 'wss://hooks-testnet-v3.xrpl-labs.com'
 });
 ```
 
 <br>
-
 
 ### [Go to common api method references for hook clients.](reference-api-common.md)<br><br>
 
