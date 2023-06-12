@@ -32,10 +32,11 @@ The Object of Evernode configs
 
 # Evernode clients
 
-There are clients for registry and tenant in the Evernode library.
-- [Governor Client](reference-api-governor.md)
-- [Registry Client](reference-api-registry.md)
-- [Heartbeat Client](reference-api-heartbeat.md)
+There are three hook clients and a tenant client in the Evernode library.
+- [Hook Clients](reference-api-hook-clients.md)
+  - [Governor Client](reference-api-hook-clients.md#governor-client)
+  - [Registry Client](reference-api-hook-clients.md#registry-client)
+  - [Heartbeat Client](reference-api-hook-clients.md#heartbeat-client)
 - [Tenant Client](reference-api-tenant.md)
 
 ## Connect to the client - `async connect()`
