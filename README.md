@@ -47,7 +47,7 @@ HotPocket is the smart contract execution and consensus engine of Evernode. HotP
 
 - [Javascript library](https://www.npmjs.com/package/evernode-js-client) for nodejs and browser. ([source](https://github.com/HotPocketDev/evernode-js-client))
   - [Common client functionality](evernode/reference-api-common.md)
-  - [Registry client](evernode/reference-api-registry.md)
+  - [Hook Client Reference](evernode/reference-api-hook-clients.md)
   - [Tenant client](evernode/reference-api-tenant.md)
   - [Events](evernode/reference-api-events.md)
 
