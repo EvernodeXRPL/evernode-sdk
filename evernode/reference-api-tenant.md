@@ -9,7 +9,7 @@ Accepts three parameters.
 | ----------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | xrpAddress | string | XRPL wallet address of the tenant |
 | xrpSecret | string | Secret key of the above tenant's XRPL wallet |
-| options | object | `(optional)` This can include two properties as below.<pre type="json">{<br> registryAddress: 'r3cNR2bdao1NyvQ5ZuQvCUgqkoWGmgF34E',<br> rippledServer: 'wss://hooks-testnet-v2.xrpl-labs.com'<br>}</pre> You can provide your own `registryAddress` and a `rippledServer` URL. |
+| options | object | `(optional)` This can include two properties as below.<pre type="json">{<br> registryAddress: 'r3cNR2bdao1NyvQ5ZuQvCUgqkoWGmgF34E',<br> rippledServer: 'wss://hooks-testnet-v3.xrpl-labs.com'<br>}</pre> You can provide your own `registryAddress` and a `rippledServer` URL. |
 
 ### Example
 
@@ -19,7 +19,7 @@ const tenantSecret = "sszyYJ79AdUUF6dR7QfD9ARWfVuz3";
 
 const client = new TenantClient(tenantAddress, tenantSecret, {
   registryAddress: "r3cNR2bdao1NyvQ5ZuQvCUgqkoWGmgF34E",
-  rippledServer: "wss://hooks-testnet-v2.xrpl-labs.com",
+  rippledServer: "wss://hooks-testnet-v3.xrpl-labs.com",
 });
 ```
 
