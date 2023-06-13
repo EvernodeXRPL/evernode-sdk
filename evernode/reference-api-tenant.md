@@ -116,6 +116,7 @@ On error, this functions rejects the promise with an error object similar to the
       issuer: 'rfxLPXCcSmwR99dV97yFozBzrzpvCa2VCf',
       value: '2'
     },
+    Destination: 'rwCtRNp2Hq3q2ozT18dnggxXRxM74ntzXp',
     Fee: '20',
     Flags: 0,
     HookParameters: [ [Object], [Object] ],
@@ -124,7 +125,7 @@ On error, this functions rejects the promise with an error object similar to the
     NetworkID: 21338,
     Sequence: 3883005,
     SigningPubKey: '03A8141293AEEE6C44CA7D80095042234924009FA2B3FA8E693D99A5069BACA37C',
-    TransactionType: 'URITokenBuy',
+    TransactionType: 'Payment',
     TxnSignature: '30450221009EB0EA5C8E9C712A49D243C6DED0C8718373DDABB6643DF118BAECA151C892D902202B402E2CCF93207E1B2A499BD1659102CE53DF3D7EBB97D351AFA30A6A615667',
     date: 739879611,
     hash: '5E60E35EE75CF62168FDFCF5D26C607F0AF3BEF03075E57ADE3E01428DC361D5',
@@ -258,11 +259,6 @@ The fields in detail:
 | inLedger           | number           | (Deprecated) Alias for ledger_index.                                                                                                                                                                                                                                                |
 | ledger_index       | number           | The ledger index of the ledger that includes this transaction.                                                                                                                                                                                                                      |
 | validated          | boolean          | Whether the transaction is validated or not.                                                                                                                                                                                                                                        |
-
-### Error Responses
-
-This method makes an URITokenBuy transaction. Therefore, this can raise [these errors](https://xrpl.org/nftokenacceptoffer.html#error-cases) explained in the XRPL official documentation.
-
 ### Example
 
 ```javascript
