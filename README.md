@@ -51,6 +51,10 @@ HotPocket is the smart contract execution and consensus engine of Evernode. HotP
   - [Tenant client](evernode/reference-api-tenant.md)
   - [Events](evernode/reference-api-events.md)
 
+### EverPocket contract library
+
+- [NodeJs library](https://www.npmjs.com/package/everpocket-nodejs-contract) ([source](https://github.com/EvernodeXRPL/everpocket-nodejs-contract))
+
 ### Community libraries
 
 - XRPL-based Decentralized Key Management framework for HotPocket: DKM - [intro](https://devpost.com/software/decentralized-key-management-evernode) | [source](https://github.com/wojake/DKM) (by [@wojake](https://github.com/wojake))
