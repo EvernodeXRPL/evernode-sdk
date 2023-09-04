@@ -116,7 +116,7 @@ You can use the Evernode developer kit to audit hosts. Auditing involves checkin
 
 - You are required to set `EV_TENANT_SECRET` and `EV_USER_PRIVATE_KEY` [environment variables](#environment-variables) before conducting an audit.
 
-_**NOTE:**_ An amount of EVRs equal to the lease amount of the host will be spent when conducting an audit. 
+_**NOTE:**_ An amount of EVRs equal to the lease amount of the host will be spent from the provided tenant account when conducting an audit. 
 
 ### Auditing multiple hosts
 
