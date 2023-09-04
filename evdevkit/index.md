@@ -48,7 +48,7 @@ evdevkit deploy $HOME/bundle/bundle.zip 45.76.238.97 26201
 
 ### Changing tenant info
 In order to change the tenant info you need to override the [environment variables](#environment-variables):
-1. Set the HP_CLUSTER_SIZE environment variable to the size you want.
+1. Set the environment variables.
     ```
     # Windows (command prompt)
     set EV_TENANT_SECRET=snmyH19JLWVaUJKtM4cNxTT6t38eA
@@ -115,6 +115,8 @@ _See [HotPocket configuration reference](/hotpocket/reference-configuration.md) 
 You can use the Evernode developer kit to audit hosts. Auditing involves checking the instance acquisition, read request response and bootstrap status of hosts based on host addresses provided. A resultant matrix is generated at the end of an audit which consists of the audit status, bootstrap status, and response durations for each of the audited hosts.
 
 - You are required to set `EV_TENANT_SECRET` and `EV_USER_PRIVATE_KEY` [environment variables](#environment-variables) before conducting an audit.
+
+_**NOTE:**_ An amount of EVRs equal to the lease amount of the host will be spent from the provided tenant account when conducting an audit. 
 
 ### Auditing multiple hosts
 
