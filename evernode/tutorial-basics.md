@@ -75,13 +75,13 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
      export EV_INSTANCE_CONFIG_PATH=<Path to your HotPocket instance configuration file>
      ```
 
-4. Now you are ready to acquire an Evernode instance.
+4. Now you are ready to acquire an Evernode instance. Use the `acquire` command and pass the XRPL address of the host to acquire an instance from as a parameter. You can check the available hosts by using the [hosts page](https://dashboard.evernode.org/#/hosts) or the [`list` command](../evdevkit/index.md#advanced-usage).
 
-   - Run following command to acquire.
+   - Run the following command to acquire. Replace `<host XRPL address>` with the host address.
      ```bash
-     evdevkit acquire
+     evdevkit acquire <host XRPL address>
      ```
-   - This will create an Evernode instance in a random host and outputs the instance details
+   - This will create an Evernode instance in the host and outputs the instance details
      ```bash
      ...
      Instance created! {
@@ -93,7 +93,7 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
         user_port: '8081'
      }
      ```
-   - You can specify more options (Ex: `-h` specify a host) to the `acquire` command. Check the supported options using the below command.
+   - You can specify more options (Ex: `-m` life moments) to the `acquire` command. Check the supported options using the below command.
      ```bash
      evdevkit acquire --help
      ```
@@ -170,15 +170,17 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
 Using Evernode devkit you can acquire and deploy Evenode instances using one command.
 
 1. First you need to follow the same 1, 2, 3 steps in ["Acquire an instance"](#acquire-an-instance) here as well.
-2. If you are going to override HotPocket config contract section, follow 3rd step in ["Create deployable smart contract package"](#create-deployable-smart-contract-package).
-3. Now you can just run the following command to acquire and deploy.
+2. Choose a host that to acquire an instance from. You can check the available hosts by using the [hosts page](https://dashboard.evernode.org/#/hosts) or the `list` command. 
+3. If you are going to override HotPocket config contract section, follow 3rd step in ["Create deployable smart contract package"](#create-deployable-smart-contract-package).
+4. Now you can just run the following command to acquire and deploy.
    - Run this command.
      ```bash
-     evdevkit acquire-and-deploy $HOME/contract /usr/bin/node -a index.js
+     evdevkit acquire-and-deploy $HOME/contract /usr/bin/node r9kCyGhhwGj3KaSGemFrrPVpXkzVtT2b1N -a index.js
      ```
      - Note:
        - Replace `$HOME/contract` with your contract directory path (Path to build directory of contract binaries).
-       - Replace `/usr/bin/node` `index.js` with your binary path and arguments.
+       - Replace `/usr/bin/node` and `index.js` with your binary path and arguments.
+       - Replace `r9kCyGhhwGj3KaSGemFrrPVpXkzVtT2b1N` with the XRPL address of host you want to acquire an instance from.
    - This will output following after deploying the contract.
      ```bash
      ...

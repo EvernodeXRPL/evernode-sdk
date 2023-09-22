@@ -20,9 +20,9 @@ _**NOTE:** In Linux platforms, installation requires root privileges. Hence, add
 You can use the Evernode developer kit to acquire instances from Evernode. This will create you a fresh Evernode instance where you can deploy your smart contracts.
 - You are required to set `EV_TENANT_SECRET` and `EV_USER_PRIVATE_KEY` [environment variables](#environment-variables) before acquiring the instance.
 - To override Evernode instance's configuration You can create a [HotPocket configuration](../hotpocket/reference-configuration.md) file and set its path as `EV_INSTANCE_CONFIG_PATH` [environment variable](#environment-variables).
-- Following command will create an instance in a random host. Given configurations will be populated if `EV_INSTANCE_CONFIG_PATH` is given.
+- Following command will create an instance in the specified host. Given configurations will be populated if `EV_INSTANCE_CONFIG_PATH` is given.
 ```
-evdevkit acquire
+evdevkit acquire <host XRPL address>
 ```
 - This will return the acquired instance details.
 
@@ -67,7 +67,7 @@ In order to change the tenant info you need to override the [environment variabl
 ## Advanced usage
 ```
 # Do [acquire](#acquiring-instance-from-evernode), [bundle](#creating-the-deployable-contract-package) and [deploy](#uploading-a-contract-to-evernode) in one command
-evdevkit acquire-and-deploy <path to contract directory> <contract binary> -a <contract binary arguments>
+evdevkit acquire-and-deploy <path to contract directory> <contract binary> <host XRPL address> -a <contract binary arguments>
 
 # List the active hosts in Evernode
 evdevkit list
@@ -79,7 +79,7 @@ evdevkit host <host XRPL address>
 evdevkit keygen
 
 # Create Evernode cluster and deploy a smart contract
-evdevkit cluster-create <cluster size> <path to contract directory> <contract binary> -a <contract binary arguments>
+evdevkit cluster-create <cluster size> <path to contract directory> <contract binary> <preferred hosts file path> <EVR limit> -a <contract binary arguments>
 ```
 
 An example HotPocket configuration:

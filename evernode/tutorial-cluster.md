@@ -101,17 +101,30 @@ In Evernode developer kit, single command does the cluster creation and the depl
      # Linux (bash)
      export EV_CONTRACT_CONFIG_PATH=<Path to your contract configuration json file>
      ```
+5. You need to create the Preferred Hosts file that includes the host addresses to acquire instances from when creating a cluster. You can check the available hosts by using the [hosts page](https://dashboard.evernode.org/#/hosts) or the [`list` command](../evdevkit/index.md#advanced-usage). 
 
-5. Now you are ready to deploy the smart contract to an Evernode cluster.
+   - Create a new text file anywhere you prefer.
+   - Add the XRPL address of each preferred host to the file, in a line-by-line format.
+   - Example: 
+      ```
+      rVJhd8kTYyBMK8LmETUPA99HMhNd14D4q
+      rerP15ECELmVFXVVRoz4FHy8mhxTAuyW3
+      rrssGm5h8aWncB3CGMuQ2WGfexubbeCTLV
+      rnzeYqWqUaXDzRcTbwLJ2MsHsc1neZkDx9
+      ```
+
+6. Now you are ready to deploy the smart contract to an Evernode cluster.
    - Let's create a 5 node cluster. Run following command to create the cluster.
      ```bash
-     evdevkit cluster-create 5 $HOME/contract /usr/bin/node -a index.js
+     evdevkit cluster-create 5 $HOME/contract /usr/bin/node $HOME/hosts.txt 10 -a index.js
      ```
    - Note:
      - `5` Is the cluster size.
      - Replace `$HOME/contract` with your contract directory path (Path to build directory of contract binaries).
-     - Replace `/usr/bin/node` `index.js` with your binary path and arguments.
-   - This will create an Evernode cluster in a random hosts and outputs the instance details.
+     - Replace `$HOME/hosts.txt` with your preferred hosts file path (Path to the Preferred Hosts file created in the previous step).
+     - Replace `/usr/bin/node` and `index.js` with your binary path and arguments.
+     - Replace `10` with the EVR limit to spend during the cluster creation.
+   - This will create an Evernode cluster in the preferred hosts and outputs the instance details.
      ```bash
      ...
      Cluster created!
@@ -167,8 +180,8 @@ In Evernode developer kit, single command does the cluster creation and the depl
         }
      ]
      ```
-   - You can specify more options (Ex: `-h` specify a host) to the `cluster-create` command. Check the supported options using below command.
+   - You can specify more options (Ex: `-m` specify life moments) to the `cluster-create` command. Check the supported options using below command.
      ```bash
      evdevkit cluster-create --help
      ```
-6. At this point you have created an Evernode cluster successfully and you have details of all the instances including public key, IP, ports etc. Now you can test the uploaded contract by implementing a user client same as you did in [hpdevkit basic tutorial](../hotpocket/tutorial-basics.md#create-the-client-application).
+7. At this point you have created an Evernode cluster successfully and you have details of all the instances including public key, IP, ports etc. Now you can test the uploaded contract by implementing a user client same as you did in [hpdevkit basic tutorial](../hotpocket/tutorial-basics.md#create-the-client-application).
