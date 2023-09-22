@@ -170,7 +170,7 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
 Using Evernode devkit you can acquire and deploy Evenode instances using one command.
 
 1. First you need to follow the same 1, 2, 3 steps in ["Acquire an instance"](#acquire-an-instance) here as well.
-2. Choose a host that to acquire an instance from. You can check the available hosts by using the [hosts page](https://dashboard.evernode.org/#/hosts) or the `list` command. 
+2. Choose a host that to acquire an instance from. You can check the available hosts by using the [hosts page](https://dashboard.evernode.org/#/hosts) or the [`list` command](../evdevkit/index.md#advanced-usage). 
 3. If you are going to override HotPocket config contract section, follow 3rd step in ["Create deployable smart contract package"](#create-deployable-smart-contract-package).
 4. Now you can just run the following command to acquire and deploy.
    - Run this command.
