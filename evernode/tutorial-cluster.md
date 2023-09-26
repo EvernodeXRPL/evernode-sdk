@@ -123,47 +123,57 @@ In Evernode developer kit, single command does the cluster creation and the depl
         {
            host: 'rDKgSroMoh5Ur1EDxFZnGJXzk2MFeDg3ts',
            name: '000100008729E98B90DCE8BFE77867DBFE2FE31193169B059699D576000000DB',
-           ip: 'evernode.xumm.dev',
            pubkey: 'ed0b77366a0202a1573d83ea3c18f73bda23592f190165abb9e82ee03379978014',
            contract_id: 'eb051608-c916-4f48-a8dc-a906b6e1f19d',
            peer_port: '22861',
-           user_port: '8081'
+           user_port: '8081',
+           domain: 'evernode.xumm.dev',
+           outbound_ip: '37.48.76.38',
+           created_timestamp: 1695605217865
         },
         {
            host: 'rKRjgkwZABgh6e38cES7aor6cLjFETkpBA',
            name: '00010000CA1FE108B76979D1557CE80B7BD8103E5942D26893E8B1C300000028',
-           ip: '45.32.197.83',
            pubkey: 'ed3bd71ef91da28eb4e704ca41618a059e2effabd064c49b226d2edec6cbc5b40b',
            contract_id: 'eb051608-c916-4f48-a8dc-a906b6e1f19d',
            peer_port: '22861',
-           user_port: '26201'
+           user_port: '26201',
+           domain: 'node.melisaxrp.xyz',
+           outbound_ip: '142.93.13.229',
+           created_timestamp: 1695605216865
         },
         {
            host: 'rn49hoLXBY2AnZG4d2EvqVQGLfWaExh9eE',
            name: '000100002FDFF898274403F4C3A2256611FC885C956ACF32AACE82C400000029',
-           ip: '149.28.92.171',
            pubkey: 'ed0d1f25e338cc9531130d5c590bdd118b677eec9d4796868128543aaad1ccdbdf',
            contract_id: 'eb051608-c916-4f48-a8dc-a906b6e1f19d',
            peer_port: '22861',
-           user_port: '26201'
+           user_port: '26201',
+           domain: 'eversmikexrpl.space',
+           outbound_ip: '112.213.32.34',
+           created_timestamp: 1695605215865
         },
         {
            host: 'rBWAXbwQSGwYg5NPmdVWsQkXTS7fdRhCXL',
            name: '00010000735AD68125616A771D288703D5335E2503B28187FA05B7E90000004E',
-           ip: '79.173.139.104',
            pubkey: 'ed1f802792d9e5b4dc8b9a73d93689fb9321a993afdb8077f91611695137be87cd',
            contract_id: 'eb051608-c916-4f48-a8dc-a906b6e1f19d',
            peer_port: '22861',
-           user_port: '26200'
+           user_port: '26200',
+           domain: 'server2.evernode.host',
+           outbound_ip: '136.38.94.223',
+           created_timestamp: 1695605214865
         },
         {
            host: 'rKQyXCJGv1B3cqkpykvHYM97H2mVSqJkP9',
            name: '00010000C9FB04D9E46A6F320A4533AB0AD69DE8C15391100000099B00000000',
-           ip: '172.104.131.188',
            pubkey: 'edaa2f1705f2182e49902544a2ff1433dd745185b42c4857fd7b244eace86e0da1',
            contract_id: 'eb051608-c916-4f48-a8dc-a906b6e1f19d',
            peer_port: '22861',
-           user_port: '26201'
+           user_port: '26201',
+           domain: 'node5.aksumwealth.xyz',
+           outbound_ip: '5.78.109.151',
+           created_timestamp: 1695605213865
         }
      ]
      ```
