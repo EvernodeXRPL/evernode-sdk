@@ -86,11 +86,13 @@ Follow [installation instructions](../evdevkit//index.md#installation) to instal
      ...
      Instance created! {
         name: '00010000414A6FB83385362D61A89FDE24414914AE05FCB8AACE82C400000029',
-        ip: '66.42.63.218',
         pubkey: 'edbf186b1bbedf0a3e7351ec969d0aeee40b45831fd924db0a129663ec5920992d',
         contract_id: '020e552d-11f9-4707-a8c0-eecd6f4289da',
         peer_port: '22861',
-        user_port: '8081'
+        user_port: '8081',
+        domain: 'node2.aksumwealth.xyz',
+        outbound_ip: '5.78.76.104',
+        created_timestamp: 1695605217865
      }
      ```
    - You can specify more options (Ex: `-h` specify a host) to the `acquire` command. Check the supported options using the below command.
@@ -184,11 +186,13 @@ Using Evernode devkit you can acquire and deploy Evenode instances using one com
      ...
      Instance created! {
         name: '000100004B2CDD9D208422C913DFB2EDB880FCA30D653644920E65060000006B',
-        ip: '107.173.83.83',
         pubkey: 'ede6d05dc23bf9aba9cabf6de65d280acc0ba3f2a356484af28b140a125308705d',
         contract_id: '7902171c-3d34-4c10-a5f7-d436e3525852',
         peer_port: '22861',
-        user_port: '8081'
+        user_port: '8081',
+        domain: 'node2.aksumwealth.xyz',
+        outbound_ip: '5.78.76.104',
+        created_timestamp: 1695605219865
      }
      ...
      Archive finished. (location: $HOME/bundle/bundle.zip)
