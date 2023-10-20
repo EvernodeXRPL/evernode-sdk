@@ -1,3 +1,8 @@
+# Evernode documentation is now at https://docs.evernode.org/
+
+------
+obsolete:
+
 # Evernode SDK
 
 The Evernode SDK consists of libraries and tools required to develop and deploy HotPocket smart contracts on Evernode. This repo is used to provide early access to libraries and tools that are work-in-progress and to get feedback.
