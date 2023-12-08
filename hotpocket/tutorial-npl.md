@@ -11,13 +11,13 @@ const HotPocket = require("hotpocket-nodejs-contract");
 const fs = require("fs").promises;
 
 const myContract = async (ctx) => {
-    const min = 1;
-    const max = 5;
+  const min = 1;
+  const max = 5;
 
-    const random = Math.floor(Math.random() * (max - min + 1)) + min;
-    const filename = "data.txt";
-    await fs.appendFile(filename, random + "\n");
-}
+  const random = Math.floor(Math.random() * (max - min + 1)) + min;
+  const filename = "data.txt";
+  await fs.appendFile(filename, random + "\n");
+};
 
 const hpc = new HotPocket.Contract();
 hpc.init(myContract);
@@ -49,7 +49,7 @@ If a particular node is able to listen to at least a single message from the oth
 
 [HotPocket config](reference-configuration.md) specifies `npl` mode as `private` by default, so NPL messages can only be passed between UNL nodes. Setting `npl` to `public` will enable any connected node (non-UNL) to receive NPL messages. However, HotPocket will reject NPL messages that are sent by non-UNL nodes.
 
-***NOTE :*** _NPL messaging is not available in read-only contract mode, and therefore this should be done in a consensus invocation ( !ctx.readonly )._
+**_NOTE :_** _NPL messaging is not available in read-only contract mode, and therefore this should be done in a consensus invocation ( !ctx.readonly )._
 
 The following code attempts to send a message within the UNL:
 
@@ -57,24 +57,23 @@ The following code attempts to send a message within the UNL:
 const HotPocket = require("hotpocket-nodejs-contract");
 
 const myContract = async (ctx) => {
-    if (!ctx.readonly) {
-        // Start listening to incoming NPL messages before we send ours.
-        const promise = new Promise((resolve, reject) => {
-            ctx.unl.onMessage((node, msg) => {
+  if (!ctx.readonly) {
+    // Start listening to incoming NPL messages before we send ours.
+    const promise = new Promise((resolve, reject) => {
+      ctx.unl.onMessage((node, msg) => {
+        // Filter the messages received only from other nodes, since we receive our own message
+        // as well.
+        if (ctx.publicKey !== node.publicKey) {
+          resolve(`${node.publicKey} said ${msg} to me.`);
+        }
+      });
+    });
 
-                // Filter the messages received only from other nodes, since we receive our own message
-                // as well.
-                if (ctx.publicKey !== node.publicKey) {
-                    resolve(`${node.publicKey} said ${msg} to me.`);
-                }
-            });
-        });
-
-        await ctx.unl.send("Hello");
-        const receipt = await promise;
-        console.log(receipt);
-    }
-}
+    await ctx.unl.send("Hello");
+    const receipt = await promise;
+    console.log(receipt);
+  }
+};
 
 const hpc = new HotPocket.Contract();
 hpc.init(myContract);
@@ -98,45 +97,43 @@ The duration of the timeout (in milliseconds) is determined with the use of [rou
 const HotPocket = require("hotpocket-nodejs-contract");
 
 const myContract = async (ctx) => {
-    if (!ctx.readonly) {
-        // To get the HotPocket contract configuration.
-        const hpconfig = await ctx.getConfig();
+  if (!ctx.readonly) {
+    // To get the HotPocket contract configuration.
+    const hpconfig = await ctx.getConfig();
 
-        // Start listening to incoming NPL messages before we send ours.
-        const promise = new Promise((resolve, reject) => {
-            let nodeMessages = [];
-            let msg = "";
+    // Start listening to incoming NPL messages before we send ours.
+    const promise = new Promise((resolve, reject) => {
+      let nodeMessages = [];
+      let msg = "";
 
-            // Wait only for half of roundtime.
-            const timeoutMs = Math.ceil(hpconfig.consensus.roundtime / 2);
+      // Wait only for half of roundtime.
+      const timeoutMs = Math.ceil(hpconfig.consensus.roundtime / 2);
 
-            let timer = setTimeout(() => {
-                clearTimeout(timer);
-                nodeMessages.forEach(element => {
-                    msg = `${msg} \n ${element.node} said ${element.msg} to me.`
-                });
-                // Output all the messages received in the timeout.
-                resolve(msg);
-            }, timeoutMs);
-
-            ctx.unl.onMessage((node, msg) => {
-                // Filter the messages received only from other nodes, since we receive our own message
-                // as well.
-                if (ctx.publicKey !== node.publicKey) {
-                  // Collect messages received from the nodes in UNL to an array.
-                  nodeMessages.push({node : node.publicKey, msg: msg})
-                }
-            });
-
+      let timer = setTimeout(() => {
+        clearTimeout(timer);
+        nodeMessages.forEach((element) => {
+          msg = `${msg} \n ${element.node} said ${element.msg} to me.`;
         });
+        // Output all the messages received in the timeout.
+        resolve(msg);
+      }, timeoutMs);
 
-        await ctx.unl.send("Hello");
+      ctx.unl.onMessage((node, msg) => {
+        // Filter the messages received only from other nodes, since we receive our own message
+        // as well.
+        if (ctx.publicKey !== node.publicKey) {
+          // Collect messages received from the nodes in UNL to an array.
+          nodeMessages.push({ node: node.publicKey, msg: msg });
+        }
+      });
+    });
 
-        const receipt = await promise;
-        console.log(receipt);
-    }
+    await ctx.unl.send("Hello");
 
-}
+    const receipt = await promise;
+    console.log(receipt);
+  }
+};
 
 const hpc = new HotPocket.Contract();
 hpc.init(myContract);
@@ -146,17 +143,17 @@ The following output will be generated:
 
 ```
 20220916 06:17:38.241 [inf][hpc] ****Ledger created**** (lcl:2-0d1cb434 state:1003873b patch:dd100440)
- 
- ed65e53ae912581501521bb9323309903556d08794614a037f95013f38fce5755c said Hello to me. 
+
+ ed65e53ae912581501521bb9323309903556d08794614a037f95013f38fce5755c said Hello to me.
  edb6382ec6e78549d1ea2b40930b2448f9dfb49a22dc13caf54d1cbd31968603a6 said Hello to me.
 20220916 06:17:40.244 [inf][hpc] ****Ledger created**** (lcl:3-1b3131ab state:1003873b patch:dd100440)
- 
+
  ed65e53ae912581501521bb9323309903556d08794614a037f95013f38fce5755c said Hello to me.
  edb6382ec6e78549d1ea2b40930b2448f9dfb49a22dc13caf54d1cbd31968603a6 said Hello to me.
 20220916 06:17:42.243 [inf][hpc] ****Ledger created**** (lcl:4-cbc3d0bd state:1003873b patch:dd100440)
 ```
 
-___NOTE :___  _A 3-node HotPocket cluster is used in the example above._
+**_NOTE :_** _A 3-node HotPocket cluster is used in the example above._
 
 ## Advance usage of NPL
 
@@ -169,80 +166,79 @@ Let's go back to the example of random number generation:
 - Once a node receives all messages from its peers, or the timeout period is reached, the node has to select the maximum from the received random numbers.
 - The node then tries to save the maximum value in the `data.txt` file in its state.
 
-___NOTE :___ _A stringified JSON object is used as the message in the example below._
+**_NOTE :_** _A stringified JSON object is used as the message in the example below._
 
 ```javascript
 const HotPocket = require("hotpocket-nodejs-contract");
 const fs = require("fs").promises;
 
 const myContract = async (ctx) => {
-    const filename = "data.txt";
+  const filename = "data.txt";
 
-    if (!ctx.readonly) {
-        const unlSize = ctx.unl.count();
-        const hpconfig = await ctx.getConfig();
-        // Wait only for half of roundtime.
-        const timeoutMs = Math.ceil(hpconfig.consensus.roundtime / 2);
+  if (!ctx.readonly) {
+    const unlSize = ctx.unl.count();
+    const hpconfig = await ctx.getConfig();
+    // Wait only for half of roundtime.
+    const timeoutMs = Math.ceil(hpconfig.consensus.roundtime / 2);
 
-        let completed = false;
+    let completed = false;
 
-        // Start listening to incoming NPL messages before we send ours.
-        const promise = new Promise((resolve, reject) => {
-            let receivedNos = [];
+    // Start listening to incoming NPL messages before we send ours.
+    const promise = new Promise((resolve, reject) => {
+      let receivedNos = [];
 
-            function getMax() {
-                console.log(`Received Numbers :`, receivedNos);
-                let max = 0;
-                for (const randomNumber of receivedNos) {
-                    if (randomNumber > max) {
-                        max = randomNumber;
-                    }
-                }
-                return max;
-            }
+      function getMax() {
+        console.log(`Received Numbers :`, receivedNos);
+        let max = 0;
+        for (const randomNumber of receivedNos) {
+          if (randomNumber > max) {
+            max = randomNumber;
+          }
+        }
+        return max;
+      }
 
+      let timer = setTimeout(() => {
+        clearTimeout(timer);
+        completed = true;
+        // If we've received less than what we expect, throw error.
+        if (receivedNos.length < unlSize)
+          reject("Error generating the random number.");
+        else resolve(getMax());
+      }, timeoutMs);
 
-            let timer = setTimeout(() => {
-                clearTimeout(timer);
-                completed = true;
-                // If we've received less than what we expect, throw error.
-                if (receivedNos.length < unlSize)
-                    reject('Error generating the random number.');
-                else
-                    resolve(getMax());
-            }, timeoutMs)
+      ctx.unl.onMessage((node, msg) => {
+        if (!completed) {
+          const obj = JSON.parse(msg.toString());
+          if (obj.key === "randomNumber") {
+            const number = Number(obj.value);
+            receivedNos.push(number);
+          }
+          if (receivedNos.length === unlSize) {
+            clearTimeout(timer);
+            completed = true;
+            resolve(getMax());
+          }
+        }
+      });
+    });
 
-            ctx.unl.onMessage((node, msg) => {
-                if (!completed) {
-                    const obj = JSON.parse(msg.toString());
-                    if (obj.key === "randomNumber") {
-                        const number = Number(obj.value);
-                        receivedNos.push(number);
-                    }
-                    if (receivedNos.length === unlSize) {
-                        clearTimeout(timer);
-                        completed = true;
-                        resolve(getMax());
-                    }
-                }
-            });
+    const min = 1;
+    const max = 5;
 
-        });
+    const random = Math.floor(Math.random() * (max - min + 1)) + min;
+    await ctx.unl.send(
+      JSON.stringify({
+        key: "randomNumber",
+        value: random,
+      })
+    );
 
-        const min = 1;
-        const max = 5;
-
-        const random = Math.floor(Math.random() * (max - min + 1)) + min;
-        await ctx.unl.send(JSON.stringify({
-            key: "randomNumber",
-            value: random
-        }));
-
-        const receipt = await promise;
-        console.log('Decided Random No.:', receipt);
-        await fs.appendFile(filename, receipt + "\n");
-    }
-}
+    const receipt = await promise;
+    console.log("Decided Random No.:", receipt);
+    await fs.appendFile(filename, receipt + "\n");
+  }
+};
 
 const hpc = new HotPocket.Contract();
 hpc.init(myContract);
@@ -261,6 +257,9 @@ Decided Random No.: 4
 Received Numbers : [ 2, 1, 2 ]
 Decided Random No.: 2
 ```
-___NOTE :___ _A 3-node HotPocket cluster is used in the example above, and there is no break of consensus due to a state mismatch._
 
-___To implement a more advanced decision-making logic, you can extend this implementation to voting and selecting a majority from a list of suggestions.___
+**_NOTE :_** _A 3-node HotPocket cluster is used in the example above, and there is no break of consensus due to a state mismatch._
+
+**_To implement a more advanced decision-making logic, you can extend this implementation to voting and selecting a majority from a list of suggestions._**
+
+Next: [Instance sync](tutorial-instance-sync.md)
